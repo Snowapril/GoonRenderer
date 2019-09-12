@@ -1,0 +1,27 @@
+# Target name
+set(target GoonMath)
+
+set(SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/main.cpp
+)
+
+set(INCLUDES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/vec.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec3.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec4.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec_base.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec_transform.h
+)
+
+add_executable(GoonMath ${SOURCES} ${INCLUDES})
+
+target_include_directories(GoonMath
+PUBLIC
+PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes
+)
+
+target_link_libraries(GoonMath
+PUBLIC
+PRIVATE
+)
