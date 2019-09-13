@@ -2,15 +2,25 @@
 set(target GoonMath)
 
 set(SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/samples/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/type_vec3.inl
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/property/vec_property.inl
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/transform/vec_transform.inl
 )
 
 set(INCLUDES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/vec.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec3.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec4.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec_base.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/vec_transform.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/vec3.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/vec4.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/type_vec3.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/type_vec4.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/details/type_vec_base.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/property/vec_property.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/transform/vec_transform.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/type_specialization/vec3_bool.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/type_specialization/vec3_int.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/type_specialization/vec3_uint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/type_specialization/vec3_float.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/type_specialization/vec3_double.h
 )
 
 add_executable(GoonMath ${SOURCES} ${INCLUDES})
