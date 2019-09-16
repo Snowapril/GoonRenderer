@@ -2,17 +2,17 @@ language: cpp
 
 matrix:
   include:
+    # works on Precise and Trusty
     - os: linux
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-4.9
+            - g++-5.1
       env:
-         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+         - MATRIX_EVAL="CC=gcc-5.1 && CXX=g++-5.1"
       script: 
-         - cmake --version
          - mkdir Bin
          - cd Bin
          - cmake .. -DCMAKE_C_COMPILER=gcc-4.9 -DCMAKE_CXX_COMPILER=g++-4.9
@@ -25,20 +25,14 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-5
-      env:
-         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-
-    # works on Precise and Trusty
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
             - g++-6
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=gcc-4.9 -DCMAKE_CXX_COMPILER=g++-4.9
+         - make
 
     # works on Precise and Trusty
     - os: linux
@@ -50,6 +44,11 @@ matrix:
             - g++-7
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=gcc-4.9 -DCMAKE_CXX_COMPILER=g++-4.9
+         - make
   
     - name: OSX + gcc4.9
       os: osx
