@@ -15,7 +15,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-4.9 -DCMAKE_CXX_COMPILER=g++-4.9
+         - cmake .. -DCMAKE_C_COMPILER=gcc-5.1 -DCMAKE_CXX_COMPILER=g++-5.1
          - make
 
     # works on Precise and Trusty
@@ -31,7 +31,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-4.9 -DCMAKE_CXX_COMPILER=g++-4.9
+         - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
          - make
 
     # works on Precise and Trusty
@@ -47,7 +47,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-4.9 -DCMAKE_CXX_COMPILER=g++-4.9
+         - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
          - make
   
     - name: OSX + gcc4.9
