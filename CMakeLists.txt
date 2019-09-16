@@ -37,6 +37,6 @@ set(CMAKE_MACOSX_RPATH ON)
 # add_subdirectory(Libraries/thrust EXCLUDE_FROM_ALL)
 		
 add_subdirectory(GoonRenderer)
-add_subdirectory(GoonExtensions)
+add_subdirectory(Extensions)
 
-add_dependencies(ToonEngine GoonExtensions)
+add_dependencies(GoonRenderer GoonBMP GoonMath)

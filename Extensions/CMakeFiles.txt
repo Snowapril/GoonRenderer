@@ -1,5 +1,0 @@
-# Target name
-set(target GoonExtensions)
-
-add_subdirectory(GoonMath)
-add_subdirectory(GoonBMP)
