@@ -57,6 +57,7 @@ matrix:
       os: osx
       osx_image: xcode8
       compiler: gcc
+      sudo: required
       env:
         - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
       script: 
@@ -69,6 +70,7 @@ matrix:
       os: osx
       osx_image: xcode8
       compiler: gcc
+      sudo: required
       env:
         - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
       script: 
@@ -81,6 +83,7 @@ matrix:
       os: osx
       osx_image: xcode8
       compiler: gcc
+      sudo: required
       env:
         - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
       script: 
@@ -190,6 +193,7 @@ matrix:
           packages:
             - clang-5.0
       compiler: clang
+      sudo: required
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
       script: 
@@ -208,6 +212,7 @@ matrix:
           packages:
             - clang-6.0
       compiler: clang
+      sudo: required
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
       script: 
@@ -219,6 +224,7 @@ matrix:
     - os: osx
       osx_image: xcode10.1
       compiler: clang
+      sudo: required
       env:
         - MATRIX_EVAL="CC=clang-10.0.0 && CXX=clang++-10.0.0"
       script: 
@@ -230,6 +236,7 @@ matrix:
     - os: osx
       osx_image: xcode9.4
       compiler: clang
+      sudo: required
       env:
         - MATRIX_EVAL="CC=clang-9.1.0 && CXX=clang++-9.1.0"
       script: 
@@ -237,6 +244,7 @@ matrix:
          - cd Bin
          - cmake .. -DCMAKE_C_COMPILER=clang-10.0.0 -DCMAKE_CXX_COMPILER=clang++-10.0.0
          - make
+         
 
 before_install:
     - eval "${MATRIX_EVAL}"
