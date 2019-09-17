@@ -194,6 +194,7 @@ matrix:
             - clang-5.0
       compiler: clang
       sudo: required
+      dist: trusty
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
       script: 
@@ -213,6 +214,7 @@ matrix:
             - clang-6.0
       compiler: clang
       sudo: required
+      dist: trusty
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
       script: 
