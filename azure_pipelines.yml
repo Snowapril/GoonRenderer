@@ -1,0 +1,16 @@
+jobs:
+- job: Windows_VS2017
+  pool:
+    vmImage: 'Windows-VS2017'
+  steps:
+  - template: Scripts/azure_pipelines_vs2017.yml
+- job: Windows_VS2019
+  pool:
+    vmImage: 'Windows-VS2019'
+  steps:
+  - template: Scripts/azure_pipelines_vs2019.yml
+- job: macOS
+  pool:
+    vmImage: 'MacOS-10.14'
+  steps:
+  - template: Scripts/azure_pipelines_macos.yml
