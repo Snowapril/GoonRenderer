@@ -9,28 +9,12 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-5
-      compiler: gcc
-      env:
-         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-5 -DCMAKE_CXX_COMPILER=g++-5
-         - make
-
-    # works on Precise and Trusty
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
             - g++-6
       compiler: gcc
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
       script: 
+         - lsb_release -a
          - mkdir Bin
          - cd Bin
          - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
@@ -52,138 +36,7 @@ matrix:
          - cd Bin
          - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
          - make
-  
-    - name: OSX + gcc5
-      os: osx
-      osx_image: xcode8
-      compiler: gcc
-      sudo: required
-      env:
-        - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-5 -DCMAKE_CXX_COMPILER=g++-5
-         - make
-
-    - name: OSX + gcc6
-      os: osx
-      osx_image: xcode8
-      compiler: gcc
-      sudo: required
-      env:
-        - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
-         - make
-
-    - name: OSX + gcc7
-      os: osx
-      osx_image: xcode8
-      compiler: gcc
-      sudo: required
-      env:
-        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
-         - make
     
-    - name: linux + clang3.6
-      os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.6
-          packages:
-            - clang-3.6
-      compiler: clang
-      env:
-        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.6 -DCMAKE_CXX_COMPILER=clang++-3.6
-         - make
-        
-    - name: linux + clang3.7
-      os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.7
-          packages:
-            - clang-3.7
-      compiler: clang
-      env:
-        - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.7 -DCMAKE_CXX_COMPILER=clang++-3.7
-         - make
-
-    # works on Precise and Trusty
-    - name: linux + clang3.8
-      os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.8
-          packages:
-            - clang-3.8
-      compiler: clang
-      env:
-        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.8 -DCMAKE_CXX_COMPILER=clang++-3.8
-         - make
-
-    # works on Trusty
-    - name: linux + clang3.9
-      os: linux
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-3.9
-          packages:
-            - clang-3.9
-      compiler: clang
-      env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.9 -DCMAKE_CXX_COMPILER=clang++-3.9
-         - make
-
-    # works on Trusty
-    - name: linux + clang4.0
-      os: linux
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-4.0
-          packages:
-            - clang-4.0
-      compiler: clang
-      env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-4.0 -DCMAKE_CXX_COMPILER=clang++-4.0
-         - make
-
-    # works on Trusty
     - name: linux + clang5.0
       os: linux
       addons:
@@ -235,19 +88,32 @@ matrix:
          - cd Bin
          - cmake .. -DCMAKE_C_COMPILER=clang-10.0.0 -DCMAKE_CXX_COMPILER=clang++-10.0.0
          - make
-        
-    - os: osx
-      osx_image: xcode9.4
-      compiler: clang
+    
+    - name: OSX + gcc6
+      os: osx
+      osx_image: xcode8
+      compiler: gcc
       sudo: required
       env:
-        - MATRIX_EVAL="CC=clang-9.1.0 && CXX=clang++-9.1.0"
+        - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-10.0.0 -DCMAKE_CXX_COMPILER=clang++-10.0.0
+         - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
          - make
-         
 
+    - name: OSX + gcc7
+      os: osx
+      osx_image: xcode8
+      compiler: gcc
+      sudo: required
+      env:
+        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
+         - make
+  
 before_install:
     - eval "${MATRIX_EVAL}"
