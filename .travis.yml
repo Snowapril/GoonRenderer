@@ -15,11 +15,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
       script: 
-         - lsb_release -a
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
-         - make
+        - sh Scripts/travis_ci_linux.sh
 
     # works on Precise and Trusty
     - name: Ubuntu 16.04.6 LTS + g++-7 
@@ -34,10 +30,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
       script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
-         - make
+        - sh Scripts/travis_ci_linux.sh
     
     - name: Ubuntu 16.04.6 LTS + clang++-5.0
       os: linux
@@ -53,10 +46,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
       script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-5.0 -DCMAKE_CXX_COMPILER=clang++-5.0
-         - make
+        - sh Scripts/travis_ci_linux.sh
         
         # works on Trusty
     - name: Ubuntu 16.04.6 LTS + clang++-6.0
@@ -74,10 +64,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
       script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. 
-         - make
+        - sh Scripts/travis_ci_linux.sh
         
 before_install:
     - eval "${MATRIX_EVAL}"

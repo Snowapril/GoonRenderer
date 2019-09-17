@@ -7,4 +7,4 @@ mkdir Bin
 cd Bin
 cmake ..
 make
-bin/UnitTests
+./bin/GoonRenderer
