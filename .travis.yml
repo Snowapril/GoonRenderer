@@ -3,7 +3,8 @@ language: cpp
 matrix:
   include:
     # works on Precise and Trusty
-    - os: linux
+    - name: Ubuntu 16.04.6 LTS + g++-6 
+      os: linux
       addons:
         apt:
           sources:
@@ -21,7 +22,8 @@ matrix:
          - make
 
     # works on Precise and Trusty
-    - os: linux
+    - name: Ubuntu 16.04.6 LTS + g++-7 
+      os: linux
       addons:
         apt:
           sources:
@@ -37,7 +39,7 @@ matrix:
          - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
          - make
     
-    - name: linux + clang5.0
+    - name: Ubuntu 16.04.6 LTS + clang++-5.0
       os: linux
       addons:
         apt:
@@ -57,7 +59,7 @@ matrix:
          - make
         
         # works on Trusty
-    - name: linux + clang6.0
+    - name: Ubuntu 16.04.6 LTS + clang++-6.0
       os: linux
       addons:
         apt:
@@ -74,46 +76,8 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang++-6.0
+         - cmake .. 
          - make
         
-    - os: osx
-      osx_image: xcode10.1
-      compiler: clang
-      sudo: required
-      env:
-        - MATRIX_EVAL="CC=clang-10.0.0 && CXX=clang++-10.0.0"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-10.0.0 -DCMAKE_CXX_COMPILER=clang++-10.0.0
-         - make
-    
-    - name: OSX + gcc6
-      os: osx
-      osx_image: xcode8
-      compiler: gcc
-      sudo: required
-      env:
-        - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
-         - make
-
-    - name: OSX + gcc7
-      os: osx
-      osx_image: xcode8
-      compiler: gcc
-      sudo: required
-      env:
-        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
-      script: 
-         - mkdir Bin
-         - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
-         - make
-  
 before_install:
     - eval "${MATRIX_EVAL}"
