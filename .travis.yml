@@ -53,19 +53,17 @@ matrix:
          - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
          - make
   
-    - name: OSX + gcc4.9
-      os: osx
-      osx_image: xcode8
-      compiler: gcc
-      env:
-        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
-
     - name: OSX + gcc5
       os: osx
       osx_image: xcode8
       compiler: gcc
       env:
         - MATRIX_EVAL="brew install gcc5 && CC=gcc-5 && CXX=g++-5"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=gcc-5 -DCMAKE_CXX_COMPILER=g++-5
+         - make
 
     - name: OSX + gcc6
       os: osx
@@ -73,6 +71,11 @@ matrix:
       compiler: gcc
       env:
         - MATRIX_EVAL="brew install gcc6 && CC=gcc-6 && CXX=g++-6"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=gcc-6 -DCMAKE_CXX_COMPILER=g++-6
+         - make
 
     - name: OSX + gcc7
       os: osx
@@ -80,6 +83,11 @@ matrix:
       compiler: gcc
       env:
         - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
+         - make
     
     - name: linux + clang3.6
       os: linux
@@ -213,12 +221,22 @@ matrix:
       compiler: clang
       env:
         - MATRIX_EVAL="CC=clang-10.0.0 && CXX=clang++-10.0.0"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=clang-10.0.0 -DCMAKE_CXX_COMPILER=clang++-10.0.0
+         - make
         
     - os: osx
       osx_image: xcode9.4
       compiler: clang
       env:
         - MATRIX_EVAL="CC=clang-9.1.0 && CXX=clang++-9.1.0"
+      script: 
+         - mkdir Bin
+         - cd Bin
+         - cmake .. -DCMAKE_C_COMPILER=clang-10.0.0 -DCMAKE_CXX_COMPILER=clang++-10.0.0
+         - make
 
 before_install:
     - eval "${MATRIX_EVAL}"
