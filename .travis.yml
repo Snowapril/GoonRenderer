@@ -96,7 +96,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.6 -DCMAKE_CXX_COMPILER=clang-3.6
+         - cmake .. -DCMAKE_C_COMPILER=clang-3.6 -DCMAKE_CXX_COMPILER=clang++-3.6
          - make
         
     - name: linux + clang3.7
@@ -114,7 +114,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.7 -DCMAKE_CXX_COMPILER=clang-3.7
+         - cmake .. -DCMAKE_C_COMPILER=clang-3.7 -DCMAKE_CXX_COMPILER=clang++-3.7
          - make
 
     # works on Precise and Trusty
@@ -133,7 +133,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.8 -DCMAKE_CXX_COMPILER=clang-3.8
+         - cmake .. -DCMAKE_C_COMPILER=clang-3.8 -DCMAKE_CXX_COMPILER=clang++-3.8
          - make
 
     # works on Trusty
@@ -151,7 +151,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-3.9 -DCMAKE_CXX_COMPILER=clang-3.9
+         - cmake .. -DCMAKE_C_COMPILER=clang-3.9 -DCMAKE_CXX_COMPILER=clang++-3.9
          - make
 
     # works on Trusty
@@ -169,7 +169,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-4.0 -DCMAKE_CXX_COMPILER=clang-4.0
+         - cmake .. -DCMAKE_C_COMPILER=clang-4.0 -DCMAKE_CXX_COMPILER=clang++-4.0
          - make
 
     # works on Trusty
@@ -187,7 +187,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-5.0 -DCMAKE_CXX_COMPILER=clang-5.0
+         - cmake .. -DCMAKE_C_COMPILER=clang-5.0 -DCMAKE_CXX_COMPILER=clang++-5.0
          - make
         
         # works on Trusty
@@ -205,7 +205,7 @@ matrix:
       script: 
          - mkdir Bin
          - cd Bin
-         - cmake .. -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang-6.0
+         - cmake .. -DCMAKE_C_COMPILER=clang-6.0 -DCMAKE_CXX_COMPILER=clang++-6.0
          - make
         
     - os: osx
