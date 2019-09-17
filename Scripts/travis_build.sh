@@ -1,3 +1,4 @@
+#!/bin/sh
 set -e
 
 export NUM_JOBS=1
