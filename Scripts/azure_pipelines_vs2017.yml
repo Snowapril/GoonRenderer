@@ -6,6 +6,7 @@ steps:
       md Bin
       cd Bin
       cmake .. -G "Visual Studio 15 2017 Win64"
+      tree
   - task: VSBuild@1
     inputs:
       solution: 'D:\a\1\s\Bin\Goon.sln'
