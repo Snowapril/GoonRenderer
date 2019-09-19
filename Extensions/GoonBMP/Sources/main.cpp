@@ -3,6 +3,14 @@
 
 int main(void)
 {
-    std::cout << "Size of bmp header : " << sizeof( gbmp::bmp_file_header ) << std::endl;
+    std::cout << "sizeof file header size : "   << sizeof(gbmp::bmp_file_header) << std::endl;
+    std::cout << "sizeof bitmap header size : " << sizeof(gbmp::bmp_bitmap_header) << std::endl;
+    std::cout << "sizeof color table size : "   << sizeof(gbmp::bmp_color_table) << std::endl;
+    
+    int width, height;
+    unsigned int numChannels;
+    auto data = gbmp::gbmp_load_image("../Data/Textures/Box/albedo.bmp", &width, &height, &numChannels);
+    if (!data) std::cout << "Invalid file format" << std::endl;
+    
     return 0;
 }
