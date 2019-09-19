@@ -12,4 +12,4 @@ steps:
       configuration: Release
       platform: x64
   - script: |
-      D:\a\1\s\Bin\bin\Release\Goon.exe
+      D:\a\1\s\Bin\bin\Release\GoonRenderer.exe
