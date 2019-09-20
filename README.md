@@ -4,8 +4,9 @@
 [![Build Status](https://travis-ci.org/Snowapril/GoonRenderer.svg?branch=master)](https://travis-ci.org/Snowapril/GoonRenderer)
 [![Build Status](https://dev.azure.com/sinjihng/sinjihng/_apis/build/status/Snowapril.GoonRenderer?branchName=master)](https://dev.azure.com/sinjihng/sinjihng/_build/latest?definitionId=1&branchName=master)
 
-This is software renderer which wholy implemented by me. 
-I will make a code from math, rendering, ... to even "SHADER" wholy by my code (i.e. without copy & paste).
+GoonRenderer is Software-rasterizer for improving my c++ language fluency and knowledge about graphics.
+I will implement all modules on my hand, from basic module such as math, file io.. etc to renderer.
+This is long-term project for two years. 
 
 ## Motivation
 https://github.com/ssloy/tinyrenderer

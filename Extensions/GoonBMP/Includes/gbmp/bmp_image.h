@@ -56,14 +56,14 @@ namespace gbmp
         
         if (bmp.is_open() == false)
         {
-             std::cout << "Cannot find file with path [ " << _image_path << " ]" << std::endl;
+             std::cerr << "Cannot find file with path [ " << _image_path << " ]" << std::endl;
              return {};
         }
         
         bmp.read((char*)&file_header, sizeof(file_header));
         if (file_header.header_field != 0x4D42)
         {
-            std::cout << std::hex << file_header.header_field << std::endl;
+            std::cerr << "Invalid BMP file format" << std::endl;
             return {};
         }
         std::cout << "Image file path : " << _image_path << std::endl;
@@ -73,6 +73,11 @@ namespace gbmp
         bmp.read((char*)&bitmap_header, sizeof(bitmap_header));
         std::cout << "\tWidth : " << bitmap_header.width << ", Height : " << bitmap_header.height << std::endl;
         std::cout << "\tDepth : " << bitmap_header.color_depth << std::endl;
+        if (bitmap_header.height < 0)
+        {
+            std::cerr << "This program only treat bmp image file which have it's origin at the left bottom corner" << std::endl;
+            return {};
+        }
         
         if (bitmap_header.color_depth == 32) // if image have alpha channel
         {
@@ -85,8 +90,18 @@ namespace gbmp
             file_header.offset_pixel_start = sizeof(bmp_file_header) + sizeof(bmp_bitmap_header);
         }
         file_header.file_size = file_header.offset_pixel_start;
+        std::size_t num_alloc = bitmap_header.width * bitmap_header.height * (bitmap_header.color_depth * 0.125f);
+        data = new unsigned char[num_alloc];
         
-        
+        if (bitmap_header.width % 4 == 0)
+        {
+            bmp.read((char*)data, num_alloc);
+            file_header.file_size += num_alloc;
+        }
+        else // bmp image file with extra zero-padding.
+        {
+            
+        }
         
         bmp.close();
         return { data };
