@@ -100,7 +100,14 @@ namespace gbmp
         }
         else // bmp image file with extra zero-padding.
         {
+            int32_t padding_width = 4 - (bitmap_header.width % 4);
+            unsigned char padding_data[padding_width];
+            unsigned char* temp_data_ptr = data;
             
+            for (int i = 0; i < bitmap_header.height; i++)
+            {
+                // TODO:    
+            }
         }
         
         bmp.close();
