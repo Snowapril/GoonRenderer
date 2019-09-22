@@ -9,4 +9,4 @@ I will implement all modules on my hand, from basic module such as math, file io
 This is long-term project for two years. 
 
 ## Motivation
-https://github.com/ssloy/tinyrenderer
+[tiny-renderer project by ssloy](https://github.com/ssloy/tinyrenderer)

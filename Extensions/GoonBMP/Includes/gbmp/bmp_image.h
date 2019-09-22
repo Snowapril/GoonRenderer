@@ -60,7 +60,7 @@ namespace gbmp
              return {};
         }
         
-        bmp.read((char*)&file_header, sizeof(file_header));
+        bmp.read(static_cast<char*>(&file_header), sizeof(file_header));
         if (file_header.header_field != 0x4D42)
         {
             std::cerr << "Invalid BMP file format" << std::endl;
@@ -70,7 +70,7 @@ namespace gbmp
         std::cout << "\tFile size : " << file_header.file_size << std::endl;
         std::cout << "\tPixel offset : " << file_header.offset_pixel_start << std::endl;
         
-        bmp.read((char*)&bitmap_header, sizeof(bitmap_header));
+        bmp.read(static_cast<char*>(&bitmap_header), sizeof(bitmap_header));
         std::cout << "\tWidth : " << bitmap_header.width << ", Height : " << bitmap_header.height << std::endl;
         std::cout << "\tDepth : " << bitmap_header.color_depth << std::endl;
         if (bitmap_header.height < 0)
@@ -81,8 +81,8 @@ namespace gbmp
         
         if (bitmap_header.color_depth == 32) // if image have alpha channel
         {
-            bitmap_header.header_size        = sizeof(bmp_bitmap_header) + sizeof(bmp_color_table);
-            file_header.offset_pixel_start = sizeof(bmp_file_header) + sizeof(bmp_bitmap_header) + sizeof(bmp_color_table);
+            bitmap_header.header_size      = sizeof(bmp_bitmap_header) + sizeof(bmp_color_table);
+            file_header.offset_pixel_start = sizeof(bmp_file_header)   + sizeof(bmp_bitmap_header) + sizeof(bmp_color_table);
         }
         else
         {
@@ -90,23 +90,24 @@ namespace gbmp
             file_header.offset_pixel_start = sizeof(bmp_file_header) + sizeof(bmp_bitmap_header);
         }
         file_header.file_size = file_header.offset_pixel_start;
-        std::size_t num_alloc = bitmap_header.width * bitmap_header.height * (bitmap_header.color_depth * 0.125f);
+        std::size_t num_alloc = bitmap_header.width * bitmap_header.height * static_cast<std::size_t>(bitmap_header.color_depth * 0.125f);
         data = new unsigned char[num_alloc];
         
         if (bitmap_header.width % 4 == 0)
         {
-            bmp.read((char*)data, num_alloc);
+            bmp.read(static_cast<char*>(data), num_alloc);
             file_header.file_size += num_alloc;
         }
         else // bmp image file with extra zero-padding.
         {
+            int32_t num_elements_row = bitmap_header.width * static_cast<int32_t>(bitmap_header.color_depth * 0.125f);
             int32_t padding_width = 4 - (bitmap_header.width % 4);
-            unsigned char padding_data[padding_width];
-            unsigned char* temp_data_ptr = data;
+            unsigned char padding_data[4];
             
             for (int i = 0; i < bitmap_header.height; i++)
             {
-                // TODO:    
+                bmp.read(static_cast<char*>(data + num_elements_row * i), sizeof(char) * num_elements_row);
+                bmp.read(static_cast<char*>(padding_data),                sizeof(char) * padding_width   );
             }
         }
         
