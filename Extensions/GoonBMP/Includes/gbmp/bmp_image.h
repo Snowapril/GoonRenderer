@@ -24,11 +24,11 @@ namespace gbmp
     
     struct bmp_bitmap_header
     {
-        uint32_t header_size                { 40 };
+        uint32_t header_size                {  0 };
         int32_t width                       {  0 };
         int32_t height                      {  0 };
         uint16_t num_color_planes           {  1 };
-        uint16_t color_depth                {  1 };
+        uint16_t color_depth                {  0 };
         uint32_t compression_method         {  0 };
         uint32_t image_size                 {  0 };
         int32_t horizontal_res              {  0 };
@@ -92,7 +92,7 @@ namespace gbmp
         else // bmp image file with extra zero-padding.
         {
             int32_t num_elements_row = bitmap_header.width * bit_count;
-            int32_t padding_width = 4 - (bitmap_header.width % 4);
+            int32_t padding_width = 4 - (num_elements_row % 4);
             uint8_t padding_data[4];
             
             for (int i = 0; i < bitmap_header.height; i++)
@@ -106,9 +106,58 @@ namespace gbmp
         return { data };
     }
     
-    void gbmp_write_image(std::string const& _path, uint8_t* _data, int32_t _width, int32_t _height, int32_t _bitcount) noexcept
+    bool gbmp_write_image(std::string const& _path, uint8_t* _data, int32_t _width, int32_t _height, int32_t _num_channels) noexcept
     {
+        if (_width <= 0 || _height <= 0) return false;
         
+        std::ofstream bmp { _path, std::ios_base::binary };
+        if (!bmp) return false;
+        
+        bmp_file_header     file_header;
+        bmp_bitmap_header   bitmap_header;
+        bmp_color_table     color_table;
+        
+        bool bTransparent = (_num_channels == 4);
+        bitmap_header.width  = _width;
+        bitmap_header.height = _height;
+        
+        if (bTransparent)
+        {
+            bitmap_header.header_size       = sizeof(bmp_bitmap_header) + sizeof(bmp_color_table);
+            file_header.offset_pixel_start  = sizeof(bmp_file_header)   + sizeof(bmp_bitmap_header) + sizeof(bmp_color_table); 
+            
+            bitmap_header.color_depth = 32;
+            bitmap_header.compression_method = 3;
+            file_header.file_size = file_header.offset_pixel_start + _width * _height * _num_channels;
+        }
+        else
+        {
+            bitmap_header.header_size       = sizeof(bmp_bitmap_header);
+            file_header.offset_pixel_start  = sizeof(bmp_file_header) + sizeof(bmp_bitmap_header);
+            
+            bitmap_header.color_depth = _num_channels * 8;
+            bitmap_header.compression_method = 0;
+            
+            int32_t num_elements_row = _width * _num_channels;
+            int32_t padding_width = 4 - (num_elements_row % 4);
+            file_header.file_size = file_header.offset_pixel_start + _width * _height * _num_channels + _height * padding_width;
+        }
+        
+        // write headers
+        bmp.write(reinterpret_cast<const char*>(&file_header), sizeof(file_header));
+        bmp.write(reinterpret_cast<const char*>(&bitmap_header), sizeof(bitmap_header));
+        if (bTransparent) bmp.write(reinterpret_cast<const char*>(&color_table), sizeof(color_table));
+        
+        // write data 
+        if (_width % 4 == 0)
+        {
+            bmp.write(reinterpret_cast<const char*>(_data), _width * _height * _num_channels);
+        }
+        else // need extra padding
+        {
+            // extra padding 
+        }
+        bmp.close();
     }
     
     void gbmp_free_image(uint8_t* _data) noexcept

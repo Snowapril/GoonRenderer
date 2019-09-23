@@ -3,6 +3,7 @@
 LG='\033[1;32m'
 NC='\033[0m' # No Color
 
+mkdir ../Bin
 cd ../Bin
 cmake .. -G "Ninja"
 ninja
@@ -16,5 +17,5 @@ echo "${LG}Execute GoonRenderer${NC}"
 ./bin/GoonRenderer
 echo "Program exit with return code : " $?
 
-rm -r ./*
-rm -r ./.*
+rm -r ../Bin/*
+rm -r ../Bin/.*
