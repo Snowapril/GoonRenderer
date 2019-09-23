@@ -1,7 +1,6 @@
 // reference on https://en.wikipedia.org/wiki/BMP_file_format 
 
 #include <fstream>
-#include <optional>
 #include <string>
 #include <iostream>
 
@@ -48,7 +47,7 @@ namespace gbmp
     }; // size : 84
     #pragma pack(pop)
     
-    std::optional<uint8_t*> gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, uint32_t* _num_channels) noexcept
+    uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, uint32_t* _num_channels) noexcept
     {
         std::ifstream bmp { _image_path, std::ios_base::binary };
         bmp_file_header file_header;
@@ -59,14 +58,14 @@ namespace gbmp
         if (bmp.is_open() == false)
         {
              std::cerr << "Cannot find file with path [ " << _image_path << " ]" << std::endl;
-             return {};
+             return nullptr;
         }
         
         bmp.read(reinterpret_cast<char*>(&file_header), sizeof(file_header));
         if (file_header.header_field != 0x4D42)
         {
             std::cerr << "Invalid BMP file format" << std::endl;
-            return {};
+            return nullptr;
         }
         
         bmp.read(reinterpret_cast<char*>(&bitmap_header), sizeof(bitmap_header));
@@ -78,7 +77,7 @@ namespace gbmp
         if (bitmap_header.height < 0)
         {
             std::cerr << "This program only treat bmp image file which have it's origin at the left bottom corner" << std::endl;
-            return {};
+            return nullptr;
         }
         
         std::size_t bit_count = static_cast<std::size_t>(bitmap_header.color_depth * 0.125f);
@@ -103,7 +102,7 @@ namespace gbmp
         }
         
         bmp.close();
-        return { data };
+        return data;
     }
     
     bool gbmp_write_image(std::string const& _path, uint8_t* _data, int32_t _width, int32_t _height, int32_t _num_channels) noexcept
@@ -155,7 +154,15 @@ namespace gbmp
         }
         else // need extra padding
         {
-            // extra padding 
+            int32_t num_elements_row = _width * _num_channels;
+            int32_t padding_width = 4 - (num_elements_row % 4);
+            unsigned char padding_data[4] = {0, };
+            
+            for (int i = 0; i < _height; ++i)
+            {
+                bmp.write(reinterpret_cast<const char*>(_data + num_elements_row * i), sizeof(char) * num_elements_row);
+                bmp.write(reinterpret_cast<const char*>(padding_data), sizeof(char) * padding_width);
+            }
         }
         bmp.close();
     }

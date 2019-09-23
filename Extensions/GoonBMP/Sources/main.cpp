@@ -9,9 +9,13 @@ int main(void)
     
     int width, height;
     unsigned int numChannels;
-    auto data = gbmp::gbmp_load_image("../Data/Textures/Box/specular.bmp", &width, &height, &numChannels);
-    if (!data) std::cout << "Invalid file format" << std::endl;
-    unsigned char* data_ptr = data.value();
+    unsigned char* data = gbmp::gbmp_load_image("../Data/Textures/Box/albedo.bmp", &width, &height, &numChannels);
+    if (data == nullptr) std::cout << "Invalid file format" << std::endl;
+    
+    for (int i = 0; i < width * height; i++) data[3*i] = 255;
+    
+    bool bSuccess = gbmp::gbmp_write_image("../Data/Textures/Box/test.bmp", data, width, height, numChannels);
+    if (!bSuccess) std::cout << "Write bmp file failed" << std::endl;
     
     return 0;
 }
