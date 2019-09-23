@@ -36,4 +36,4 @@ namespace gm
     };
 };
 
-#include "type_vec3.inl"
+#include "type_vec4.inl"

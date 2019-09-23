@@ -4,6 +4,7 @@ set(target GoonMath)
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec3.inl
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec4.inl
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/property/vec_property.inl
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/transform/vec_transform.inl
 )
