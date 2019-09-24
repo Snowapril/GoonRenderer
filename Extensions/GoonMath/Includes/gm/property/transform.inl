@@ -11,15 +11,15 @@ namespace gm
     }
     
     template <>
-    template <typename Type, int Num>
-    vec<Type, Num> const clamp<typename vec<Type, Num>>(vec<Type, Num> const& _target, vec<Type, Num> const& _min, vec<Type, Num> const& _max) noexcept
+    template <int Num, typename Type>
+    vec<Num, Type> const clamp< vec<Num, Type> >(vec<Num, Type> const& _target, vec<Num, Type> const& _min, vec<Num, Type> const& _max) noexcept
     {
-        vec<Type, Num> result;
+        vec<Num, Type> result;
         for (int i = 0; i < Num; i++)
         {
-            if       (_target[i] < _min[i])   result[i] = _min;
-            else if  (_target[i] > _max[i])   result[i] = _max;
-            else                              result[i] = _target;
+            if       (_target[i] < _min[i])   result[i] = _min[i];
+            else if  (_target[i] > _max[i])   result[i] = _max[i];
+            else                              result[i] = _target[i];
         }
         return result;
     }
@@ -37,17 +37,17 @@ namespace gm
         return -_target;
     }
     
-    template <typename Type, int Num>
-    vec<Type, Num> const normalize(vec<Type, Num> const& _v) noexcept
+    template <int Num, typename Type>
+    vec<Num, Type> const normalize(vec<Num, Type> const& _v) noexcept
     {
         float len = length(_v);
         float len_inv = 1 / len;
-        vec<Type, Num> result = _v * len_inv;
+        vec<Num, Type> result = _v * len_inv;
         return result;
     }
     
-    template <typename Type, int Num>
-    vec<Type, Num> const reflect(vec<Type, Num> const& _v, vec<Type, Num> const& _axis) noexcept
+    template <int Num, typename Type>
+    vec<Num, Type> const reflect(vec<Num, Type> const& _v, vec<Num, Type> const& _axis) noexcept
     {
     
     }

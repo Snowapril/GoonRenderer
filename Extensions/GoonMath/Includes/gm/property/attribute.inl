@@ -1,7 +1,7 @@
 namespace gm
 {
-    template <typename Type, int Num>
-    float length(vec<Type, Num> const& _v) noexcept
+    template <int Num, typename Type>
+    float length(vec<Num, Type> const& _v) noexcept
     {
         float squared_sum = 0.0f;
         for (Type val : _v.elements)
@@ -9,8 +9,8 @@ namespace gm
         return std::sqrt(squared_sum);
     }
     
-    template <typename Type, int Num>
-    typename Type sum(vec<Type, Num> const& _v) noexcept
+    template <int Num, typename Type>
+    typename Type sum(vec<Num, Type> const& _v) noexcept
     {
         float sum = 0.0f;
         for (Type val : _v.elements)

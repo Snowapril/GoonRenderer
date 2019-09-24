@@ -1,8 +1,8 @@
 #pragma once
-
+#include <type_traits>
 
 namespace gm 
 {
-    template <typename Type, int Num>
-    class vec {};  
+    template <int Num, typename Type>
+    class vec : std::false_type {};  
 };

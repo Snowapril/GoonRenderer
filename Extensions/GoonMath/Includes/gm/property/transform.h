@@ -13,11 +13,11 @@ namespace gm
     template <typename Type>
     Type const negate(Type const& _target) noexcept;
     
-    template <typename Type, int Num>
-    vec<Type, Num> const normalize(vec<Type, Num> const& _v) noexcept;
+    template <int Num, typename Type>
+    vec<Num, Type> const normalize(vec<Num, Type> const& _v) noexcept;
     
-    template <typename Type, int Num>
-    vec<Type, Num> const reflect(vec<Type, Num> const& _v, vec<Type, Num> const& _axis) noexcept;
+    template <int Num, typename Type>
+    vec<Num, Type> const reflect(vec<Num, Type> const& _v, vec<Num, Type> const& _axis) noexcept;
 };
 
 #include "transform.inl"

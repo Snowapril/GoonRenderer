@@ -1,23 +1,23 @@
 namespace gm 
 {
     template <typename Type>
-    vec<Type, 4>::vec(Type _val) noexcept
+    vec<4, Type>::vec(Type _val) noexcept
         : elements { _val, _val, _val, _val }
     {
     
     }
     
     template <typename Type>
-    vec<Type, 4>::vec(Type _x, Type _y, Type _z, Type _w) noexcept
+    vec<4, Type>::vec(Type _x, Type _y, Type _z, Type _w) noexcept
         : x(_x), y(_y), z(_z), w(_w)
     {
     
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator+(vec<Type, 4> const& _v) const noexcept
+    vec<4, Type> const vec<4, Type>::operator+(vec<4, Type> const& _v) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x + _v.x;
         result.y = this->y + _v.y;
         result.z = this->z + _v.z;
@@ -26,9 +26,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator-(vec<Type, 4> const& _v) const noexcept
+    vec<4, Type> const vec<4, Type>::operator-(vec<4, Type> const& _v) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x - _v.x;
         result.y = this->y - _v.y;
         result.z = this->z - _v.z;
@@ -37,9 +37,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator*(vec<Type, 4> const& _v) const noexcept
+    vec<4, Type> const vec<4, Type>::operator*(vec<4, Type> const& _v) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x * _v.x;
         result.y = this->y * _v.y;
         result.z = this->z * _v.z;
@@ -48,9 +48,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator/(vec<Type, 4> const& _v) const noexcept
+    vec<4, Type> const vec<4, Type>::operator/(vec<4, Type> const& _v) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x / _v.x;
         result.y = this->y / _v.y;
         result.z = this->z / _v.z;
@@ -59,17 +59,19 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator+=(vec<Type, 4> const& _v) noexcept
+    void vec<4, Type>::operator+=(vec<4, Type> const& _v) noexcept
     {
+        vec<4, Type> result;
         result.x += _v.x;
         result.y += _v.y;
-        result.z += _v.z
+        result.z += _v.z;
         result.w += _v.w;
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator-=(vec<Type, 4> const& _v) noexcept
+    void vec<4, Type>::operator-=(vec<4, Type> const& _v) noexcept
     {
+        vec<4, Type> result;
         result.x -= _v.x;
         result.y -= _v.y;
         result.z -= _v.z;
@@ -77,17 +79,19 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator*=(vec<Type, 4> const& _v) noexcept
+    void vec<4, Type>::operator*=(vec<4, Type> const& _v) noexcept
     {
+        vec<4, Type> result;    
         result.x *= _v.x;
         result.y *= _v.y;
-        result.z *= _v.z
+        result.z *= _v.z;
         result.w *= _v.w;
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator/=(vec<Type, 4> const& _v) noexcept
+    void vec<4, Type>::operator/=(vec<4, Type> const& _v) noexcept
     {
+        vec<4, Type> result;
         result.x /= _v.x;
         result.y /= _v.y;
         result.z /= _v.z;
@@ -95,9 +99,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator+(Type _val) const noexcept
+    vec<4, Type> const vec<4, Type>::operator+(Type _val) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x + _val;
         result.y = this->y + _val;
         result.z = this->z + _val;
@@ -106,9 +110,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator-(Type _val) const noexcept;
+    vec<4, Type> const vec<4, Type>::operator-(Type _val) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x - _val;
         result.y = this->y - _val;
         result.z = this->z - _val;
@@ -117,9 +121,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator*(Type _val) const noexcept;
+    vec<4, Type> const vec<4, Type>::operator*(Type _val) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         result.x = this->x * _val;
         result.y = this->y * _val;
         result.z = this->z * _val;
@@ -128,9 +132,9 @@ namespace gm
     }
     
     template <typename Type>
-    vec<Type, 4> const vec<Type, 4>::operator/(Type _val) const noexcept;
+    vec<4, Type> const vec<4, Type>::operator/(Type _val) const noexcept
     {
-        vec<Type, 4> result;
+        vec<4, Type> result;
         float inv_val = 1.0f / _val;
         result.x = this->x * inv_val;
         result.y = this->y * inv_val;
@@ -140,8 +144,9 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator+=(Type _val) noexcept;
+    void vec<4, Type>::operator+=(Type _val) noexcept
     {
+        vec<4, Type> result;
         result.x += _val;
         result.y += _val;
         result.z += _val;
@@ -149,8 +154,9 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator-=(Type _val) noexcept;
+    void vec<4, Type>::operator-=(Type _val) noexcept
     {
+        vec<4, Type> result;
         result.x -= _val;
         result.y -= _val;
         result.z -= _val;
@@ -158,8 +164,9 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator*=(Type _val) noexcept;
+    void vec<4, Type>::operator*=(Type _val) noexcept
     {
+        vec<4, Type> result;
         result.x *= _val;
         result.y *= _val;
         result.z *= _val;
@@ -167,8 +174,9 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<Type, 4>::operator/=(Type _val) noexcept;
+    void vec<4, Type>::operator/=(Type _val) noexcept
     {
+        vec<4, Type> result;
         float inv_val = 1.0f / _val;
         result.x *= inv_val;
         result.y *= inv_val;
@@ -177,13 +185,13 @@ namespace gm
     }
     
     template <typename Type>
-    Type& vec<Type, 4>::operator[](int _index) noexcept
+    Type& vec<4, Type>::operator[](int _index) noexcept
     {
         return static_cast<Type&>(elements[_index]);
     }
     
     template <typename Type>
-    Type const& vec<Type, 4>::operator[](int _index) const noexcept
+    Type const& vec<4, Type>::operator[](int _index) const noexcept
     {
         return static_cast<Type const&>(elements[_index]);
     }

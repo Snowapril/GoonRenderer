@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../details/type_vec4.h"
+#include "../details/type_vec_base.h"
 
 namespace gm
 {
-    template <typename Type, int Num>
-    namespace vec<float, Num> = vec4;
+    using vec4 = vec<4, float>;
 };

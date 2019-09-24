@@ -4,11 +4,11 @@
 
 namespace gm
 {
-    template <typename Type, int Num>
-    float length(vec<Type, Num> const& _v) noexcept;
+    template <int Num, typename Type>
+    float length(vec<Num, Type> const& _v) noexcept;
     
-    template <typename Type, int Num>
-    typename Type sum(vec<Type, Num> const& _v) noexcept;
+    template <int Num, typename Type>
+    typename Type sum(vec<Num, Type> const& _v) noexcept;
     
     
 };

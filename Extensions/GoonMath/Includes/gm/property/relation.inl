@@ -1,7 +1,7 @@
 namespace gm
 {
-    template <typename Type, int Num>
-    typename Type dot(vec<Type, Num> const& _v0, vec<Type, Num> const& _v1) noexcept
+    template <int Num, typename Type>
+    typename Type dot(vec<Num, Type> const& _v0, vec<Num, Type> const& _v1) noexcept
     {
         Type dot_sum = Type(0);
         for (int i = 0; i < Num; i++)
