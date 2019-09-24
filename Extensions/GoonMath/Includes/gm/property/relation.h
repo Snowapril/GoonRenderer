@@ -6,9 +6,6 @@ namespace gm
 {
     template <typename Type, int Num>
     typename Type dot(vec<Type, Num> const& _v0, vec<Type, Num> const& _v1) noexcept;
-    
-    template <typename Type, int Num>
-    vec<Type, Num> const normalize(vec<Type, Num> const& _v) noexcept;
 };
 
-#include "vec_transform.inl"
+#include "relation.inl"

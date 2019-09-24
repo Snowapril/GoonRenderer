@@ -1,5 +1,3 @@
-#include "vec_base.h"
-
 namespace gm
 {
     template <typename Type, int Num>
@@ -19,4 +17,6 @@ namespace gm
             sum += val;
         return sum;
     }
+    
+    
 };

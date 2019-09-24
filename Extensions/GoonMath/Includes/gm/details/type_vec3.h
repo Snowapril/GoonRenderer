@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vec_base.h"
+#include "type_vec_base.h"
 
 namespace gm 
 {

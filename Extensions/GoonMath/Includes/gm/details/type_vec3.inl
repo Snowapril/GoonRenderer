@@ -1,22 +1,20 @@
-#include "type_vec3.h"
-
 namespace gm 
 {
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3>::vec(Type _val) noexcept
         : elements { _val, _val, _val }
     {
     
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3>::vec(Type _x, Type _y, Type _z) noexcept
         : x(_x), y(_y), z(_z)
     {
     
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator+(vec<Type, 3> const& _v) const noexcept
     {
         vec<Type, 3> result;
@@ -26,7 +24,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator-(vec<Type, 3> const& _v) const noexcept
     {
         vec<Type, 3> result;
@@ -36,7 +34,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator*(vec<Type, 3> const& _v) const noexcept
     {
         vec<Type, 3> result;
@@ -46,7 +44,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator/(vec<Type, 3> const& _v) const noexcept
     {
         vec<Type, 3> result;
@@ -56,7 +54,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator+=(vec<Type, 3> const& _v) noexcept
     {
         result.x += _v.x;
@@ -64,7 +62,7 @@ namespace gm
         result.z += _v.z;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator-=(vec<Type, 3> const& _v) noexcept
     {
         result.x -= _v.x;
@@ -72,7 +70,7 @@ namespace gm
         result.z -= _v.z;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator*=(vec<Type, 3> const& _v) noexcept
     {
         result.x *= _v.x;
@@ -80,7 +78,7 @@ namespace gm
         result.z *= _v.z;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator/=(vec<Type, 3> const& _v) noexcept
     {
         result.x /= _v.x;
@@ -88,7 +86,7 @@ namespace gm
         result.z /= _v.z;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator+(Type _val) const noexcept
     {
         vec<Type, 3> result;
@@ -98,7 +96,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator-(Type _val) const noexcept;
     {
         vec<Type, 3> result;
@@ -108,7 +106,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator*(Type _val) const noexcept;
     {
         vec<Type, 3> result;
@@ -118,7 +116,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     vec<Type, 3> const vec<Type, 3>::operator/(Type _val) const noexcept;
     {
         vec<Type, 3> result;
@@ -129,7 +127,7 @@ namespace gm
         return result;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator+=(Type _val) noexcept;
     {
         result.x += _val;
@@ -137,7 +135,7 @@ namespace gm
         result.z += _val;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator-=(Type _val) noexcept;
     {
         result.x -= _val;
@@ -145,7 +143,7 @@ namespace gm
         result.z -= _val;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator*=(Type _val) noexcept;
     {
         result.x *= _val;
@@ -153,7 +151,7 @@ namespace gm
         result.z *= _val;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     void vec<Type, 3>::operator/=(Type _val) noexcept;
     {
         float inv_val = 1.0f / _val;
@@ -162,13 +160,13 @@ namespace gm
         result.z *= inv_val;
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     Type& vec<Type, 3>::operator[](int _index) noexcept
     {
         return static_cast<Type&>(elements[_index]);
     }
     
-    template <typename Type, int Num>
+    template <typename Type>
     Type const& vec<Type, 3>::operator[](int _index) const noexcept
     {
         return static_cast<Type const&>(elements[_index]);
