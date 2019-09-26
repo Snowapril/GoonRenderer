@@ -1,6 +1,13 @@
 namespace gm 
 {
     template <typename Type>
+    vec<4, Type>::vec() noexcept
+        : elements { Type(0), Type(0), Type(0), Type(0) }
+    {
+    
+    }
+    
+    template <typename Type>
     vec<4, Type>::vec(Type _val) noexcept
         : elements { _val, _val, _val, _val }
     {

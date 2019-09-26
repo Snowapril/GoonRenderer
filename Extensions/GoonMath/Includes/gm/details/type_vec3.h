@@ -13,13 +13,13 @@ namespace gm
             Type elements[3];
             struct 
             { 
-                Type x { Type(0) };
-                Type y { Type(0) };
-                Type z { Type(0) };
+                Type x;
+                Type y;
+                Type z;
             };
         };
     public:
-        vec() = default;
+        vec() noexcept;
         vec(Type _val) noexcept;
         vec(Type _x, Type _y, Type _z) noexcept;
         vec<3, Type> const operator+(vec<3, Type> const& _v) const noexcept;
