@@ -1,3 +1,5 @@
+#include <cmath>
+
 namespace gm
 {
     template <int Num, typename Type>
@@ -10,13 +12,11 @@ namespace gm
     }
     
     template <int Num, typename Type>
-    typename Type sum(vec<Num, Type> const& _v) noexcept
+    Type sum(vec<Num, Type> const& _v) noexcept
     {
         float sum = 0.0f;
         for (Type val : _v.elements)
             sum += val;
         return sum;
     }
-    
-    
 };

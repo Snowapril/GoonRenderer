@@ -39,6 +39,7 @@ namespace gm
         void operator-=(Type _val) noexcept;
         void operator*=(Type _val) noexcept;
         void operator/=(Type _val) noexcept;
+        vec<4, Type> const operator-() const noexcept;
         Type& operator[](int _index) noexcept;
         Type const& operator[](int _index) const noexcept;
     };

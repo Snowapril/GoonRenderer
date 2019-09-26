@@ -8,7 +8,7 @@ namespace gm
     float length(vec<Num, Type> const& _v) noexcept;
     
     template <int Num, typename Type>
-    typename Type sum(vec<Num, Type> const& _v) noexcept;
+    Type sum(vec<Num, Type> const& _v) noexcept;
     
     
 };

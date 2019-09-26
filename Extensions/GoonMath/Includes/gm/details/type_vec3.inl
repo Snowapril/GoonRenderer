@@ -161,6 +161,12 @@ namespace gm
     }
     
     template <typename Type>
+    vec<3, Type> const vec<3, Type>::operator-() const noexcept
+    {
+        return vec<3, Type>(-x, -y, -z);
+    }
+    
+    template <typename Type>
     Type& vec<3, Type>::operator[](int _index) noexcept
     {
         return static_cast<Type&>(elements[_index]);
