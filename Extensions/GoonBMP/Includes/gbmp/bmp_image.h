@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <cmath>
 
 namespace gbmp
 {
@@ -47,7 +48,7 @@ namespace gbmp
     }; // size : 84
     #pragma pack(pop)
     
-    uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, uint32_t* _num_channels) noexcept
+    uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, uint32_t* _num_channels, bool _isSRGB) noexcept
     {
         std::ifstream bmp { _image_path, std::ios_base::binary };
         bmp_file_header file_header;
@@ -98,6 +99,17 @@ namespace gbmp
             {
                 bmp.read(reinterpret_cast<char*>(data + num_elements_row * i), sizeof(char) * num_elements_row);
                 bmp.read(reinterpret_cast<char*>(padding_data),                sizeof(char) * padding_width   );
+            }
+        }
+        
+        if (_isSRGB) // TODO : this work take a long time because of floating-point pow calculation. 
+        {
+            float invVal = 1.0f / 255.0f;
+            for (std::size_t i = 0; i < num_alloc; i++) 
+            {
+                float fVal = static_cast<float>(data[i]) * invVal;
+                float gammaCorrected = std::pow(fVal, 0.45f);
+                data[i] = static_cast<uint8_t>(gammaCorrected * 255.0f);
             }
         }
         
