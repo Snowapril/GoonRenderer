@@ -11,13 +11,7 @@ namespace gm
         union 
         {
             Type elements[4];
-            struct 
-            { 
-                Type x;
-                Type y;
-                Type z;
-                Type w;
-            };
+            struct { Type x, y, z, w; };
         };
     public:
         vec() noexcept;

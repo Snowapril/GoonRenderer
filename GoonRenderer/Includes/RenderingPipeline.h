@@ -1,6 +1,6 @@
 #pragma once
 
-namespace GR
+namespace gr
 {
     class RenderingPipeline
     {

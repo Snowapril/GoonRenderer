@@ -5,7 +5,7 @@ NC='\033[0m' # No Color
 
 mkdir ../Bin
 cd ../Bin
-cmake .. -G "Ninja"
+cmake .. -G "Ninja" -DCMAKE_BUILD_TYPE=Debug
 ninja
 echo "${LG}Execute GoonBMP${NC}"
 ./bin/GoonBMP
@@ -17,5 +17,5 @@ echo "${LG}Execute GoonRenderer${NC}"
 ./bin/GoonRenderer
 echo "Program exit with return code : " $?
 
-rm -r ../Bin/*
-rm -r ../Bin/.*
+#rm -r ../Bin/*
+#rm -r ../Bin/.*

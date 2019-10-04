@@ -48,7 +48,7 @@ namespace gbmp
     }; // size : 84
     #pragma pack(pop)
     
-    uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, uint32_t* _num_channels, bool _isSRGB) noexcept
+    uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, int32_t* _num_channels, bool _isSRGB = false) noexcept
     {
         std::ifstream bmp { _image_path, std::ios_base::binary };
         bmp_file_header file_header;
@@ -183,5 +183,18 @@ namespace gbmp
     {
         if (_data != nullptr)
             delete _data; // As unsigned char is primitive type, no need to use delete[].
+    }
+    
+    void gbmp_bgr_to_rgb(uint8_t* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
+    {
+        int iterCount = _width * _height;
+        uint8_t* tempPtr = _data;
+        while (iterCount--)
+        {
+            uint8_t temp = *tempPtr;
+            *tempPtr = *(tempPtr + 2);
+            *(tempPtr + 2) = temp;
+            tempPtr += _numChannels;
+        }
     }
 };

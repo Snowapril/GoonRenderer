@@ -9,8 +9,6 @@ namespace gm
     
     template <int Num, typename Type>
     Type sum(vec<Num, Type> const& _v) noexcept;
-    
-    
 };
 
 #include "attribute.inl"

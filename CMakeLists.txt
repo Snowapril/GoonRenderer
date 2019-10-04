@@ -12,7 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Include cmake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Builds/CMake")
 
-# Declare project
+set(extension_dir ${CMAKE_CURRENT_SOURCE_DIR}/Extensions)
 
 # Set output directories
 set(DEFAULT_CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
@@ -33,8 +33,6 @@ endif()
 
 # Overrides
 set(CMAKE_MACOSX_RPATH ON)
-
-# add_subdirectory(Libraries/thrust EXCLUDE_FROM_ALL)
 		
 add_subdirectory(GoonRenderer)
 add_subdirectory(Extensions)
