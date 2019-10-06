@@ -7,7 +7,7 @@ namespace gr
     // Color buffer class can be a member of framebuffer or texture, etc..
     class Colorbuffer 
     {
-    private:
+    protected:
         unsigned char* buffer = nullptr;
         int width       {0};
         int height      {0};
@@ -31,6 +31,4 @@ namespace gr
             return (_x + _y * width) * numChannels;
         }
     };
-    
-    using Texture = Colorbuffer;
 };
