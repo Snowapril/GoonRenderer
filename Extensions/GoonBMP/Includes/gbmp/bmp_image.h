@@ -177,6 +177,7 @@ namespace gbmp
             }
         }
         bmp.close();
+        return true;
     }
     
     void gbmp_free_image(uint8_t* _data) noexcept
