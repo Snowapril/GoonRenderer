@@ -1,12 +1,11 @@
 #pragma once
 
-#include "Colorbuffer.h"
+#include "../Buffer.h"
 
 namespace gr
 {
-    class Texture : public Colorbuffer
+    class Texture : public Buffer
     {
-    protected:
     public:
         Texture() = default;
         

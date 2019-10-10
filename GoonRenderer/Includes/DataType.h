@@ -17,4 +17,12 @@ namespace gr
 		const static GRColor Black;
 		const static GRColor White;
     };
+    
+    struct BufferInfo 
+    {
+        int width;
+        int height;
+        int numChannels;
+        int bitCount;
+    };
 };

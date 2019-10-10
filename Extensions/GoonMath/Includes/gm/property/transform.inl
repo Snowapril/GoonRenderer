@@ -49,6 +49,9 @@ namespace gm
     template <int Num, typename Type>
     vec<Num, Type> const reflect(vec<Num, Type> const& _v, vec<Num, Type> const& _axis) noexcept
     {
+        vec<Num, Type> axis = normalize(_axis);
+        vec<Num, Type> result = _v - 2 * dot(_v, axis) * axis;
         
+        return result;
     }
 };
