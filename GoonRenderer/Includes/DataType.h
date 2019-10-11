@@ -6,8 +6,8 @@ namespace gr
     {
         unsigned char color[4];
         
-        GRColor(unsigned char _r, unsigned char _g, unsigned char _b);
-        GRColor(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a);
+        GRColor(unsigned char _r, unsigned char _g, unsigned char _b) noexcept;
+        GRColor(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a) noexcept;
         unsigned char& operator[](int _index);
         unsigned char const& operator[](int _index) const;
         
@@ -24,5 +24,13 @@ namespace gr
         int height;
         int numChannels;
         int bitCount;
+    };
+    
+    struct Pixel
+    {
+        GRColor color;
+        int x, y;
+        
+        Pixel(int _x, int _y, GRColor _color) noexcept;
     };
 };

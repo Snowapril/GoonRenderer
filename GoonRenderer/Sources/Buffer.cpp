@@ -42,8 +42,11 @@ namespace gr
     
     void Buffer::writeBMPFile(char const* _path) const noexcept
     {
-        gbmp::gbmp_bgr_to_rgb(buffer, width, height, numChannels);
-        gbmp::gbmp_write_image(_path, buffer, width, height, numChannels);
+        // Very inefficient code. for only testing.
+        // TODO : Refactoring this code.
+        unsigned char* temp = gbmp::gbmp_bgr_to_rgb(buffer, width, height, numChannels);
+        gbmp::gbmp_write_image(_path, temp, width, height, numChannels);
+        gbmp::gbmp_free_image(temp);
     }
     
     void Buffer::allocBuffer() noexcept

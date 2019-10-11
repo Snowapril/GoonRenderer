@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
+#include <cstring>
 
 namespace gbmp
 {
@@ -186,16 +187,26 @@ namespace gbmp
             delete _data; // As unsigned char is primitive type, no need to use delete[].
     }
     
-    void gbmp_bgr_to_rgb(uint8_t* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
+    // Very inefficient code. for only testing.
+    // TODO : Refactoring this code.
+    uint8_t* gbmp_bgr_to_rgb(uint8_t* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
     {
+        std::size_t num_alloc = _width * _height * _numChannels;
+        uint8_t *result = new uint8_t[num_alloc];
+        
+        std::memcpy(static_cast<void*>(result), static_cast<void*>(_data), num_alloc);
+        
+        uint8_t *temp_ptr = result;
         int iterCount = _width * _height;
-        uint8_t* tempPtr = _data;
+        
         while (iterCount--)
         {
-            uint8_t temp = *tempPtr;
-            *tempPtr = *(tempPtr + 2);
-            *(tempPtr + 2) = temp;
-            tempPtr += _numChannels;
+            uint8_t temp = *temp_ptr;
+            *temp_ptr = *(temp_ptr + 2);
+            *(temp_ptr + 2) = temp;
+            temp_ptr += _numChannels;
         }
+        
+        return result;
     }
 };

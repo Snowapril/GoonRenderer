@@ -4,6 +4,9 @@
 
 namespace gm
 {
+    template <typename Type>
+    Type const lerp(Type const& _t1, Type const& _t2, float _p) noexcept;
+    
     template <int Num, typename Type>
     vec<Num, Type> const clamp(vec<Num, Type> const& _target, vec<Num, Type> const& _min, vec<Num, Type> const& _max) noexcept;
     
