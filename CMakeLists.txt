@@ -34,7 +34,7 @@ endif()
 # Overrides
 set(CMAKE_MACOSX_RPATH ON)
 		
-add_subdirectory(GoonRenderer)
 add_subdirectory(Extensions)
+add_subdirectory(GoonRenderer)
 
 add_dependencies(GoonRenderer GoonBMP GoonMath)

@@ -10,6 +10,7 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Filter2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/LineRenderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/MeshRenderer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Util.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureGeneration.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/Texture2D.cpp
@@ -27,6 +28,7 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Noise2D.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/LineRenderer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/MeshRenderer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Util.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/Texture.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/Texture2D.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureCompression.h
@@ -40,6 +42,7 @@ add_executable(GoonRenderer ${SOURCES} ${INCLUDES})
 target_include_directories(GoonRenderer
 PUBLIC
     ${extension_dir}/GoonBMP/Includes
+    ${extension_dir}/GoonMath/Includes
 PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes
 )

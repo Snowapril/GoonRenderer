@@ -1,9 +1,9 @@
 #pragma once
 
-#include "HeaderPrerequistes.h"
-#include "DataType.h"
+#include "gm/vec2.h"
+#include "gm/vec3.h"
 
 namespace gr
 {
-    void fillColor(Buffer *_buffer, int _l, int _b, int _r, int _t, GRColor _color) noexcept;
+    void fillColor(gm::ivec2 _lt, gm::ivec2 _rb, Buffer *_buffer, gm::vec3 _color) noexcept;
 };

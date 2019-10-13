@@ -2,22 +2,6 @@
 
 namespace gr
 {
-    struct GRColor
-    {
-        unsigned char color[4];
-        
-        GRColor(unsigned char _r, unsigned char _g, unsigned char _b) noexcept;
-        GRColor(unsigned char _r, unsigned char _g, unsigned char _b, unsigned char _a) noexcept;
-        unsigned char& operator[](int _index);
-        unsigned char const& operator[](int _index) const;
-        
-        const static GRColor Red;
-		const static GRColor Green;
-		const static GRColor Blue;
-		const static GRColor Black;
-		const static GRColor White;
-    };
-    
     struct BufferInfo 
     {
         int width;
@@ -26,12 +10,22 @@ namespace gr
         int bitCount;
     };
     
-    struct Pixel
+    enum GoonEnum
     {
-        GRColor color;
-        int x, y;
-        
-        Pixel(int _x, int _y, GRColor _color) noexcept;
+        GOON_STATIC_DRAW    = 0x00000000,  
+        GOON_DYNAMIC_DRAW   = 0x00000001,
+        GOON_SIGNED_CHAR    = 0x00000002,
+        GOON_UNSIGNED_CHAR  = 0x00000004,
+        GOON_SIGNED_INT     = 0x00000008,
+        GOON_UNSIGNED_INT   = 0x00000010,
+    };
+    
+    struct VertexStrideInfo 
+    {
+        unsigned int size;
+        GoonEnum type;
+        unsigned int stride;
+        unsigned int offset;
     };
     
     using GoonID = unsigned int;

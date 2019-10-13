@@ -6,6 +6,7 @@ set(SOURCES
 )
 
 set(INCLUDES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec3.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec4.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec_base.h
@@ -22,6 +23,12 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec3_float.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec3_int.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec3_uint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_bool.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_double.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_float.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_int.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_uint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vec2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vec3.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vec4.h
 )

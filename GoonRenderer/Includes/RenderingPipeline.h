@@ -6,17 +6,25 @@
 // 근데 VR환경에서는 MSAA 가 괜찮음.
 
 #include "DataType.h"
-#include <unordered_map>
+#include "HeaderPrerequistes.h"
+
+#include <vector>
+#include <memory>
 
 namespace gr
 {
     class RenderingPipeline
     {
     private:
-        std::unordered_map< GoonID, VBO* > staticVBOs;
-        std::unordered_map< GoonID, VBO* > dynamicVBOs;
+        std::vector< GoonID, VBO* > staticVBOs;
+        std::vector< GoonID, VBO* > dynamicVBOs;
+        
+        std::unique_ptr< InputAssembler > assember;
+        std::unique_ptr<   Rasterizer   > rasterizer;
+        std::vector< GoonID, std::unique_ptr< VertexShader > > vertexShaders;
+        std::vector< GoonID, std::unique_ptr<FragmentShader> > fragmentShaders;
     public:
-        GoonID generateVBO(void *_data, ) noexcept;
+        GoonID generateVBO(void *_data, std::vector< VertexStrideInfo >&& _vStrideInfos) noexcept;
     public:
         void simulate(float _time_limit, float _fps, bool _record=true) noexcept;
     }

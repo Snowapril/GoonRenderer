@@ -2,5 +2,10 @@
 
 namespace gr
 {
-    class Buffer;  
+    class Buffer;
+    class InputAssembler;
+    class VertexShader;
+    class FragmentShader;
+    class Rasterizer;
+    class RenderingPipeline;
 };

@@ -4,14 +4,14 @@
 
 namespace gr
 {
-    void fillColor(Buffer *_buffer, int _l, int _b, int _r, int _t, GRColor _color) noexcept
+    void fillColor(gm::ivec2 _lt, gm::ivec2 _rb, Buffer *_buffer, gm::vec3 _color) noexcept
     {
         unsigned char* data = _buffer->data();
         auto bufferInfo = _buffer->getBufferInfo();
     
-        int startIndex = (_l + _t * bufferInfo.width) * bufferInfo.numChannels;
-        int numCol = _r - _l;
-        int numRow = _b - _t;
+        int startIndex = (_lt[0] + _lt[1] * bufferInfo.width) * bufferInfo.numChannels;
+        int numCol = _rb[0] - _lt[0];
+        int numRow = _rb[1] - _lt[1];
         
         for (int i = 0; i < numRow; i++)
         {
