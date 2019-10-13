@@ -5,19 +5,11 @@
 // 요즘 게임들은 Deferred rendering같은 technique으로 인해서, 또는 MSAA의 high-cost로 인해 FXAA를 사용함.
 // 근데 VR환경에서는 MSAA 가 괜찮음.
 
-#include "DataType.h"
-#include <unordered_map>
-
 namespace gr
 {
     class RenderingPipeline
     {
     private:
-        std::unordered_map< GoonID, VBO* > staticVBOs;
-        std::unordered_map< GoonID, VBO* > dynamicVBOs;
     public:
-        GoonID generateVBO(void *_data, ) noexcept;
-    public:
-        void simulate(float _time_limit, float _fps, bool _record=true) noexcept;
     }
 };

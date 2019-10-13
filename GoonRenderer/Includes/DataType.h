@@ -33,4 +33,6 @@ namespace gr
         
         Pixel(int _x, int _y, GRColor _color) noexcept;
     };
+    
+    using GoonID = unsigned int;
 };

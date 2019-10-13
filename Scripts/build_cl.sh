@@ -17,5 +17,11 @@ echo "${LG}Execute GoonRenderer${NC}"
 ./bin/GoonRenderer
 echo "Program exit with return code : " $?
 
-rm -r ../Bin/*
-rm -r ../Bin/.*
+if [ "$1" = "-r" ]
+then
+    rm -r ../Bin/*
+    rm -r ../Bin/.*
+else
+    mv bin/* ../Scripts
+    gdb GoonRenderer
+fi

@@ -4,6 +4,7 @@ set(target GoonRenderer)
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Buffer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/RenderingPipeline.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/DataType.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Noise2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Filter2D.cpp
@@ -14,6 +15,7 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/Texture2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureCompression.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Object/VBO.cpp
 )
 
 set(INCLUDES
@@ -30,6 +32,7 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureCompression.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureGeneration.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureManager.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Object/VBO.h
 )
 
 add_executable(GoonRenderer ${SOURCES} ${INCLUDES})
