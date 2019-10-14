@@ -60,6 +60,7 @@ namespace gm
     template <typename Type>
     void vec<2, Type>::operator+=(vec<2, Type> const& _v) noexcept
     {
+        vec<2, Type> result;
         result.x += _v.x;
         result.y += _v.y;
     }
@@ -67,6 +68,7 @@ namespace gm
     template <typename Type>
     void vec<2, Type>::operator-=(vec<2, Type> const& _v) noexcept
     {
+        vec<2, Type> result;
         result.x -= _v.x;
         result.y -= _v.y;
     }
@@ -74,6 +76,7 @@ namespace gm
     template <typename Type>
     void vec<2, Type>::operator*=(vec<2, Type> const& _v) noexcept
     {
+        vec<2, Type> result;
         result.x *= _v.x;
         result.y *= _v.y;
     }
@@ -81,6 +84,7 @@ namespace gm
     template <typename Type>
     void vec<2, Type>::operator/=(vec<2, Type> const& _v) noexcept
     {
+        vec<2, Type> result;
         result.x /= _v.x;
         result.y /= _v.y;
     }
@@ -95,7 +99,7 @@ namespace gm
     }
     
     template <typename Type>
-    vec<2, Type> const vec<2, Type>::operator-(Type _val) const noexcept;
+    vec<2, Type> const vec<2, Type>::operator-(Type _val) const noexcept
     {
         vec<2, Type> result;
         result.x = this->x - _val;
@@ -104,7 +108,7 @@ namespace gm
     }
     
     template <typename Type>
-    vec<2, Type> const vec<2, Type>::operator*(Type _val) const noexcept;
+    vec<2, Type> const vec<2, Type>::operator*(Type _val) const noexcept
     {
         vec<2, Type> result;
         result.x = this->x * _val;
@@ -113,7 +117,7 @@ namespace gm
     }
     
     template <typename Type>
-    vec<2, Type> const vec<2, Type>::operator/(Type _val) const noexcept;
+    vec<2, Type> const vec<2, Type>::operator/(Type _val) const noexcept
     {
         vec<2, Type> result;
         float inv_val = 1.0f / _val;
@@ -123,29 +127,33 @@ namespace gm
     }
     
     template <typename Type>
-    void vec<2, Type>::operator+=(Type _val) noexcept;
+    void vec<2, Type>::operator+=(Type _val) noexcept
     {
+        vec<2, Type> result;
         result.x += _val;
         result.y += _val;
     }
     
     template <typename Type>
-    void vec<2, Type>::operator-=(Type _val) noexcept;
+    void vec<2, Type>::operator-=(Type _val) noexcept
     {
+        vec<2, Type> result;
         result.x -= _val;
         result.y -= _val;
     }
     
     template <typename Type>
-    void vec<2, Type>::operator*=(Type _val) noexcept;
+    void vec<2, Type>::operator*=(Type _val) noexcept
     {
+        vec<2, Type> result;
         result.x *= _val;
         result.y *= _val;
     }
     
     template <typename Type>
-    void vec<2, Type>::operator/=(Type _val) noexcept;
+    void vec<2, Type>::operator/=(Type _val) noexcept
     {
+        vec<2, Type> result;
         float inv_val = 1.0f / _val;
         result.x *= inv_val;
         result.y *= inv_val;

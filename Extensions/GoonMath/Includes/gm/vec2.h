@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "details/type_vec2.h"
 #include "type_specialization/vec2_uint.h"
 #include "type_specialization/vec2_int.h"
 #include "type_specialization/vec2_float.h"

@@ -16,16 +16,16 @@ namespace gr
     class RenderingPipeline
     {
     private:
-        std::vector< GoonID, VBO* > staticVBOs;
-        std::vector< GoonID, VBO* > dynamicVBOs;
+        std::vector< VBO* > staticVBOs;
+        std::vector< VBO* > dynamicVBOs;
         
         std::unique_ptr< InputAssembler > assember;
         std::unique_ptr<   Rasterizer   > rasterizer;
-        std::vector< GoonID, std::unique_ptr< VertexShader > > vertexShaders;
-        std::vector< GoonID, std::unique_ptr<FragmentShader> > fragmentShaders;
+        std::vector< std::unique_ptr< VertexShader > > vertexShaders;
+        std::vector< std::unique_ptr<FragmentShader> > fragmentShaders;
     public:
         GoonID generateVBO(void *_data, std::vector< VertexStrideInfo >&& _vStrideInfos) noexcept;
     public:
         void simulate(float _time_limit, float _fps, bool _record=true) noexcept;
-    }
+    };
 };

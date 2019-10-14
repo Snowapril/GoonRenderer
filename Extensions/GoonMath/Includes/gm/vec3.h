@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "details/type_vec3.h"
 #include "type_specialization/vec3_uint.h"
 #include "type_specialization/vec3_int.h"
 #include "type_specialization/vec3_float.h"
