@@ -1,17 +1,17 @@
 #include "Buffer.h"
-#include "gbmp/bmp_image.h"
 
 namespace gr
 {
-    Buffer::Buffer(int _width, int _height, int _nunChannels) noexcept
+    Buffer::Buffer(int _width, int _height, int _nunChannels, unsigned char *_data) noexcept
         : width(_width), height(_height), numChannels(_nunChannels)
     {
-        allocBuffer();
+        if (_data) this->buffer = _data;
+        else       this->buffer = allocBuffer(width * height * numChannels);
     }
     
     Buffer::~Buffer() noexcept
     {
-        deallocBuffer();   
+        deallocBuffer(this->buffer);   
     }
     
     unsigned char* Buffer::data() noexcept
@@ -35,27 +35,13 @@ namespace gr
         return info;
     }
     
-    void Buffer::readBMPFile(char const* _path) noexcept
+    unsigned char* Buffer::allocBuffer(int _numAlloc) noexcept
     {
-        buffer = gbmp::gbmp_load_image(_path, &width, &height, &numChannels);
+        return new unsigned char[_numAlloc];
     }
     
-    void Buffer::writeBMPFile(char const* _path) const noexcept
+    void Buffer::deallocBuffer(unsigned char *_data) noexcept
     {
-        // Very inefficient code. for only testing.
-        // TODO : Refactoring this code.
-        unsigned char* temp = gbmp::gbmp_bgr_to_rgb(buffer, width, height, numChannels);
-        gbmp::gbmp_write_image(_path, temp, width, height, numChannels);
-        gbmp::gbmp_free_image(temp);
-    }
-    
-    void Buffer::allocBuffer() noexcept
-    {
-        buffer = new unsigned char[width * height * numChannels];
-    }
-    
-    void Buffer::deallocBuffer() noexcept
-    {
-        if (buffer == nullptr) delete buffer;   
+        if (_data == nullptr) delete _data;   
     }
 };

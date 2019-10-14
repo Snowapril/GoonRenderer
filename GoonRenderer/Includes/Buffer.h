@@ -14,15 +14,14 @@ namespace gr
         int numChannels {0};
     public:
         Buffer() = default;
-        Buffer(int _width, int _height, int _nunChannels) noexcept;
+        Buffer(int _width, int _height, int _nunChannels, unsigned char *_data=nullptr) noexcept;
         virtual ~Buffer() noexcept;
     public:
         unsigned char* data() noexcept;
         unsigned char const* data() const noexcept;
         BufferInfo getBufferInfo() const noexcept;
-        void readBMPFile(char const* _path) noexcept;
-        void writeBMPFile(char const* _path) const noexcept;
-        void allocBuffer() noexcept;
-        void deallocBuffer() noexcept;
+        
+        static unsigned char* allocBuffer(int _numAlloc) noexcept;
+        static void deallocBuffer(unsigned char *_data) noexcept;
     };
 };

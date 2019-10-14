@@ -6,4 +6,18 @@
 
 namespace gr
 {
+    std::shared_ptr< Context > RenderingPipeline::getCurrentContext() noexcept
+    {
+        return this->context;
+    }
+    
+    void RenderingPipeline::setContextCurrent(std::shared_ptr< Context > _context) noexcept
+    {
+        this->context = _context;
+    }
+    
+    void RenderingPipeline::simulate(float _time_limit, float _fps, bool _record) noexcept
+    {
+        
+    }
 };

@@ -9,4 +9,6 @@ namespace gr
     class Rasterizer;
     class RenderingPipeline;
     class VBO;
+    class Context;
+    class Window;
 };

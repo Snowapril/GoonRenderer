@@ -1,5 +1,5 @@
 // reference on https://en.wikipedia.org/wiki/BMP_file_format 
-
+#pragma once
 #include <fstream>
 #include <string>
 #include <iostream>

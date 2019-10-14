@@ -9,6 +9,8 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Noise2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Filter2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/LineRenderer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Context.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/MeshRenderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Util.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureGeneration.cpp
@@ -27,6 +29,8 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Filter2D.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Noise2D.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/LineRenderer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Window.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Context.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/MeshRenderer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Util.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/Texture.h
