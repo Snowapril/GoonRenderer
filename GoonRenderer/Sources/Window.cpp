@@ -1,7 +1,7 @@
 #include "Window.h"
 #include <gbmp/bmp_image.h>
 #include "Context.h"
-#include <memory>
+#include "Buffer.h"
 
 namespace gr
 {

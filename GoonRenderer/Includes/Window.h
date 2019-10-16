@@ -1,5 +1,5 @@
 #pragma once
-#include "Buffer.h"
+
 #include "HeaderPrerequistes.h"
 #include <memory>
 
@@ -10,7 +10,8 @@ namespace gr
     private:
         std::shared_ptr< Context > context;
         std::string title;
-        int width, height;
+        int  width {0};
+        int height {0};
     public:
         Window() = delete;
         // Intialize the buffer with bmp image data.

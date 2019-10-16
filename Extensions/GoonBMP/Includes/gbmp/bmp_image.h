@@ -49,7 +49,7 @@ namespace gbmp
     }; // size : 84
     #pragma pack(pop)
     
-    uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, int32_t* _num_channels, bool _isSRGB = false) noexcept
+    inline uint8_t* gbmp_load_image(char const* _image_path, int32_t* _width, int32_t* _height, int32_t* _num_channels, bool _isSRGB = false) noexcept
     {
         std::ifstream bmp { _image_path, std::ios_base::binary };
         bmp_file_header file_header;
@@ -118,7 +118,7 @@ namespace gbmp
         return data;
     }
     
-    bool gbmp_write_image(std::string const& _path, uint8_t* _data, int32_t _width, int32_t _height, int32_t _num_channels) noexcept
+    inline bool gbmp_write_image(std::string const& _path, uint8_t* _data, int32_t _width, int32_t _height, int32_t _num_channels) noexcept
     {
         if (_width <= 0 || _height <= 0) return false;
         
@@ -181,7 +181,7 @@ namespace gbmp
         return true;
     }
     
-    void gbmp_free_image(uint8_t* _data) noexcept
+    inline void gbmp_free_image(uint8_t* _data) noexcept
     {
         if (_data != nullptr)
             delete _data; // As unsigned char is primitive type, no need to use delete[].
@@ -189,7 +189,7 @@ namespace gbmp
     
     // Very inefficient code. for only testing.
     // TODO : Refactoring this code.
-    uint8_t* gbmp_bgr_to_rgb(uint8_t* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
+    inline uint8_t* gbmp_bgr_to_rgb(uint8_t* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
     {
         std::size_t num_alloc = _width * _height * _numChannels;
         uint8_t *result = new uint8_t[num_alloc];

@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "MeshRenderer.h"
 #include "LineRenderer.h"
+#include "Buffer.h"
 #include <gbmp/bmp_image.h>
 using namespace gr;
 
