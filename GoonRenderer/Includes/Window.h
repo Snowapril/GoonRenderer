@@ -1,6 +1,7 @@
 #pragma once
 
 #include "HeaderPrerequistes.h"
+#include <string>
 #include <memory>
 
 namespace gr
