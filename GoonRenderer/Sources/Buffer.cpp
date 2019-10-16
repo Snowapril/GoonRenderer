@@ -30,7 +30,7 @@ namespace gr
         info.width       = this->width;
         info.height      = this->height;
         info.numChannels = this->numChannels;
-        info.bitCount    = 4;
+        info.bitCount    = 8;
         
         return info;
     }

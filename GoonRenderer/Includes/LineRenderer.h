@@ -6,6 +6,6 @@
 
 namespace gr
 {
-    void setColor(gm::vec2 _v, Buffer* _buffer, gm::vec3 _color) noexcept;
-    void drawLine(gm::vec2 _v1, gm::vec2 _v2, Buffer* _buffer, gm::vec3 _color) noexcept;
+    void setColor(gm::ivec2 _v, Buffer* _buffer, gm::vec3 _color) noexcept;
+    void drawLine(gm::ivec2 _v1, gm::ivec2 _v2, Buffer* _buffer, gm::vec3 _color) noexcept;
 };
