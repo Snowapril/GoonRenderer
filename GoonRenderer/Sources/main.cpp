@@ -19,7 +19,7 @@ int main(void)
     drawLine(gm::ivec2(30, 30), gm::ivec2(180, 200), defaultBuffer, gm::vec3(0.0f, 1.0f, 1.0f));
     drawLine(gm::ivec2(230, 30), gm::ivec2(180, 100), defaultBuffer, gm::vec3(0.0f, 1.0f, 1.0f));
     drawLine(gm::ivec2(180, 30), gm::ivec2(180, 100), defaultBuffer, gm::vec3(0.0f, 1.0f, 1.0f));
-    
+    drawLine(gm::ivec2(10, 200), gm::ivec2(250, 200), defaultBuffer, gm::vec3(0.3f, 0.9f, 0.3f));
     unsigned char* data = defaultBuffer->data();
     BufferInfo bufferInfo = defaultBuffer->getBufferInfo();
     unsigned char* temp = gbmp::gbmp_bgr_to_rgb(data, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
