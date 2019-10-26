@@ -20,39 +20,29 @@ namespace gr
     void drawLine(gm::ivec2 _v1, gm::ivec2 _v2, Buffer* _buffer, gm::vec3 _color) noexcept
     {
         // Bresenham's Line Generation Algorithm
-        // https://www.geeksforgeeks.org/bresenhams-line-generation-algorithm/
-        // need color lerp between two pixels
-        const float epsilon = 0.001f;
-        float err = 0.0f, slope = 0.0f;
+        // https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
         
-        if (_v1.x > _v2.x) std::swap(_v1, _v2);
+        int dx = std::abs(_v2.x - _v1.x);
+        int sx = _v1.x < _v2.x ? 1 : -1;
+        int dy = -std::abs(_v2.y - _v1.y);
+        int sy = _v1.y < _v2.y ? 1 : -1;
         
-        if (_v1.x == _v2.x) slope = _v2.y - _v1.y;
-        else                slope = static_cast<float>(_v2.y - _v1.y) / static_cast<float>(_v2.x - _v1.x);
+        int err = dx + dy;
         
-        bool bPositiveSlope = slope > 0.0f;
-        
-        for (int x1 = _v1.x, x2 = _v2.x, y = _v1.y; x1 <= x2; ++x1)
+        while (true)
         {
-            setColor(gm::ivec2(x1, y), _buffer, _color);
-            err += slope;
-            
-            while (std::abs(err) >= 1.0f)
+            if (_v1.x == _v2.x && _v1.y ==_v2.y) break;
+            setColor(_v1, _buffer, _color);
+            float err2 = 2 * err;
+            if (err2 >= dy) 
             {
-                if (bPositiveSlope)
-                {
-                    ++y;
-                    err -= 1.0f;
-                    if (err > epsilon)
-                        setColor(gm::ivec2(x1, y), _buffer, _color);
-                }
-                else
-                {
-                    --y;
-                    err += 1.0f;
-                    if (err < -epsilon)
-                        setColor(gm::ivec2(x1, y), _buffer, _color);
-                }
+                err += dy;
+                _v1.x += sx;
+            }
+            if (err2 <= dx) 
+            {
+                err += dx;
+                _v1.y += sy;
             }
         }
     }

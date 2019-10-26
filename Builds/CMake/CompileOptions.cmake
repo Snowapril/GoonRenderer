@@ -157,6 +157,7 @@ endif()
 if (CMAKE_BUILD_TYPE MATCHES Debug AND (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
     set(DEFAULT_COMPILE_OPTIONS ${DEFAULT_COMPILE_OPTIONS}
         -g
+        -pg
         -O0
         -fprofile-arcs
         -ftest-coverage

@@ -6,6 +6,7 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Buffer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/RenderingPipeline.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/DataType.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/ObjReader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Noise2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Filter2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/LineRenderer.cpp
@@ -27,6 +28,7 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Buffer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/RenderingPipeline.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Filter2D.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/ObjReader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Noise2D.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/LineRenderer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Window.h

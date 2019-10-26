@@ -36,6 +36,9 @@ namespace gm
         vec<2, Type> const operator-() const noexcept;
         Type& operator[](int _index) noexcept;
         Type const& operator[](int _index) const noexcept;
+        
+        template <typename _OtherType>
+        void operator=(vec<2, _OtherType> const& _other) noexcept;
     };
 };
 

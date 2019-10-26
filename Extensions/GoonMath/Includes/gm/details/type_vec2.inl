@@ -176,4 +176,12 @@ namespace gm
     {
         return static_cast<Type const&>(elements[_index]);
     }
+    
+    template <typename Type>
+    template <typename _OtherType>
+    void vec<2, Type>::operator=(vec<2, _OtherType> const& _other) noexcept
+    {
+        this->x = static_cast<Type>(_other.x);
+        this->y = static_cast<Type>(_other.y);
+    }
 };

@@ -8,5 +8,12 @@ GoonRenderer is Software-rasterizer for improving my c++ language fluency and kn
 I will implement all modules on my hand, from basic module such as math, file io.. etc to renderer.
 This is long-term project for two years. 
 
+## Work story
+
+##### 1. One month later..
+![Wireframe Sphere](WorkProcess/01-wireframe-sphere.bmp)
+    
+
+
 ## Motivation
 [tiny-renderer project by ssloy](https://github.com/ssloy/tinyrenderer)
