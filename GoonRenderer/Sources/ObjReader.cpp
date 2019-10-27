@@ -4,6 +4,9 @@
 #include <sstream>
 #include <iostream>
 
+#define MIN(v1, v2) ((v1) > (v2) ? (v2) : (v1))
+#define MAX(v1, v2) ((v1) > (v2) ? (v1) : (v2))
+
 namespace gr
 {
     bool ObjReader::readObjFile(char const* path, bool _rescale_to_unit) noexcept
@@ -25,13 +28,13 @@ namespace gr
                     
                     if (_rescale_to_unit)
                     {
-                        min.x = std::min(min.x, x);
-                        min.y = std::min(min.y, y);
-                        min.z = std::min(min.z, z);
+                        min.x = MIN(min.x, x);
+                        min.y = MIN(min.y, y);
+                        min.z = MIN(min.z, z);
                         
-                        max.x = std::max(max.x, x);
-                        max.y = std::max(max.y, y);
-                        max.z = std::max(max.z, z);
+                        max.x = MAX(max.x, x);
+                        max.y = MAX(max.y, y);
+                        max.z = MAX(max.z, z);
                     }
                 }
                 else if (strcmp(buffer, "f") == 0)
@@ -75,7 +78,7 @@ namespace gr
     void ObjReader::rescaleBoundingBox(gm::vec3 const& _min, gm::vec3 const& _max) noexcept
     {
         gm::vec3 const& scale = _max - _min;
-        float max_v = std::max(scale.x, std::max(scale.y, scale.z));
+        float max_v = MAX(scale.x, MAX(scale.y, scale.z));
         float inv_max_v = 1.0f / max_v;
         
         for (auto& pos : pos_stack) 
