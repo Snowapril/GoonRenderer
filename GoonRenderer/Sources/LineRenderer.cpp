@@ -1,6 +1,7 @@
 #include "LineRenderer.h"
 #include "Buffer.h"
 #include <cmath>
+#include <cstdlib>
 #include <utility>
 
 namespace gr
