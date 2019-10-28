@@ -11,7 +11,7 @@ This is long-term project for two years.
 ## Work story
 
 ##### 1. One month later..
-![Wireframe Sphere](WorkProcess/01-wireframe-sphere.bmp)
+![Wireframe Sphere](WorkProcess/02-wireframe-man-head.bmp)
     
 
 

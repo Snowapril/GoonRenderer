@@ -77,7 +77,8 @@ namespace gr
         gm::vec3 const& scale = _max - _min;
         float max_v = std::max(scale.x, std::max(scale.y, scale.z));
         float inv_max_v = 1.0f / max_v;
-        
+        std::cout << "min : " << _min.x << ", " << _min.y << ", " << _min.z << std::endl;
+        std::cout << "max : " << _max.x << ", " << _max.y << ", " << _max.z << std::endl;
         for (auto& pos : pos_stack) 
             pos = (pos - _min) *  inv_max_v;
     }
