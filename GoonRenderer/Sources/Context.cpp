@@ -44,8 +44,8 @@ namespace gr
         return static_cast<GoonID>(buffers.size());
     }
     
-    Buffer* Context::getBufferByIndex(int _index) noexcept
+    Buffer* Context::getBufferByIndex(int _id) noexcept
     {
-        return buffers[_index];
+        return buffers[_id];
     }
 };

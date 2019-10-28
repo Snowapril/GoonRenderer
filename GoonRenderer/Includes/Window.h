@@ -18,8 +18,9 @@ namespace gr
         int height {0};
     public:
         Window() = delete;
-        // Intialize the buffer with bmp image data.
+        //! Construct window with uninitialized framebuffer.
         Window(int _width, int _height, int _nunChannels, char const* _title) noexcept;
+        //! Construct window with bmp image data.
         Window(char const* _path_to_image, char const* _title) noexcept;
         ~Window();
     public:

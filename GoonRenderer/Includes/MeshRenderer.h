@@ -6,5 +6,9 @@
 
 namespace gr
 {
-    void fillColor(gm::ivec2 _lt, gm::ivec2 _rb, Buffer *_buffer, gm::vec3 _color) noexcept;
+    //! fill color in the bounding box that given _bbmin, _bbmax parameters represent.
+    inline void fillColor(gm::ivec2 _bbmin, gm::ivec2 _bbmax, Buffer *_buffer, gm::vec3 _color) noexcept;
+    
+    //! rasterize triangle with given three vertices.
+    inline void triangle(gm::ivec2 _v0, gm::ivec2 _v1, gm::ivec2 _v2, Buffer *_buffer, gm::vec3 _color) noexcept;
 };

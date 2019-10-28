@@ -6,6 +6,10 @@
 
 namespace gr
 {
+    /*
+    * Obj Parser class which also provide the several useful method, such as, rescaling bounding box.
+    * Unless destruct objreader instance, user can use the vertices data continuously.
+    */
     class ObjReader
     {
     public:
@@ -15,9 +19,13 @@ namespace gr
         std::vector<gm::uvec3> pos_idx_stack;
     public:
         ObjReader() = default;
-        
+        /*
+        * Parsing Obj file with given path parameter. 
+        * If _rescale_to_unit is true, scale the all positions in to the unit bounding box.
+        */
         bool readObjFile(char const* path, bool _rescale_to_unit = true) noexcept;
-        // min, max vectors represent left bottom and right top of bounding box(bb).
-        void rescaleBoundingBox(gm::vec3 const& _min, gm::vec3 const& _max) noexcept;
+    private:
+        //! bbmin, bbmax vectors represent left bottom and right top of bounding box(bb).
+        void rescaleBoundingBox(gm::vec3 const& _bbmin, gm::vec3 const& _bbmax) noexcept;
     };
 };

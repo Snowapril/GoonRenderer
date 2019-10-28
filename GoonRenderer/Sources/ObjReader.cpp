@@ -74,14 +74,14 @@ namespace gr
         return 0;
     }
     
-    void ObjReader::rescaleBoundingBox(gm::vec3 const& _min, gm::vec3 const& _max) noexcept
+    void ObjReader::rescaleBoundingBox(gm::vec3 const& _bbmin, gm::vec3 const& _bbmax) noexcept
     {
-        gm::vec3 const& scale = _max - _min;
+        gm::vec3 const& scale = _bbmax - _bbmin;
         float max_v = gr::max(scale.x, gr::max(scale.y, scale.z));
         float inv_max_v = 1.0f / max_v;
-        std::cout << "min : " << _min.x << ", " << _min.y << ", " << _min.z << std::endl;
-        std::cout << "max : " << _max.x << ", " << _max.y << ", " << _max.z << std::endl;
+        std::cout << "min : " << _bbmin.x << ", " << _bbmin.y << ", " << _bbmin.z << std::endl;
+        std::cout << "max : " << _bbmax.x << ", " << _bbmax.y << ", " << _bbmax.z << std::endl;
         for (auto& pos : pos_stack) 
-            pos = (pos - _min) *  inv_max_v;
+            pos = (pos - _bbmin) *  inv_max_v;
     }
 }
