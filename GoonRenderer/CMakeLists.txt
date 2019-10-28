@@ -13,7 +13,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Context.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/MeshRenderer.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Util.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureGeneration.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/Texture.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/Texture2D.cpp

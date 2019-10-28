@@ -153,42 +153,38 @@ namespace gm
     template <typename Type>
     void vec<4, Type>::operator+=(Type _val) noexcept
     {
-        vec<4, Type> result;
-        result.x += _val;
-        result.y += _val;
-        result.z += _val;
-        result.w += _val;
+        this->x += _val;
+        this->y += _val;
+        this->z += _val;
+        this->w += _val;
     }
     
     template <typename Type>
     void vec<4, Type>::operator-=(Type _val) noexcept
     {
-        vec<4, Type> result;
-        result.x -= _val;
-        result.y -= _val;
-        result.z -= _val;
-        result.w -= _val;
+       this->x -= _val;
+       this->y -= _val;
+       this->z -= _val;
+       this->w -= _val;
     }
     
     template <typename Type>
     void vec<4, Type>::operator*=(Type _val) noexcept
     {
-        vec<4, Type> result;
-        result.x *= _val;
-        result.y *= _val;
-        result.z *= _val;
-        result.w *= _val;
+        this->x *= _val;
+        this->y *= _val;
+        this->z *= _val;
+        this->w *= _val;
     }
     
     template <typename Type>
     void vec<4, Type>::operator/=(Type _val) noexcept
     {
-        vec<4, Type> result;
         float inv_val = 1.0f / _val;
-        result.x *= inv_val;
-        result.y *= inv_val;
-        result.z *= inv_val;
-        result.w *= inv_val;
+        this->x *= inv_val;
+        this->y *= inv_val;
+        this->z *= inv_val;
+        this->w *= inv_val;
     }
     
     template <typename Type>

@@ -24,5 +24,8 @@ int main(void)
     v = gm::normalize(v);
     std::cout << "After normalize  : " << v << std::endl;
     
+    v *= 512.0f;
+    std::cout << "After multiply with 512  : " << v << std::endl;
+    
     return 0;
 }

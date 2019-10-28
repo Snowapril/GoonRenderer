@@ -4,8 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-#define MIN(v1, v2) ((v1) > (v2) ? (v2) : (v1))
-#define MAX(v1, v2) ((v1) > (v2) ? (v1) : (v2))
+#include "Util.h"
 
 namespace gr
 {
@@ -28,13 +27,13 @@ namespace gr
                     
                     if (_rescale_to_unit)
                     {
-                        min.x = MIN(min.x, x);
-                        min.y = MIN(min.y, y);
-                        min.z = MIN(min.z, z);
+                        min.x = gr::min(min.x, x);
+                        min.y = gr::min(min.y, y);
+                        min.z = gr::min(min.z, z);
                         
-                        max.x = MAX(max.x, x);
-                        max.y = MAX(max.y, y);
-                        max.z = MAX(max.z, z);
+                        max.x = gr::max(max.x, x);
+                        max.y = gr::max(max.y, y);
+                        max.z = gr::max(max.z, z);
                     }
                 }
                 else if (strcmp(buffer, "f") == 0)
@@ -78,7 +77,7 @@ namespace gr
     void ObjReader::rescaleBoundingBox(gm::vec3 const& _min, gm::vec3 const& _max) noexcept
     {
         gm::vec3 const& scale = _max - _min;
-        float max_v = MAX(scale.x, MAX(scale.y, scale.z));
+        float max_v = gr::max(scale.x, gr::max(scale.y, scale.z));
         float inv_max_v = 1.0f / max_v;
         std::cout << "min : " << _min.x << ", " << _min.y << ", " << _min.z << std::endl;
         std::cout << "max : " << _max.x << ", " << _max.y << ", " << _max.z << std::endl;
