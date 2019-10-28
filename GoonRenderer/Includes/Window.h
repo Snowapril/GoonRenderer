@@ -6,6 +6,9 @@
 
 namespace gr
 {
+    /**
+     * Represent Screen which is the target of the rendering.
+     */
     class Window
     {
     private:
@@ -20,8 +23,11 @@ namespace gr
         Window(char const* _path_to_image, char const* _title) noexcept;
         ~Window();
     public:
+        //! return the default buffer of the current context.
         Buffer* getDefaultBuffer() noexcept;
+        //! return the current context.
         std::shared_ptr< Context > getCurrentContext() noexcept;
+        //! set the current context with given argument.
         void setContextCurrent(std::shared_ptr< Context > _context) noexcept;
     };
 };
