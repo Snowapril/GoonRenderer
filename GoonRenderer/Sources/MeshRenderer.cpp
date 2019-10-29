@@ -1,7 +1,7 @@
 #include "MeshRenderer.h"
 #include "LineRenderer.h"
 #include "Buffer.h"
-#include <cstdio>
+#include <cstring>
 
 namespace gr
 {
@@ -19,7 +19,7 @@ namespace gr
         {
             unsigned char* tempPtr = &data[startIndex + i * bufferInfo.width * bufferInfo.numChannels];
             for (int j = 0; j < numCol; j++)
-                memcpy(tempPtr + j * 3, _color.elements, 3);
+                std::memcpy(tempPtr + j * 3, _color.elements, 3);
         }
     }
     

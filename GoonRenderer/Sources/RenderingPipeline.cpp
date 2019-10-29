@@ -16,7 +16,7 @@ namespace gr
         this->context = _context;
     }
     
-    void RenderingPipeline::simulate(float _time_limit, float _fps, bool _record) noexcept
+    void RenderingPipeline::simulate(float _time_limit, float _fps, char const* _video_path) noexcept
     {
         
     }
