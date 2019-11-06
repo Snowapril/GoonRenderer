@@ -19,6 +19,7 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureCompression.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Object/VBO.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Resource/MemoryManager.cpp
 )
 
 set(INCLUDES
@@ -40,6 +41,7 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureGeneration.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureManager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Object/VBO.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Resource/MemoryManager.h
 )
 
 add_executable(GoonRenderer ${SOURCES} ${INCLUDES})

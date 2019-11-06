@@ -22,10 +22,16 @@ namespace gr
         /*
         * Parsing Obj file with given path parameter. 
         * If _rescale_to_unit is true, scale the all positions in to the unit bounding box.
+        * @param _path is absolute or relative path of the obj file
+        * @param if _rescale_to_unit is true, rescaling to unit bounding box will be done after reading obj file.
         */
-        bool readObjFile(char const* path, bool _rescale_to_unit = true) noexcept;
+        bool readObjFile(char const* _path, bool _rescale_to_unit = true) noexcept;
     private:
-        //! bbmin, bbmax vectors represent left bottom and right top of bounding box(bb).
+        /*
+        * Rescale model to unit scale. Scaling and Translating will be done for fitting in the unit box.
+        * @param _bbmin mean left bottom vertex of the bounding box before scaling.
+        * @param _bbmax mean right top vertex of the bounding box before scaling.
+        */
         void rescaleBoundingBox(gm::vec3 const& _bbmin, gm::vec3 const& _bbmax) noexcept;
     };
 };

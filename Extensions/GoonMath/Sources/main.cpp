@@ -27,5 +27,6 @@ int main(void)
     v *= 512.0f;
     std::cout << "After multiply with 512  : " << v << std::endl;
     
+    
     return 0;
 }

@@ -8,10 +8,10 @@
 
 namespace gr
 {
-    bool ObjReader::readObjFile(char const* path, bool _rescale_to_unit) noexcept
+    bool ObjReader::readObjFile(char const* _path, bool _rescale_to_unit) noexcept
     {
         std::ifstream objFile;
-        objFile.open(path);
+        objFile.open(_path);
         
         if (objFile.is_open())
         {
@@ -66,12 +66,12 @@ namespace gr
                 rescaleBoundingBox(min, max);
             }
         }
-        else 
+        else //! If reading the file with given path was failed.
         {
-            return -1;
+            return false;
         }
         
-        return 0;
+        return true;
     }
     
     void ObjReader::rescaleBoundingBox(gm::vec3 const& _bbmin, gm::vec3 const& _bbmax) noexcept

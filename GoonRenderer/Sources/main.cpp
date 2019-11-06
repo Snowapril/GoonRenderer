@@ -12,7 +12,7 @@ int main(void)
     std::cout << "This is test for checking build-status" << std::endl;
     
     ObjReader reader;
-    if (reader.readObjFile("../Data/Model/low_poly_sphere.obj")) std::cerr << "Failed to read obj File" << std::endl;
+    if (!reader.readObjFile("../Data/Model/low_poly_sphere.obj")) std::cerr << "Failed to read obj File" << std::endl;
     
     Window window(1024, 1024, 3, "SW Rendering");
     

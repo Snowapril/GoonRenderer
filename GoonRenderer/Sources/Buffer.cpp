@@ -2,8 +2,8 @@
 
 namespace gr
 {
-    Buffer::Buffer(int _width, int _height, int _nunChannels, unsigned char *_data) noexcept
-        : width(_width), height(_height), numChannels(_nunChannels)
+    Buffer::Buffer(int _width, int _height, int _numChannels, unsigned char *_data) noexcept
+        : width(_width), height(_height), numChannels(_numChannels)
     {
         if (_data) this->buffer = _data;
         else       this->buffer = allocBuffer(width * height * numChannels);

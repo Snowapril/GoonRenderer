@@ -13,9 +13,14 @@ namespace gr
         int numChannels {0};
     public:
         Buffer() = default;
-        //! Construct buffer with given parameters.
-        //! if _data is nullptr, buffer will be uninitialized.
-        Buffer(int _width, int _height, int _nunChannels, unsigned char *_data=nullptr) noexcept;
+        /*
+        * Construct buffer with given parameters. if _data is nullptr, buffer will be uninitialized.
+        * @param buffer width
+        * @param buffer height
+        * @param number of channels of the buffer
+        * @param if _data is nullptr, alloc the buffer with uninitialized data.
+        */
+        Buffer(int _width, int _height, int _numChannels, unsigned char *_data=nullptr) noexcept;
         ~Buffer() noexcept;
     public:
         //! Return the pointer of first element in the buffer.
