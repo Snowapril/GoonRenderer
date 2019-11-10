@@ -1,3 +1,5 @@
+#include "../matrix.h"
+
 namespace gm
 {
     template <typename Type>
@@ -47,7 +49,7 @@ namespace gm
     template <int N>
     mat<4, N, Type> const mat<4, 4, Type>::operator*(mat<4, N, Type> const& _m) const noexcept
     {
-        
+        return mat<4, N, Type>(3.0f);
     }
     
     template <typename Type>
@@ -161,13 +163,13 @@ namespace gm
     }
     
     template <typename Type>
-    row_type& mat<4, 4, Type>::operator[](int _index) noexcept
+    typename row_type& mat<4, 4, Type>::operator[](int _index) noexcept
     {
         return static_cast<row_type&>(this->value[_index]);
     }
     
     template <typename Type>
-    row_type const& mat<4, 4, Type>::operator[](int _index) const noexcept
+    typename row_type const& mat<4, 4, Type>::operator[](int _index) const noexcept
     {
         return static_cast<row_type const&>(this->value[_index]);
     }

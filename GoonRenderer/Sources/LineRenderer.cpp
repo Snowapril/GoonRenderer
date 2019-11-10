@@ -14,8 +14,10 @@ namespace gr
         const int maxValue = (1 << bufferInfo.bitCount) - 1;
         const int index = (_v.x + _v.y * bufferInfo.width) * bufferInfo.numChannels;
         
-        for (int i = 0; i < bufferInfo.numChannels; i++) 
-            data[index + i] = static_cast<unsigned char>(maxValue * _color[i]);
+        // avoid using for loop.
+        data[  index  ] = static_cast<unsigned char>(maxValue * _color.x);
+        data[index + 1] = static_cast<unsigned char>(maxValue * _color.y);
+        data[index + 2] = static_cast<unsigned char>(maxValue * _color.z);
     }
     
     void drawLine(gm::ivec2 _v1, gm::ivec2 _v2, Buffer* _buffer, gm::vec3 _color) noexcept

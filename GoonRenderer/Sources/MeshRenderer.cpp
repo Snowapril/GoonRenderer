@@ -2,10 +2,12 @@
 #include "LineRenderer.h"
 #include "Buffer.h"
 #include <cstring>
+#include <algorithm>
+#include <iostream>
 
 namespace gr
 {
-    inline void fillColor(gm::ivec2 _bbmin, gm::ivec2 _bbmax, Buffer *_buffer, gm::vec3 _color) noexcept
+    void rectangle(gm::ivec2 _bbmin, gm::ivec2 _bbmax, Buffer *_buffer, gm::vec3 _color) noexcept
     {
         unsigned char* data = _buffer->data();
         auto bufferInfo = _buffer->getBufferInfo();
@@ -23,8 +25,13 @@ namespace gr
         }
     }
     
-    inline void triangle(gm::ivec2 _v0, gm::ivec2 _v1, gm::ivec2 _v2, Buffer *_buffer, gm::vec3 _color) noexcept
+    //! triangle rasterization algorithm.
+    /*
+    * youtu.be/HYAgJN3x4GA?list=PLFt_AvWsXl0cD2LPxcjxVjWTQLxJqKpgZ
+    */
+    void triangle(gm::ivec2 _v0, gm::ivec2 _v1, gm::ivec2 _v2, Buffer *_buffer, gm::vec3 _color) noexcept
     {
-        
+        // find bounding box min and max
+        // get barycentric coordinates of all pixels in the bounding box.
     }
 };

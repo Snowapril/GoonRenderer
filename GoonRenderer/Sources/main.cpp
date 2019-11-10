@@ -5,6 +5,7 @@
 #include "Buffer.h"
 #include <gbmp/bmp_image.h>
 #include "ObjReader.h"
+#include <algorithm>
 using namespace gr;
 
 int main(void)
@@ -33,9 +34,10 @@ int main(void)
         v1 *= 1024.0f;
         v2 *= 1024.0f;
         
-        drawLine(gm::ivec2(int(v0.x), int(v0.y)), gm::ivec2(int(v1.x), int(v1.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
-        drawLine(gm::ivec2(int(v1.x), int(v1.y)), gm::ivec2(int(v2.x), int(v2.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
-        drawLine(gm::ivec2(int(v2.x), int(v2.y)), gm::ivec2(int(v0.x), int(v0.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
+        triangle(gm::ivec2(v0.x, v0.y), gm::ivec2(v1.x, v1.y), gm::ivec2(v2.x, v2.y), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
+        //drawLine(gm::ivec2(int(v0.x), int(v0.y)), gm::ivec2(int(v1.x), int(v1.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
+        //drawLine(gm::ivec2(int(v1.x), int(v1.y)), gm::ivec2(int(v2.x), int(v2.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
+        //drawLine(gm::ivec2(int(v2.x), int(v2.y)), gm::ivec2(int(v0.x), int(v0.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
     }
     
     unsigned char* data = defaultBuffer->data();
@@ -43,6 +45,13 @@ int main(void)
     unsigned char* temp = gbmp::gbmp_bgr_to_rgb(data, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
     gbmp::gbmp_write_image("../Data/Textures/Box/rendered_image.bmp", temp, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
     gbmp::gbmp_free_image(temp);
+    
+    int a[] = {3, 1, 5, 10};
+    std::sort(std::begin(a), std::end(a), [](int x1, int x2) {
+        return x1 > x2;
+    });
+    
+    for (auto i : a) std::cout << i << std::endl;
     
     return 0;
 }

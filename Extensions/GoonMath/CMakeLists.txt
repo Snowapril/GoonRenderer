@@ -30,7 +30,12 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_double.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_float.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_int.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/vec2_uint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/mat4_uint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/mat4_double.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/mat4_float.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/mat4_int.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/type_specialization/mat4_uint.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/mat4.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vec2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vec3.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vec4.h
