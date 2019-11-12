@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../details/type_mat_base.h"
+#include "../details/platform.h"
 
 namespace gm
 {
-    using mat4 = mat<4, 4, float>;
+    typedef mat<4, 4, float> mat4;
 };

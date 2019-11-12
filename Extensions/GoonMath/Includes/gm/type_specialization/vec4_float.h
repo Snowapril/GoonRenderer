@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../details/type_vec_base.h"
+#include "../details/platform.h"
 
 namespace gm
 {
-    using vec4 = vec<4, float>;
+    using vec4 = vec<float, 4>;
 };

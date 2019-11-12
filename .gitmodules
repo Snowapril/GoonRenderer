@@ -1,0 +1,3 @@
+[submodule "Extensions/ffmpeg"]
+	path = Extensions/ffmpeg
+	url = https://github.com/FFmpeg/FFmpeg

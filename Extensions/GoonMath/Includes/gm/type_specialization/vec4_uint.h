@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../details/type_vec_base.h"
+#include "../details/platform.h"
 
 namespace gm
 {
-    using uvec4 = vec<4, unsigned int>;
+    using uvec4 = vec<unsigned int, 4>;
 };

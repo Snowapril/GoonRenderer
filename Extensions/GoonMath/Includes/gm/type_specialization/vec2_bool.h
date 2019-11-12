@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../details/type_vec_base.h"
+#include "../details/platform.h"
 
 namespace gm
 {
-    using bvec2 = vec<2, bool>;
+    typedef vec<bool, 2> bvec2;
 };

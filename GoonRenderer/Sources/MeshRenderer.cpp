@@ -1,9 +1,10 @@
 #include "MeshRenderer.h"
 #include "LineRenderer.h"
 #include "Buffer.h"
+#include "Util.h"
 #include <cstring>
-#include <algorithm>
 #include <iostream>
+#include <limits>
 
 namespace gr
 {
@@ -29,9 +30,30 @@ namespace gr
     /*
     * youtu.be/HYAgJN3x4GA?list=PLFt_AvWsXl0cD2LPxcjxVjWTQLxJqKpgZ
     */
-    void triangle(gm::ivec2 _v0, gm::ivec2 _v1, gm::ivec2 _v2, Buffer *_buffer, gm::vec3 _color) noexcept
+    void triangle(gm::ivec2 *_vertices, Buffer *_buffer, gm::vec3 *_colors) noexcept
     {
         // find bounding box min and max
+        gm::ivec2 bbMin(std::numeric_limits<int>::max()), bbMax(std::numeric_limits<int>::min());
+        for (int i = 0; i < 3; ++i)
+        {
+            bbMin = gm::ivec2( min(bbMin.x, _vertices[i].x), min(bbMin.y, _vertices[i].y));
+            bbMax = gm::ivec2( max(bbMax.x, _vertices[i].x), max(bbMax.y, _vertices[i].y));
+        }
         // get barycentric coordinates of all pixels in the bounding box.
+        for (int x = bbMin.x; x <= bbMax.x; ++x)
+        {
+            for (int y = bbMin.y; <= bbMax.y; ++y)
+            {
+                gm::vec3 coord = barycentric(gm::ivec2(x, y), _vertices[0], _vertices[1], _vertices[2]);
+                // Check whether vertex (x, y) is on the triangle or not
+                if (coord.x >= 0.0f && coord.y >= 0.0f && coord.z >= 0.0f)
+                {
+                    // interpolates colors with barycentric coordinates.
+                    gm::vec3 interpolated_color = coord.x * _colors[0] + coord.y * _colors[1] + coord.z * _colors[2];
+                    setColor(gm::ivec2(x, y), _buffer, interpolated_color);
+                }
+            }
+        }
+        
     }
 };

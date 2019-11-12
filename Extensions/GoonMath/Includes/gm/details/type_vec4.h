@@ -1,11 +1,11 @@
 #pragma once
 
-#include "type_vec_base.h"
+#include "platform.h"
 
 namespace gm 
 {
     template <typename Type>
-    class vec <4, Type> : std::true_type
+    class vec <Type, 4>
     {
     public:
         union 
@@ -17,28 +17,28 @@ namespace gm
         vec() noexcept;
         vec(Type _val) noexcept;
         vec(Type _x, Type _y, Type _z, Type _w) noexcept;
-        vec<4, Type> const operator+(vec<4, Type> const& _v) const noexcept;
-        vec<4, Type> const operator-(vec<4, Type> const& _v) const noexcept;
-        vec<4, Type> const operator*(vec<4, Type> const& _v) const noexcept;
-        vec<4, Type> const operator/(vec<4, Type> const& _v) const noexcept;
-        void operator+=(vec<4, Type> const& _v) noexcept;
-        void operator-=(vec<4, Type> const& _v) noexcept;
-        void operator*=(vec<4, Type> const& _v) noexcept;
-        void operator/=(vec<4, Type> const& _v) noexcept;
-        vec<4, Type> const operator+(Type _val) const noexcept;
-        vec<4, Type> const operator-(Type _val) const noexcept;
-        vec<4, Type> const operator*(Type _val) const noexcept;
-        vec<4, Type> const operator/(Type _val) const noexcept;
+        vec<Type, 4> const operator+(vec<Type, 4> const& _v) const noexcept;
+        vec<Type, 4> const operator-(vec<Type, 4> const& _v) const noexcept;
+        vec<Type, 4> const operator*(vec<Type, 4> const& _v) const noexcept;
+        vec<Type, 4> const operator/(vec<Type, 4> const& _v) const noexcept;
+        void operator+=(vec<Type, 4> const& _v) noexcept;
+        void operator-=(vec<Type, 4> const& _v) noexcept;
+        void operator*=(vec<Type, 4> const& _v) noexcept;
+        void operator/=(vec<Type, 4> const& _v) noexcept;
+        vec<Type, 4> const operator+(Type _val) const noexcept;
+        vec<Type, 4> const operator-(Type _val) const noexcept;
+        vec<Type, 4> const operator*(Type _val) const noexcept;
+        vec<Type, 4> const operator/(Type _val) const noexcept;
         void operator+=(Type _val) noexcept;
         void operator-=(Type _val) noexcept;
         void operator*=(Type _val) noexcept;
         void operator/=(Type _val) noexcept;
-        vec<4, Type> const operator-() const noexcept;
+        vec<Type, 4> const operator-() const noexcept;
         Type& operator[](int _index) noexcept;
         Type const& operator[](int _index) const noexcept;
         
         template <typename _OtherType>
-        void operator=(vec<4, _OtherType> const& _other) noexcept;
+        void operator=(vec<_OtherType, 4> const& _other) noexcept;
     };
 };
 

@@ -1,4 +1,3 @@
-#include "../details/type_vec_base.h"
 #include "attribute.h"
 
 namespace gm
@@ -9,10 +8,10 @@ namespace gm
         return _t1 * (1.0f - _p) + _t2 * _p;
     }
 
-    template <int Num, typename Type>
-    vec<Num, Type> const clamp(vec<Num, Type> const& _target, vec<Num, Type> const& _min, vec<Num, Type> const& _max) noexcept
+    template <typename Type, int Num>
+    vec<Type, Num> const clamp(vec<Type, Num> const& _target, vec<Type, Num> const& _min, vec<Type, Num> const& _max) noexcept
     {
-        vec<Num, Type> result;
+        vec<Type, Num> result;
         for (int i = 0; i < Num; i++)
         {
             if      (_target[i] < _min[i]) result[i] = _min[i];
@@ -43,20 +42,20 @@ namespace gm
         return -_target;
     }
     
-    template <int Num, typename Type>
-    vec<Num, Type> const normalize(vec<Num, Type> const& _v) noexcept
+    template <typename Type, int Num>
+    vec<Type, Num> const normalize(vec<Type, Num> const& _v) noexcept
     {
         float len = length(_v);
         float len_inv = 1 / len;
-        vec<Num, Type> result = _v * len_inv;
+        vec<Type, Num> result = _v * len_inv;
         return result;
     }
     
-    template <int Num, typename Type>
-    vec<Num, Type> const reflect(vec<Num, Type> const& _v, vec<Num, Type> const& _axis) noexcept
+    template <typename Type, int Num>
+    vec<Type, Num> const reflect(vec<Type, Num> const& _v, vec<Type, Num> const& _axis) noexcept
     {
-        vec<Num, Type> axis = normalize(_axis);
-        vec<Num, Type> result = _v - 2 * dot(_v, axis) * axis;
+        vec<Type, Num> axis = normalize(_axis);
+        vec<Type, Num> result = _v - 2 * dot(_v, axis) * axis;
         
         return result;
     }

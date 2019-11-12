@@ -9,9 +9,8 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec3.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec4.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_vec_base.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_mat4x2.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_mat_base.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/platform.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/details/type_mat4x4.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/property/attribute.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/property/relation.h

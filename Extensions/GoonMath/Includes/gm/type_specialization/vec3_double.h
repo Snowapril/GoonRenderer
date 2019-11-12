@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../details/type_vec_base.h"
+#include "../details/platform.h"
 
 namespace gm
 {
-    using dvec3 = vec<3, double>;
+    using dvec3 = vec<double, 3>;
 };

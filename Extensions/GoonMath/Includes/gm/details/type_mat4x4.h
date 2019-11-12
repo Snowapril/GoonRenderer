@@ -1,12 +1,12 @@
 #pragma once
 
-#include "type_mat_base.h"
+#include "platform.h"
 #include "type_vec4.h"
 
 namespace gm
 {
 template <typename Type>
-class mat <4, 4, Type> : std::true_type
+class mat <4, 4, Type>
 {
     using row_type = vec<4, Type>;
     using col_type = vec<4, Type>;
