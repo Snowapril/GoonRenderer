@@ -45,7 +45,7 @@ namespace gbmp
         uint32_t blue_mask          { 0x000000ff };  // Bit mask for the blue channel
         uint32_t alpha_mask         { 0xff000000 };  // Bit mask for the alpha channel
         uint32_t color_space_type   { 0x73524742 };  // Default "sRGB" (0x73524742)
-        uint32_t unused[16]         {      0     };           // Unused data for sRGB color space    
+        uint32_t unused[16]         {      0     };  // Unused data for sRGB color space    
     }; // size : 84
     #pragma pack(pop)
     
