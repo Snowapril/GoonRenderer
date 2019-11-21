@@ -6,7 +6,14 @@ set(SOURCES
 )
 
 set(INCLUDES
-   
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vector.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/util.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/simd.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/type_specialization.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector3.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector3_simd.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector4.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector4_simd.h
 )
 
 add_executable(GoonMath ${SOURCES} ${INCLUDES})
@@ -21,3 +28,4 @@ target_link_libraries(GoonMath
 PUBLIC
 PRIVATE
 )
+

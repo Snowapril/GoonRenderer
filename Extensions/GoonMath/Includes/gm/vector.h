@@ -9,7 +9,7 @@ namespace gm
     {
     public:
         using value_type = T;
-        using size_type = int;
+        using size_type  = int;
         
         //! brief : initialize data as uninitialized array.
         vector() = default;
@@ -57,12 +57,13 @@ namespace gm
             this->data[3] = w;
         }
         
-        inline value_type& operator[](int i) { return data[i] };
-        inline value_type const& operator[](int i) const { return data[i] };
+        inline value_type& operator[](int i) { return data[i]; };
+        inline value_type const& operator[](int i) const { return data[i]; };
     public:
         value_type data[Dims];
-    }
+    };
     
+    //! operator overloading related to vector class below.
     template <typename T, int Dims>
     inline bool operator==(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
     {
@@ -114,5 +115,85 @@ namespace gm
         for (int i = 0; i < Dims; ++i) 
             result.data[i] = v1.data[i] / v2.data[i];
         return result;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator+=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    {
+        for (int i = 0; i < Dims; ++i)
+            v1.data[i] += v2.data[i];
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator-=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    {
+        for (int i = 0; i < Dims; ++i)
+            v1.data[i] -= v2.data[i];
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator*=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    {
+        for (int i = 0; i < Dims; ++i)
+            v1.data[i] *= v2.data[i];
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator/=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    {
+        for (int i = 0; i < Dims; ++i)
+            v1.data[i] /= v2.data[i];
+        return v1;
+    }
+    
+    //! vector related function declarations here.
+    template <typename T, int Dims>
+    double length(vector<T, Dims> const& v)
+    {
+        T sum = T(0);
+        for (int i = 0; i < Dims; ++i)
+            sum += v.data[i] * v.data[i];
+        return std::sqrt(sum);
+    }
+    template <typename T, int Dims>
+    T dot(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    {
+        T result = T(0);
+        for (int i = 0; i < Dims; ++i)
+            result += v1.data[i] * v2.data[i];
+        return result;
+    }
+    template <typename T, int Dims>
+    T sum(vector<T, Dims> const& v)
+    {
+        T sum = T(0);
+        for (int i = 0; i < Dims; ++i)
+            sum += v.data[i];
+        return sum;
+    }
+    template <typename T, int Dims>
+    vector<T, Dims> lerp(vector<T, Dims> const& v1, vector<T, Dims> const& v2, float t)
+    {
+        vector<T, Dims> result;
+        for (int i = 0; i < Dims; ++i)
+            result.data[i] = v1.data[i] * t + v2.data[i] * (1.0f - t);
+        return result;
+    }
+    template <typename T, int Dims>
+    vector<T, Dims> clamp(vector<T, Dims> const& v, float min, float max)
+    {
+        vector<T, Dims> result;
+        for (int i = 0; i < Dims; ++i)
+            if (v.data[i] < min) 
+                result.data[i] = min;
+            else if (v.data[i] > max) 
+                result.data[i] = max;
+            else
+                result.data[i] = v.data[i];
+        return result;
+    }
+    template <typename T, int Dims>
+    vector<T, Dims> saturate(vector<T, Dims> const& v)
+    {
+        return clamp(v, 0.0f, 1.0f);
     }
 };
