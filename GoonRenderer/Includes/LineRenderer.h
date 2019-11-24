@@ -1,8 +1,7 @@
 #pragma once
 
 #include "HeaderPrerequistes.h"
-#include "gm/vec2.h"
-#include "gm/vec3.h"
+#include <gm/vector.h>
 
 namespace gr
 {

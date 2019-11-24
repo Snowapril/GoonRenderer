@@ -1,31 +1,32 @@
 //! SIMD tutorial
 //! http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf
+
 #pragma once
 
 #include <stdalign.h>
 #include "../util.h"
-#include "vector4.h"
+#include "vector2.h"
 
 #ifdef GM_SIMD_SUPPORT
-#include "../simd/simd4f.h"
+#include "../simd/simd2f.h"
 #endif
 
 namespace gm
 {
     #ifdef GM_SIMD_SUPPORT
     template <>
-    class vector<float, 4> 
+    class vector<float, 2> 
     {
     public:
         
     public:
         union
         {
-            simd4f simd4;
-            alignas( 16 ) float data[4];
+            simd2f simd2;
+            alignas( 8 ) float data[2];
             struct 
             {
-                alignas( 16 ) float x, y, z, w;
+                alignas( 8 ) float x, y;
             };
         };
     };

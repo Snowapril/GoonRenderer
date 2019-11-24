@@ -8,8 +8,10 @@ set(SOURCES
 set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vector.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/util.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/simd.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/type_specialization.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/simd/simd2f.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/simd/simd4f.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector2.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector2_simd.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector3.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector3_simd.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector4.h

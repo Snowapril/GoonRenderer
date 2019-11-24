@@ -12,188 +12,270 @@ namespace gm
         using size_type  = int;
         
         //! brief : initialize data as uninitialized array.
-        vector() = default;
+        vector(  ) = default;
         
-        vector(vector<T, Dims> const& v)
+        vector( vector<T, Dims> const& v )
         {
-            for (int i = 0; i < Dims; ++i) 
+            for ( int i = 0; i < Dims; ++i ) 
                 this->data[i] = v.data[i];
         }
         template <typename U>
-        vector(vector<U, Dims> const& v)
+        vector( vector<U, Dims> const& v )
         {
-            for (int i = 0; i < Dims; ++i)
-                this->data[i] = static_cast<T>(v.data[i]);
+            for ( int i = 0; i < Dims; ++i )
+                this->data[i] = static_cast<T>( v.data[i] );
         }
-        vector(T e1)
+        vector( T e1 )
         {
-            for (int i = 0; i < Dims; ++i)
+            for ( int i = 0; i < Dims; ++i )
                 this->data[i] = e1;
         }
-        vector(T *elements)
+        vector( T *elements )
         {
-            for (int i = 0; i < Dims; ++i)
+            for ( int i = 0; i < Dims; ++i )
                 this->data[i] = elements[i];
         }
-        vector(T x, T y)
+        vector( T x, T y )
         {
-            static_assert(Dims == 2);
+            static_assert( Dims == 2 );
             this->data[0] = x;
             this->data[1] = y;
         }
-        vector(T x, T y, T z)
+        vector( T x, T y, T z )
         {
-            static_assert(Dims == 3);
+            static_assert( Dims == 3 );
             this->data[0] = x;
             this->data[1] = y;
             this->data[2] = z;
         }
-        vector(T x, T y, T z, T w)
+        vector( T x, T y, T z, T w )
         {
-            static_assert(Dims == 4);
+            static_assert( Dims == 4 );
             this->data[0] = x;
             this->data[1] = y;
             this->data[2] = z;
             this->data[3] = w;
         }
         
-        inline value_type& operator[](int i) { return data[i]; };
-        inline value_type const& operator[](int i) const { return data[i]; };
+        inline value_type& operator[]( int i ) { return data[i]; };
+        inline value_type const& operator[]( int i ) const { return data[i]; };
     public:
         value_type data[Dims];
     };
     
     //! operator overloading related to vector class below.
     template <typename T, int Dims>
-    inline bool operator==(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    inline bool operator==( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
-        for (int i = 0; i < Dims; ++i) 
-            if (v1[i] != v2[i]) return false;
+        for ( int i = 0; i < Dims; ++i ) 
+            if ( v1[i] != v2[i] ) return false;
         return true;
     }
     template <typename T, int Dims>
-    inline bool operator!=(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    inline bool operator!=( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
-        return !(v1 == v2);
+        return !( v1 == v2 );
     }
     template <typename T, int Dims>
-    inline vector<T, Dims> operator-(vector<T, Dims> const& v)
+    inline vector<T, Dims> operator-( vector<T, Dims> const& v )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i) 
+        for ( int i = 0; i < Dims; ++i ) 
             result.data[i] = -v.data[i];
         return result;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims> operator+(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims> operator+( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i) 
+        for ( int i = 0; i < Dims; ++i ) 
             result.data[i] = v1.data[i] + v2.data[i];
         return result;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims> operator-(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims> operator-( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i) 
+        for ( int i = 0; i < Dims; ++i ) 
             result.data[i] = v1.data[i] - v2.data[i];
         return result;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims> operator*(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims> operator*( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i) 
+        for ( int i = 0; i < Dims; ++i ) 
             result.data[i] = v1.data[i] * v2.data[i];
         return result;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims> operator/(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims> operator/( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i) 
+        for ( int i = 0; i < Dims; ++i ) 
             result.data[i] = v1.data[i] / v2.data[i];
         return result;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims>& operator+=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims>& operator+=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
     {
-        for (int i = 0; i < Dims; ++i)
+        for ( int i = 0; i < Dims; ++i )
             v1.data[i] += v2.data[i];
         return v1;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims>& operator-=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims>& operator-=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
     {
-        for (int i = 0; i < Dims; ++i)
+        for ( int i = 0; i < Dims; ++i )
             v1.data[i] -= v2.data[i];
         return v1;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims>& operator*=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims>& operator*=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
     {
-        for (int i = 0; i < Dims; ++i)
+        for ( int i = 0; i < Dims; ++i )
             v1.data[i] *= v2.data[i];
         return v1;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims>& operator/=(vector<T, Dims>& v1, vector<T, Dims> const& v2)
+    inline vector<T, Dims>& operator/=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
     {
-        for (int i = 0; i < Dims; ++i)
+        for ( int i = 0; i < Dims; ++i )
             v1.data[i] /= v2.data[i];
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims> operator+( T const& s, vector<T, Dims> const& v )
+    {
+        vector<T, Dims> result;
+        for ( int i = 0; i < Dims; ++i ) 
+            result.data[i] = v1.data[i] + s;
+        return result;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims> operator-( T const& s, vector<T, Dims> const& v )
+    {
+        vector<T, Dims> result;
+        for ( int i = 0; i < Dims; ++i ) 
+            result.data[i] = v1.data[i] - s;
+        return result;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims> operator*( T const& s, vector<T, Dims> const& v )
+    {
+        vector<T, Dims> result;
+        for ( int i = 0; i < Dims; ++i ) 
+            result.data[i] = v1.data[i] * s;
+        return result;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims> operator/( T const& s, vector<T, Dims> const& v )
+    {
+        vector<T, Dims> result;
+        for ( int i = 0; i < Dims; ++i ) 
+            result.data[i] = v1.data[i] / s;
+        return result;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator+=( vector<T, Dims>& v, T const& s )
+    {
+        for ( int i = 0; i < Dims; ++i )
+            v1.data[i] += s;
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator-=( vector<T, Dims>& v, T const& s )
+    {
+        for ( int i = 0; i < Dims; ++i )
+            v1.data[i] -= s;
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator*=( vector<T, Dims>& v, T const& s )
+    {
+        for ( int i = 0; i < Dims; ++i )
+            v1.data[i] *= s;
+        return v1;
+    }
+    template <typename T, int Dims>
+    inline vector<T, Dims>& operator/=( vector<T, Dims>& v, T const& s )
+    {
+        for ( int i = 0; i < Dims; ++i )
+            v1.data[i] /= s;
         return v1;
     }
     
     //! vector related function declarations here.
     template <typename T, int Dims>
-    double length(vector<T, Dims> const& v)
+    double length( vector<T, Dims> const& v )
     {
-        T sum = T(0);
-        for (int i = 0; i < Dims; ++i)
+        T sum = T( 0 );
+        for ( int i = 0; i < Dims; ++i )
             sum += v.data[i] * v.data[i];
-        return std::sqrt(sum);
+        return std::sqrt( sum );
     }
     template <typename T, int Dims>
-    T dot(vector<T, Dims> const& v1, vector<T, Dims> const& v2)
+    T dot( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
     {
-        T result = T(0);
-        for (int i = 0; i < Dims; ++i)
+        T result = T( 0 );
+        for ( int i = 0; i < Dims; ++i )
             result += v1.data[i] * v2.data[i];
         return result;
     }
     template <typename T, int Dims>
-    T sum(vector<T, Dims> const& v)
+    T sum( vector<T, Dims> const& v )
     {
-        T sum = T(0);
-        for (int i = 0; i < Dims; ++i)
+        T sum = T( 0 );
+        for ( int i = 0; i < Dims; ++i )
             sum += v.data[i];
         return sum;
     }
     template <typename T, int Dims>
-    vector<T, Dims> lerp(vector<T, Dims> const& v1, vector<T, Dims> const& v2, float t)
+    vector<T, Dims> lerp( vector<T, Dims> const& v1, vector<T, Dims> const& v2, float t )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i)
-            result.data[i] = v1.data[i] * t + v2.data[i] * (1.0f - t);
+        for ( int i = 0; i < Dims; ++i )
+            result.data[i] = v1.data[i] * t + v2.data[i] * ( 1.0f - t );
         return result;
     }
     template <typename T, int Dims>
-    vector<T, Dims> clamp(vector<T, Dims> const& v, float min, float max)
+    vector<T, Dims> clamp( vector<T, Dims> const& v, float min, float max )
     {
         vector<T, Dims> result;
-        for (int i = 0; i < Dims; ++i)
-            if (v.data[i] < min) 
+        for ( int i = 0; i < Dims; ++i )
+            if ( v.data[i] < min ) 
                 result.data[i] = min;
-            else if (v.data[i] > max) 
+            else if ( v.data[i] > max ) 
                 result.data[i] = max;
             else
                 result.data[i] = v.data[i];
         return result;
     }
     template <typename T, int Dims>
-    vector<T, Dims> saturate(vector<T, Dims> const& v)
+    vector<T, Dims> saturate( vector<T, Dims> const& v )
     {
-        return clamp(v, 0.0f, 1.0f);
+        return clamp( v, 0.0f, 1.0f );
     }
+    
+    //! Type Aliasing here.
+    using bvec2 = vector<bool, 2>;
+    using ivec2 = vector<int, 2>;
+    using uvec2 = vector<unsigned int, 2>;
+    using dvec2 = vector<double, 2>;
+    using vec2 = vector<float, 2>;
+    
+    using bvec3 = vector<bool, 3>;
+    using ivec3 = vector<int , 3>;
+    using uvec3 = vector<unsigned int, 3>;
+    using dvec3 = vector<double, 3>;
+    using vec3 = vector<float, 3>;
+    
+    using bvec4 = vector<bool, 4>;
+    using ivec4 = vector<int, 4>;
+    using uvec4 = vector<unsigned int, 4>;
+    using dvec4 = vector<double, 4>;
+    using vec4 = vector<float, 4>;
 };
+
+#include "internal/vector3_simd.h"
+#include "internal/vector4_simd.h"

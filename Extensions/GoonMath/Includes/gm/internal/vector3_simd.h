@@ -3,14 +3,17 @@
 
 #pragma once
 
-
+#include <stdalign.h>
+#include "../util.h"
 #include "vector3.h"
 
-#include "nmmintrin.h" // for SSE4.2
-#include "immintrin.h" // for AVX 
+#ifdef GM_SIMD_SUPPORT
+#include "../simd/simd4f.h"
+#endif
 
 namespace gm
 {
+    #ifdef GM_SIMD_SUPPORT
     template <>
     class vector<float, 3> 
     {
@@ -19,12 +22,13 @@ namespace gm
     public:
         union
         {
-            __m128 simd3;
-            float data[3];
+            simd4f simd3;
+            alignas( 16 ) float data[3];
             struct 
             {
-                float x, y, z;
+                alignas( 16 ) float x, y, z;
             };
         };
-    }
+    };
+    #endif
 };
