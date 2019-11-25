@@ -117,7 +117,7 @@ namespace gm
         return result;
     }
     template <typename T, int Dims>
-    inline vector<T, Dims>& operator+=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
+    inline vector<T, Dims>& operator+=( vector<T, Dims>& v1, vector<U, Dims> const& v2 )
     {
         for ( int i = 0; i < Dims; ++i )
             v1.data[i] += v2.data[i];
@@ -149,7 +149,7 @@ namespace gm
     {
         vector<T, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] + s;
+            result.data[i] = v.data[i] + s;
         return result;
     }
     template <typename T, int Dims>
@@ -157,7 +157,7 @@ namespace gm
     {
         vector<T, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] - s;
+            result.data[i] = v.data[i] - s;
         return result;
     }
     template <typename T, int Dims>
@@ -165,7 +165,7 @@ namespace gm
     {
         vector<T, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] * s;
+            result.data[i] = v.data[i] * s;
         return result;
     }
     template <typename T, int Dims>
@@ -173,36 +173,36 @@ namespace gm
     {
         vector<T, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] / s;
+            result.data[i] = v.data[i] / s;
         return result;
     }
     template <typename T, int Dims>
     inline vector<T, Dims>& operator+=( vector<T, Dims>& v, T const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] += s;
-        return v1;
+            v.data[i] += s;
+        return v;
     }
     template <typename T, int Dims>
     inline vector<T, Dims>& operator-=( vector<T, Dims>& v, T const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] -= s;
-        return v1;
+            v.data[i] -= s;
+        return v;
     }
     template <typename T, int Dims>
     inline vector<T, Dims>& operator*=( vector<T, Dims>& v, T const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] *= s;
-        return v1;
+            v.data[i] *= s;
+        return v;
     }
     template <typename T, int Dims>
     inline vector<T, Dims>& operator/=( vector<T, Dims>& v, T const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] /= s;
-        return v1;
+            v.data[i] /= s;
+        return v;
     }
     
     //! vector related function declarations here.
