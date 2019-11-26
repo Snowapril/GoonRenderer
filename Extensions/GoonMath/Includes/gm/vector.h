@@ -1,6 +1,10 @@
 #pragma once
 
+//! http://egloos.zum.com/himskim/v/3630181
+
 #include <cmath>
+#include <type_traits>
+#include <iterator>
 
 namespace gm 
 {
@@ -8,8 +12,12 @@ namespace gm
     class vector 
     {
     public:
-        using value_type = T;
-        using size_type  = int;
+        using value_type             = T;
+        using size_type              = int;
+        using iterator               = value_type*;
+        using const_iterator         = value_type const*;
+        using reverse_iterator       = std::reverse_iterator< iterator >;
+        using const_reverse_iterator = std::reverse_iterator< const_iterator >;
         
         //! brief : initialize data as uninitialized array.
         vector(  ) = default;
@@ -59,20 +67,53 @@ namespace gm
         
         inline value_type& operator[]( int i ) { return data[i]; };
         inline value_type const& operator[]( int i ) const { return data[i]; };
+        
+        iterator begin()
+        {
+            return data;
+        }
+        iterator end()
+        {
+            return data + Dims;
+        }
+        const_iterator cbegin() const
+        {
+            return data;
+        }
+        const_iterator cend() const
+        {
+            return data + Dims;
+        }
+        reverse_iterator rbegin()
+        {
+            return data + Dims - 1;
+        }
+        reverse_iterator rend()
+        {
+            return data - 1;
+        }
+        const_reverse_iterator rbegin() const
+        {
+            return data + Dims - 1;
+        }
+        const_reverse_iterator rend() const
+        {
+            return data - 1;
+        }
     public:
         value_type data[Dims];
     };
     
     //! operator overloading related to vector class below.
-    template <typename T, int Dims>
-    inline bool operator==( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims>
+    inline bool operator==( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
         for ( int i = 0; i < Dims; ++i ) 
             if ( v1[i] != v2[i] ) return false;
         return true;
     }
-    template <typename T, int Dims>
-    inline bool operator!=( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims>
+    inline bool operator!=( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
         return !( v1 == v2 );
     }
@@ -84,124 +125,124 @@ namespace gm
             result.data[i] = -v.data[i];
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator+( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator+( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] + v2.data[i];
+            result.data[i] = static_cast<CommonType>(v1.data[i] + v2.data[i]);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator-( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator-( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] - v2.data[i];
+            result.data[i] = static_cast<CommonType>(v1.data[i] - v2.data[i]);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator*( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator*( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] * v2.data[i];
+            result.data[i] = static_cast<CommonType>(v1.data[i] * v2.data[i]);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator/( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator/( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v1.data[i] / v2.data[i];
+            result.data[i] = static_cast<CommonType>(v1.data[i] / v2.data[i]);
         return result;
     }
-    template <typename T, int Dims>
+    template <typename T, typename U, int Dims>
     inline vector<T, Dims>& operator+=( vector<T, Dims>& v1, vector<U, Dims> const& v2 )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] += v2.data[i];
+            v1.data[i] += static_cast<T>(v2.data[i]);
         return v1;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator-=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator-=( vector<T, Dims>& v1, vector<U, Dims> const& v2 )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] -= v2.data[i];
+            v1.data[i] -= static_cast<T>(v2.data[i]);
         return v1;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator*=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator*=( vector<T, Dims>& v1, vector<U, Dims> const& v2 )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] *= v2.data[i];
+            v1.data[i] *= static_cast<T>(v2.data[i]);
         return v1;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator/=( vector<T, Dims>& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator/=( vector<T, Dims>& v1, vector<U, Dims> const& v2 )
     {
         for ( int i = 0; i < Dims; ++i )
-            v1.data[i] /= v2.data[i];
+            v1.data[i] /= static_cast<T>(v2.data[i]);
         return v1;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator+( T const& s, vector<T, Dims> const& v )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator+( U const& s, vector<T, Dims> const& v )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v.data[i] + s;
+            result.data[i] = static_cast<CommonType>(v.data[i] + s);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator-( T const& s, vector<T, Dims> const& v )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator-( U const& s, vector<T, Dims> const& v )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v.data[i] - s;
+            result.data[i] = static_cast<CommonType>(v.data[i] - s);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator*( T const& s, vector<T, Dims> const& v )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator*( U const& s, vector<T, Dims> const& v )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v.data[i] * s;
+            result.data[i] = static_cast<CommonType>(v.data[i] * s);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims> operator/( T const& s, vector<T, Dims> const& v )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    inline vector<CommonType, Dims> operator/( U const& s, vector<T, Dims> const& v )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
-            result.data[i] = v.data[i] / s;
+            result.data[i] = static_cast<CommonType>(v.data[i] / s);
         return result;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator+=( vector<T, Dims>& v, T const& s )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator+=( vector<T, Dims>& v, U const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v.data[i] += s;
+            v.data[i] += static_cast<T>(s);
         return v;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator-=( vector<T, Dims>& v, T const& s )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator-=( vector<T, Dims>& v, U const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v.data[i] -= s;
+            v.data[i] -= static_cast<T>(s);
         return v;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator*=( vector<T, Dims>& v, T const& s )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator*=( vector<T, Dims>& v, U const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v.data[i] *= s;
+            v.data[i] *= static_cast<T>(s);
         return v;
     }
-    template <typename T, int Dims>
-    inline vector<T, Dims>& operator/=( vector<T, Dims>& v, T const& s )
+    template <typename T, typename U, int Dims>
+    inline vector<T, Dims>& operator/=( vector<T, Dims>& v, U const& s )
     {
         for ( int i = 0; i < Dims; ++i )
-            v.data[i] /= s;
+            v.data[i] /= static_cast<T>(s);
         return v;
     }
     
@@ -214,12 +255,12 @@ namespace gm
             sum += v.data[i] * v.data[i];
         return std::sqrt( sum );
     }
-    template <typename T, int Dims>
-    T dot( vector<T, Dims> const& v1, vector<T, Dims> const& v2 )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    CommonType dot( vector<T, Dims> const& v1, vector<U, Dims> const& v2 )
     {
-        T result = T( 0 );
+        CommonType result = CommonType( 0 );
         for ( int i = 0; i < Dims; ++i )
-            result += v1.data[i] * v2.data[i];
+            result += static_cast<CommonType>(v1.data[i] * v2.data[i]);
         return result;
     }
     template <typename T, int Dims>
@@ -230,12 +271,12 @@ namespace gm
             sum += v.data[i];
         return sum;
     }
-    template <typename T, int Dims>
-    vector<T, Dims> lerp( vector<T, Dims> const& v1, vector<T, Dims> const& v2, float t )
+    template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
+    vector<CommonType, Dims> lerp( vector<T, Dims> const& v1, vector<U, Dims> const& v2, float t )
     {
-        vector<T, Dims> result;
+        vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i )
-            result.data[i] = v1.data[i] * t + v2.data[i] * ( 1.0f - t );
+            result.data[i] = static_cast<CommonType>(v1.data[i] * t + v2.data[i] * ( 1.0f - t ));
         return result;
     }
     template <typename T, int Dims>

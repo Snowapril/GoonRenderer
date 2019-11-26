@@ -40,6 +40,9 @@ int main(int argc, char* argv[])
     
     gm::vector<int, 4> v3(3);
     v3 += v1;
+    std::cout << v3 << std::endl;
     
+    auto test = 1024.0f * gm::ivec2(100, 300);
+    std::cout << test << std::endl;
     return 0;
 }
