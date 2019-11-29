@@ -22,7 +22,7 @@ namespace gr
         {
             unsigned char* tempPtr = &data[startIndex + i * bufferInfo.width * bufferInfo.numChannels];
             for (int j = 0; j < numCol; j++)
-                std::memcpy(tempPtr + j * 3, _color.elements, 3);
+                std::memcpy(tempPtr + j * 3, _color.data, 3);
         }
     }
     
@@ -42,14 +42,14 @@ namespace gr
         // get barycentric coordinates of all pixels in the bounding box.
         for (int x = bbMin.x; x <= bbMax.x; ++x)
         {
-            for (int y = bbMin.y; <= bbMax.y; ++y)
+            for (int y = bbMin.y; y <= bbMax.y; ++y)
             {
                 gm::vec3 coord = barycentric(gm::ivec2(x, y), _vertices[0], _vertices[1], _vertices[2]);
                 // Check whether vertex (x, y) is on the triangle or not
                 if (coord.x >= 0.0f && coord.y >= 0.0f && coord.z >= 0.0f)
                 {
                     // interpolates colors with barycentric coordinates.
-                    gm::vec3 interpolated_color = coord.x * _colors[0] + coord.y * _colors[1] + coord.z * _colors[2];
+                    gm::vec3 interpolated_color = _colors[0] * coord.x + _colors[1] * coord.y + _colors[2] * coord.z;
                     setColor(gm::ivec2(x, y), _buffer, interpolated_color);
                 }
             }

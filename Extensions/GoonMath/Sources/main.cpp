@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
     v3 += v1;
     std::cout << v3 << std::endl;
     
-    auto test = 1024.0f * gm::ivec2(100, 300);
-    std::cout << test << std::endl;
+    auto test3 = gm::ivec2(10,30) + 1024.0f;
+    
     return 0;
 }

@@ -186,7 +186,7 @@ namespace gm
         return v1;
     }
     template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
-    inline vector<CommonType, Dims> operator+( U const& s, vector<T, Dims> const& v )
+    inline vector<CommonType, Dims> operator+( vector<T, Dims> const& v, U const& s )
     {
         vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
@@ -194,7 +194,7 @@ namespace gm
         return result;
     }
     template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
-    inline vector<CommonType, Dims> operator-( U const& s, vector<T, Dims> const& v )
+    inline vector<CommonType, Dims> operator-( vector<T, Dims> const& v, U const& s )
     {
         vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
@@ -202,7 +202,7 @@ namespace gm
         return result;
     }
     template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
-    inline vector<CommonType, Dims> operator*( U const& s, vector<T, Dims> const& v )
+    inline vector<CommonType, Dims> operator*( vector<T, Dims> const& v, U const& s )
     {
         vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
@@ -210,7 +210,7 @@ namespace gm
         return result;
     }
     template <typename T, typename U, int Dims, typename CommonType = typename std::common_type<T, U>::type>
-    inline vector<CommonType, Dims> operator/( U const& s, vector<T, Dims> const& v )
+    inline vector<CommonType, Dims> operator/( vector<T, Dims> const& v, U const& s )
     {
         vector<CommonType, Dims> result;
         for ( int i = 0; i < Dims; ++i ) 
@@ -318,5 +318,6 @@ namespace gm
     using vec4 = vector<float, 4>;
 };
 
+#include "internal/vector2_simd.h"
 #include "internal/vector3_simd.h"
 #include "internal/vector4_simd.h"

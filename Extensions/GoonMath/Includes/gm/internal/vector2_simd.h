@@ -4,8 +4,9 @@
 #pragma once
 
 #include <stdalign.h>
-#include "../util.h"
+
 #include "vector2.h"
+#include "../util.h"
 
 #ifdef GM_SIMD_SUPPORT
 #include "../simd/simd2f.h"
@@ -13,6 +14,7 @@
 
 namespace gm
 {
+    /**
     #ifdef GM_SIMD_SUPPORT
     template <>
     class vector<float, 2> 
@@ -31,4 +33,5 @@ namespace gm
         };
     };
     #endif
+    */
 };
