@@ -10,7 +10,7 @@
     #define GM_SIMD_SUPPORT 1
     #endif
 #elif defined( __clang__ ) && ( __clang_major__ > 5 || ( __clang_major__ == 5 && __clang_minor__ >= 0 ) ) //! clang compiler and version 5.0 or higher.
-    #ifdef 
+    #ifdef __SSE2
     #define GM_SIMD_SUPPORT 1
     #endif
 #endif
