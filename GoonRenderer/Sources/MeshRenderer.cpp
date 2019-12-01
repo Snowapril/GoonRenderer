@@ -6,6 +6,8 @@
 #include <iostream>
 #include <limits>
 
+#include <gm/vectorial.h>
+
 namespace gr
 {
     void rectangle(gm::ivec2 _bbmin, gm::ivec2 _bbmax, Buffer *_buffer, gm::vec3 _color) noexcept

@@ -8,6 +8,7 @@ set(SOURCES
 set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vector.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/util.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vectorial.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/simd/simd2f.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/simd/simd4f.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/internal/vector2.h
@@ -30,4 +31,3 @@ target_link_libraries(GoonMath
 PUBLIC
 PRIVATE
 )
-

@@ -5,11 +5,11 @@
 
 #include <stdalign.h>
 
-#include "vector2.h"
-#include "../util.h"
+#include "gm/internal/vector2.h"
+#include "gm/util.h"
 
 #ifdef GM_SIMD_SUPPORT
-#include "../simd/simd2f.h"
+#include "gm/simd/simd2f.h"
 #endif
 
 namespace gm

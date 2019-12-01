@@ -3,11 +3,11 @@
 #pragma once
 
 #include <stdalign.h>
-#include "../util.h"
-#include "vector4.h"
+#include "gm/util.h"
+#include "gm/internal/vector4.h"
 
 #ifdef GM_SIMD_SUPPORT
-#include "../simd/simd4f.h"
+#include "gm/simd/simd4f.h"
 #endif
 
 namespace gm
@@ -157,10 +157,8 @@ namespace gm
             v1.data[i] -= s;
         return v1;
     }
-    #include <iostream>
     inline vector<float, 4>& operator*=( vector<float, 4>& v, float s )
     {
-        std::cout << "afsdgsagsgd" << std::endl;
         for ( int i = 0; i < 4; ++i )
             v1.data[i] *= s;
         return v1;

@@ -76,11 +76,13 @@ namespace gr
     
     void ObjReader::rescaleBoundingBox(gm::vec3 const& _bbmin, gm::vec3 const& _bbmax) noexcept
     {
+        std::cout << "min : " << _bbmin.x << ", " << _bbmin.y << ", " << _bbmin.z << std::endl;
+        std::cout << "max : " << _bbmax.x << ", " << _bbmax.y << ", " << _bbmax.z << std::endl;
+        
         gm::vec3 const& scale = _bbmax - _bbmin;
         float max_v = gr::max(scale.x, gr::max(scale.y, scale.z));
         float inv_max_v = 1.0f / max_v;
-        std::cout << "min : " << _bbmin.x << ", " << _bbmin.y << ", " << _bbmin.z << std::endl;
-        std::cout << "max : " << _bbmax.x << ", " << _bbmax.y << ", " << _bbmax.z << std::endl;
+        
         for (auto& pos : pos_stack) 
             pos = (pos - _bbmin) *  inv_max_v;
     }

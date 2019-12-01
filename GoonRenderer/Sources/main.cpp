@@ -39,9 +39,9 @@ int main(void)
         };
         
         triangle(vertices, defaultBuffer, colors);
-        //drawLine(gm::ivec2(int(v0.x), int(v0.y)), gm::ivec2(int(v1.x), int(v1.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
-        //drawLine(gm::ivec2(int(v1.x), int(v1.y)), gm::ivec2(int(v2.x), int(v2.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
-        //drawLine(gm::ivec2(int(v2.x), int(v2.y)), gm::ivec2(int(v0.x), int(v0.y)), defaultBuffer, gm::vec3(1.0f, 1.0f, 1.0f));
+        //drawLine(vertices[0], vertices[1], defaultBuffer, colors[0]);
+        //drawLine(vertices[1], vertices[2], defaultBuffer, colors[1]);
+        //drawLine(vertices[2], vertices[0], defaultBuffer, colors[2]);
     }
     
     unsigned char* data = defaultBuffer->data();
@@ -49,13 +49,6 @@ int main(void)
     unsigned char* temp = gbmp::gbmp_bgr_to_rgb(data, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
     gbmp::gbmp_write_image("../Data/Textures/Box/rendered_image.bmp", temp, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
     gbmp::gbmp_free_image(temp);
-    
-    int a[] = {3, 1, 5, 10};
-    std::sort(std::begin(a), std::end(a), [](int x1, int x2) {
-        return x1 > x2;
-    });
-    
-    for (auto i : a) std::cout << i << std::endl;
     
     return 0;
 }

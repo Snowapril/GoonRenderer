@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "../vector.h"
+#include "gm/vector.h"
 
 namespace gm
 {
@@ -18,14 +18,14 @@ namespace gm
         inline vector( vector<T, 3> const& v )
         {
             this->x = v.x;
-            this->y = v.x;
+            this->y = v.y;
             this->z = v.z;
         }
         template <typename U>
         inline vector( vector<U, 3> const& v )
         {
             this->x = static_cast<value_type>( v.x );
-            this->y = static_cast<value_type>( v.x );
+            this->y = static_cast<value_type>( v.y );
             this->z = static_cast<value_type>( v.z );
         }
         vector( T e1 )
