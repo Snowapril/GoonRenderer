@@ -1,3 +1,14 @@
+/**
+ * @file vector3_simd.h
+ * @author snowapril (https://github.com/Snowapril)
+ * @brief vector3 class implemented with simd register
+ * @version 0.1
+ * @date 2019-12-16
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 //! SIMD tutorial
 //! http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf
 

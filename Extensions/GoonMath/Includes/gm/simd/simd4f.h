@@ -1,3 +1,14 @@
+/**
+ * @file simd4f.h
+ * @author snowapril (https://github.com/Snowapril)
+ * @brief simd register wrapper class.
+ * @version 0.1
+ * @date 2019-12-16
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #pragma once
 
 //! http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf

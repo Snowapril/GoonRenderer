@@ -1,3 +1,14 @@
+/**
+ * @file aliasing.h
+ * @author snowapril (https://github.com/Snowapril)
+ * @brief aliasing vector related classes
+ * @version 0.1
+ * @date 2019-12-16
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #pragma once
 
 #include "gm/vector.h"
