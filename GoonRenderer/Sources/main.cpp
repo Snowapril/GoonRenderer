@@ -1,11 +1,13 @@
 #include <iostream>
+#include <algorithm>
+#include <gbmp/bmp_image.h>
+
 #include "Window.h"
 #include "MeshRenderer.h"
 #include "LineRenderer.h"
 #include "Buffer.h"
-#include <gbmp/bmp_image.h>
 #include "ObjReader.h"
-#include <algorithm>
+
 using namespace gr;
 
 int main(void)
@@ -27,9 +29,9 @@ int main(void)
     for (auto const& indices : pos_idx_stack)
     {
         gm::ivec2 vertices[] = {
-            gm::ivec2(pos_stack[indices.x].x, pos_stack[indices.x].y) * 1024.0f,
-            gm::ivec2(pos_stack[indices.y].x, pos_stack[indices.y].y) * 1024.0f,
-            gm::ivec2(pos_stack[indices.z].x, pos_stack[indices.z].y) * 1024.0f
+            gm::vec2(pos_stack[indices.x].x, pos_stack[indices.x].y) * 1024.0f,
+            gm::vec2(pos_stack[indices.y].x, pos_stack[indices.y].y) * 1024.0f,
+            gm::vec2(pos_stack[indices.z].x, pos_stack[indices.z].y) * 1024.0f
         };
         
         gm::vec3 colors[] = {

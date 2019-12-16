@@ -1,10 +1,10 @@
 #include "ObjReader.h"
+#include "Util.h"
+
 #include <fstream>
 #include <cstring>
 #include <sstream>
 #include <iostream>
-
-#include "Util.h"
 
 namespace gr
 {
@@ -19,7 +19,7 @@ namespace gr
             char buffer[255];
             while (objFile >> buffer)
             {
-                if (strcmp(buffer, "v") == 0) // vertices
+                if (strcmp(buffer, "v") == 0) //! vertices
                 {
                     float x, y, z;
                     objFile >> x >> y >> z;
