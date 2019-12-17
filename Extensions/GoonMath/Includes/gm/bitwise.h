@@ -30,7 +30,7 @@ namespace gm
 		 * @return true  given number is power of two.
 		 * @return false given number is not power of two.
 		 */
-		template <typename Type, typename = typename std::enable_if_t< std::is_unsigned_v<Type>> >
+		template <typename Type, typename = typename std::enable_if<std::is_unsigned<Type>::value>::type>
 		static bool inline isPO2( Type num )
 		{
 			return ( num & (num - 1) ) == 0;
@@ -51,7 +51,7 @@ namespace gm
 		 * @param bits indices for set mask.
 		 * @return std::decay_t<RetType> std::decay_t is used for the cast that programmer enter the return type as reference type by mistake.
 		 */
-		template < typename RetType, typename... Bits, typename = typename std::enable_if_t< std::is_integral_v<RetType>> >
+		template < typename RetType, typename... Bits, typename = typename std::enable_if< std::is_integral<RetType>::value>::type>
 		static auto inline setBitmask( Bits... bits ) -> std::decay_t<RetType>
 		{
 			RetType mask = ( (1 << bits) | ... );

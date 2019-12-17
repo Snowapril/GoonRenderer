@@ -15,7 +15,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
       script: 
-        - gcc -msse3 -dM -E - < /dev/null | egrep "SSE|AVX" | sort     
         - sh Scripts/travis_ci_linux.sh
 
     # works on Precise and Trusty
@@ -31,7 +30,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
       script: 
-        - gcc -msse3 -dM -E - < /dev/null | egrep "SSE|AVX" | sort     
         - sh Scripts/travis_ci_linux.sh
     
     - name: Ubuntu 16.04.6 LTS + clang++-5.0
