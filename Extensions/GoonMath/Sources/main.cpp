@@ -22,27 +22,12 @@ std::ostream& operator<<(std::ostream& ostr, gm::simd4f const& s)
 
 int main(int argc, char* argv[])
 {
-    gm::vector<float, 4> v1(1, 10, -3, -6), v2(3);
-    
-    std::cout << v1 << std::endl;
-    std::cout << v2 << std::endl;
-    std::cout << clamp(v1, -4.0f, 5.0f) << std::endl;
-    std::cout << saturate(v1) << std::endl;
-    std::cout << dot(v1, v2) << std::endl;
-    
-    v2 *= 1024.0f;
-    std::cout << v2 << std::endl;
-    
-    gm::simd4f s1(1), s2(1);
-    std::cout << (s1 == s2) << std::endl;
-    s1 += s2;
-    std::cout << s1 << std::endl;
-    
-    gm::vector<int, 4> v3(3);
-    v3 += v1;
-    std::cout << v3 << std::endl;
-    
-    auto test3 = gm::ivec2(10,30) + 1024.0f;
+    gm::vec3 v;
+    v.x = 1;
+    v.y = 2;
+    v.z = 3;
+
+    std::cout << v << std::endl;
     
     return 0;
 }

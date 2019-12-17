@@ -4,25 +4,30 @@
 
 #include "gm/vector.h"
 #include "gm/bitwise.h"
+#include <numeric>
 
 namespace gm
 {
-    //! return whether if given three vertices compose triangle or not.
-    template <typename Type, int Dims>
-    bool checkTriangle(vector<Type, Dims> const& v0, vector<Type, Dims> const& v1, vector<Type, Dims> const& v2) noexcept
+    /**
+	 * @brief return whether if given three vertices compose triangle or not.
+	 * @details if any of two edge slopes in the triangle equals, then given three vertices cannot compose triangle.
+     *          if ( (x1 - x0) / (y1 - y0) == (x2 - x1) / (y2 - y1) ) return false;
+     *          Above equation can cause divided by zero error. 
+     *          By fraction reduction, we can prevent such a error. Below form is complete answer.
+     *          if ( (x1 - x0) * (y2 - y1) == (x2 - x1) * (y1 - y0) ) return false;
+     *          else return false;
+	 * @tparam Data type of vector elements.
+	 * @tparam Vector dimension
+	 * @param v0 first vertex that forms the triangle
+     * @param v1 second vertex that forms the triangle
+     * @param v2 third vertex that forms the triangle
+	 * @return true  given three vertices can compose triangle.
+	 * @return false given three vertices cannot compose triangle.
+	 */
+    template <typename Type>
+    inline bool checkTriangle(vector<Type, 2> const& v0, vector<Type, 2> const& v1, vector<Type, 2> const& v2) noexcept
     {
-        Type dy0 = v0.y - v1.y;
-        Type dy1 = v1.y - v2.y;
-        Type zero(0);
-
-        if (Bitwise::anyOf(dy0 == zero, dy1 == zero)) return false;
-
-        Type m0 = (v0.x - v1.x) / dy0;
-        Type m1 = (v1.x - v2.x) / dy1;
-
-        if (m0 == m1) return false;
-
-        return true;
+        return (v1.x - v0.x) * (v2.y - v1.y) != (v2.x - v1.x) * (v1.y - v0.y);
     }
 
     template <typename Type>

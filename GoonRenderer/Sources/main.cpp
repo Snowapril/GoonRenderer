@@ -8,6 +8,7 @@
 #include "Buffer.h"
 #include "ObjReader.h"
 
+#include <gm/vectorial.h>
 using namespace gr;
 
 int main(void)
@@ -15,7 +16,7 @@ int main(void)
     std::cout << "This is test for checking build-status" << std::endl;
     
     ObjReader reader;
-    if (!reader.readObjFile("../Data/Model/low_poly_sphere.obj")) std::cerr << "Failed to read obj File" << std::endl;
+    if (!reader.readObjFile("../Data/Model/man_head.obj")) std::cerr << "Failed to read obj File" << std::endl;
     
     Window window(1024, 1024, 3, "SW Rendering");
     
@@ -26,12 +27,13 @@ int main(void)
     
     std::cout << "#Vertices : " << pos_stack.size() << std::endl;
     std::cout << "#Indices : " << pos_idx_stack.size() << std::endl;
+
     for (auto const& indices : pos_idx_stack)
     {
         gm::ivec2 vertices[] = {
-            gm::vec2(pos_stack[indices.x].x, pos_stack[indices.x].y) * 1024.0f,
-            gm::vec2(pos_stack[indices.y].x, pos_stack[indices.y].y) * 1024.0f,
-            gm::vec2(pos_stack[indices.z].x, pos_stack[indices.z].y) * 1024.0f
+            gm::vec2(pos_stack[indices.x].x + 0.2f, pos_stack[indices.x].y) * 1024.0f,
+            gm::vec2(pos_stack[indices.y].x + 0.2f, pos_stack[indices.y].y) * 1024.0f,
+            gm::vec2(pos_stack[indices.z].x + 0.2f, pos_stack[indices.z].y) * 1024.0f
         };
         
         gm::vec3 colors[] = {

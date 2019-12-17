@@ -2,7 +2,6 @@
 
 #include "DataType.h"
 
-
 namespace gr
 {
     //! return the max value by comparing two arguments.

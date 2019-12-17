@@ -3,7 +3,6 @@ steps:
     fetchDepth: 2
     submodules: true
   - script: |
-      clang -dM -E - < /dev/null | egrep "SSE|AVX" | sort
       md Bin
       cd Bin
       cmake .. -G "Visual Studio 16 2019" -A x64

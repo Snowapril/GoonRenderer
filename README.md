@@ -10,10 +10,9 @@ This is long-term project for two years.
 
 ## Work story
 
-##### 1. One month later..
 ![Wireframe Sphere](WorkProcess/02-wireframe-man-head.bmp)
-    
-
+![Triangle Rasterization with interpolation](WorkProcess/03-triangle-rasterization.bmp)
+![Man Head Rasterization](WorkProcess/04-man-head-rasterization.bmp)
 
 ## Motivation
 [tiny-renderer project by ssloy](https://github.com/ssloy/tinyrenderer)

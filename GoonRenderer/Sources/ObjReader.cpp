@@ -5,6 +5,7 @@
 #include <cstring>
 #include <sstream>
 #include <iostream>
+#include <numeric>
 
 namespace gr
 {
@@ -15,7 +16,7 @@ namespace gr
         
         if (objFile.is_open())
         {
-            gm::vec3 min, max;
+            gm::vec3 bbMin(std::numeric_limits<float>::max()), bbMax(std::numeric_limits<float>::min());
             char buffer[255];
             while (objFile >> buffer)
             {
@@ -27,16 +28,16 @@ namespace gr
                     
                     if (_rescale_to_unit)
                     {
-                        min.x = gr::min(min.x, x);
-                        min.y = gr::min(min.y, y);
-                        min.z = gr::min(min.z, z);
+                        bbMin.x = gr::min(bbMin.x, x);
+                        bbMin.y = gr::min(bbMin.y, y);
+                        bbMin.z = gr::min(bbMin.z, z);
                         
-                        max.x = gr::max(max.x, x);
-                        max.y = gr::max(max.y, y);
-                        max.z = gr::max(max.z, z);
+                        bbMax.x = gr::max(bbMax.x, x);
+                        bbMax.y = gr::max(bbMax.y, y);
+                        bbMax.z = gr::max(bbMax.z, z);
                     }
                 }
-                else if (strcmp(buffer, "f") == 0)
+                else if (strcmp(buffer, "f") == 0) //! Faces
                 {
                     unsigned int vt[3], nt[3], ut[3];
                     char temp;
@@ -58,12 +59,13 @@ namespace gr
                     pos_idx_stack.push_back(gm::uvec3(vt[0], vt[1], vt[2]));
                 }
             }
-            objFile.clear();
-            objFile.close();
+            objFile.clear(); objFile.close();
             
             if (_rescale_to_unit)
             {
-                rescaleBoundingBox(min, max);
+                std::cout << "min : " << bbMin.x << ", " << bbMin.y << ", " << bbMin.z << std::endl;
+                std::cout << "max : " << bbMax.x << ", " << bbMax.y << ", " << bbMax.z << std::endl;
+                rescaleBoundingBox(bbMin, bbMax);
             }
         }
         else //! If reading the file with given path was failed.
@@ -76,9 +78,6 @@ namespace gr
     
     void ObjReader::rescaleBoundingBox(gm::vec3 const& _bbmin, gm::vec3 const& _bbmax) noexcept
     {
-        std::cout << "min : " << _bbmin.x << ", " << _bbmin.y << ", " << _bbmin.z << std::endl;
-        std::cout << "max : " << _bbmax.x << ", " << _bbmax.y << ", " << _bbmax.z << std::endl;
-        
         gm::vec3 const& scale = _bbmax - _bbmin;
         float max_v = gr::max(scale.x, gr::max(scale.y, scale.z));
         float inv_max_v = 1.0f / max_v;
