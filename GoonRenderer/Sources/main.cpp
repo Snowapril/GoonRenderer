@@ -31,21 +31,24 @@ int main(void)
     for (auto const& indices : pos_idx_stack)
     {
         gm::ivec2 vertices[] = {
-            gm::vec2(pos_stack[indices.x].x + 0.2f, pos_stack[indices.x].y) * 1024.0f,
-            gm::vec2(pos_stack[indices.y].x + 0.2f, pos_stack[indices.y].y) * 1024.0f,
-            gm::vec2(pos_stack[indices.z].x + 0.2f, pos_stack[indices.z].y) * 1024.0f
+            gm::vec2(pos_stack[indices.x].x, pos_stack[indices.x].y) * 1024.0f,
+            gm::vec2(pos_stack[indices.y].x, pos_stack[indices.y].y) * 1024.0f,
+            gm::vec2(pos_stack[indices.z].x, pos_stack[indices.z].y) * 1024.0f
         };
         
+        float randomValue1 = rand() / static_cast<float>(RAND_MAX + 1);
+        float randomValue2 = rand() / static_cast<float>(RAND_MAX + 1);
+        float randomValue3 = rand() / static_cast<float>(RAND_MAX + 1);
         gm::vec3 colors[] = {
-            gm::vec3(1.0f, 0.0f, 0.0f),
-            gm::vec3(0.0f, 1.0f, 0.0f),
-            gm::vec3(0.0f, 0.0f, 1.0f)
+            gm::vec3(randomValue1,randomValue2,randomValue3),
+            gm::vec3(randomValue1,randomValue2,randomValue3),
+            gm::vec3(randomValue1,randomValue2,randomValue3)
         };
         
-        //triangle(vertices, defaultBuffer, colors);
-        drawLine(vertices[0], vertices[1], defaultBuffer, colors[0]);
-        drawLine(vertices[1], vertices[2], defaultBuffer, colors[1]);
-        drawLine(vertices[2], vertices[0], defaultBuffer, colors[2]);
+        triangle(vertices, defaultBuffer, colors);
+        //drawLine(vertices[0], vertices[1], defaultBuffer, colors[0]);
+        //drawLine(vertices[1], vertices[2], defaultBuffer, colors[1]);
+        //drawLine(vertices[2], vertices[0], defaultBuffer, colors[2]);
     }
     
     unsigned char* data = defaultBuffer->data();
