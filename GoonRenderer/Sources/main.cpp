@@ -16,7 +16,7 @@ int main(void)
     std::cout << "This is test for checking build-status" << std::endl;
     
     ObjReader reader;
-    if (!reader.readObjFile("../Data/Model/man_head.obj")) std::cerr << "Failed to read obj File" << std::endl;
+    if (!reader.readObjFile("../Data/Model/bunny.obj")) std::cerr << "Failed to read obj File" << std::endl;
     
     Window window(1024, 1024, 3, "SW Rendering");
     
@@ -42,10 +42,10 @@ int main(void)
             gm::vec3(0.0f, 0.0f, 1.0f)
         };
         
-        triangle(vertices, defaultBuffer, colors);
-        //drawLine(vertices[0], vertices[1], defaultBuffer, colors[0]);
-        //drawLine(vertices[1], vertices[2], defaultBuffer, colors[1]);
-        //drawLine(vertices[2], vertices[0], defaultBuffer, colors[2]);
+        //triangle(vertices, defaultBuffer, colors);
+        drawLine(vertices[0], vertices[1], defaultBuffer, colors[0]);
+        drawLine(vertices[1], vertices[2], defaultBuffer, colors[1]);
+        drawLine(vertices[2], vertices[0], defaultBuffer, colors[2]);
     }
     
     unsigned char* data = defaultBuffer->data();
