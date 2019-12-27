@@ -1,7 +1,6 @@
 steps:
 - checkout: self
   fetchDepth: 2
-  submodules: true
 - script: |
     brew update
     brew install lcov

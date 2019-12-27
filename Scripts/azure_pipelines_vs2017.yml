@@ -1,7 +1,6 @@
 steps:
   - checkout: self
     fetchDepth: 2
-    submodules: true
   - script: |
       md Bin
       cd Bin
