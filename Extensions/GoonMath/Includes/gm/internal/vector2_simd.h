@@ -14,8 +14,6 @@
 
 #pragma once
 
-#include <cstdalign>
-
 #include "gm/internal/vector2.h"
 #include "gm/util.h"
 
@@ -36,11 +34,13 @@ namespace gm
         union
         {
             simd2f simd2;
-            alignas( 8 ) float data[2];
+            float data[2];
+            #pragma pack(push, 8)
             struct 
             {
-                alignas( 8 ) float x, y;
+                float x, y;
             };
+            #pragma pack(pop)
         };
     };
     #endif

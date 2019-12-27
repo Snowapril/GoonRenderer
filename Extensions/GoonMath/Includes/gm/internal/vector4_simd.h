@@ -13,7 +13,6 @@
 //! http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf
 #pragma once
 
-#include <cstdalign>
 #include "gm/util.h"
 #include "gm/internal/vector4.h"
 
@@ -71,11 +70,13 @@ namespace gm
         union
         {
             simd4f simd4;
-            alignas( 16 ) float data[4];
+            float data[4];
+            #pragma pack(push, 16)
             struct 
             {
-                alignas( 16 ) float x, y, z, w;
+                float x, y, z, w;
             };
+            #pragma pack(pop)
         };
     };
     
