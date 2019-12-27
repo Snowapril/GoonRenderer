@@ -52,7 +52,7 @@ namespace gm
 		 * @return std::decay_t<RetType> std::decay_t is used for the cast that programmer enter the return type as reference type by mistake.
 		 */
 		template < typename RetType, typename... Bits, typename = typename std::enable_if< std::is_integral<RetType>::value>::type>
-		static auto inline setBitmask( Bits... bits ) -> std::decay_t<RetType>
+		static auto inline setBitmask( Bits... bits ) -> typename std::decay<RetType>::type
 		{
 			RetType mask = ( (1 << bits) | ... );
 			return mask;

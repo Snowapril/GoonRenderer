@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include <stdalign.h>
+#include <cstdalign>
 
 #include "gm/internal/vector3.h"
 #include "gm/util.h"

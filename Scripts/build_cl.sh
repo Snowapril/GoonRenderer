@@ -22,6 +22,7 @@ gprof -b ./bin/GoonRenderer > ../Scripts/GoonRenderer.txt
 
 if [ "$1" = "-r" ]
 then
+    mv ./image.bmp ../Scripts
     rm -r ../Bin/*
     rm -r ../Bin/.*
 else

@@ -36,9 +36,9 @@ int main(void)
             gm::vec2(pos_stack[indices.z].x, pos_stack[indices.z].y) * 1024.0f
         };
         
-        float randomValue1 = rand() / static_cast<float>(RAND_MAX + 1);
-        float randomValue2 = rand() / static_cast<float>(RAND_MAX + 1);
-        float randomValue3 = rand() / static_cast<float>(RAND_MAX + 1);
+        float randomValue1 = rand() / static_cast<float>(RAND_MAX + 1LL);
+        float randomValue2 = rand() / static_cast<float>(RAND_MAX + 1LL);
+        float randomValue3 = rand() / static_cast<float>(RAND_MAX + 1LL);
         gm::vec3 colors[] = {
             gm::vec3(randomValue1,randomValue2,randomValue3),
             gm::vec3(randomValue1,randomValue2,randomValue3),
@@ -54,7 +54,7 @@ int main(void)
     unsigned char* data = defaultBuffer->data();
     BufferInfo bufferInfo = defaultBuffer->getBufferInfo();
     unsigned char* temp = gbmp::gbmp_bgr_to_rgb(data, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
-    gbmp::gbmp_write_image("../Data/Textures/Box/rendered_image.bmp", temp, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
+    gbmp::gbmp_write_image("image.bmp", temp, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
     gbmp::gbmp_free_image(temp);
     
     return 0;
