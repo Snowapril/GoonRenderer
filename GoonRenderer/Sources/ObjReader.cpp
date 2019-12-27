@@ -5,7 +5,7 @@
 #include <cstring>
 #include <sstream>
 #include <iostream>
-#include <numeric>
+#include <limits>
 
 namespace gr
 {

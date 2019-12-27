@@ -4,7 +4,7 @@
 
 #include "gm/vector.h"
 #include "gm/bitwise.h"
-#include <numeric>
+#include <limits>
 
 namespace gm
 {
