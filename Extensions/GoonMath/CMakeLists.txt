@@ -7,7 +7,7 @@ set(SOURCES
 
 set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vector.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/util.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/platform.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/vectorial.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/bitwise.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/gm/simd/simd2f.h

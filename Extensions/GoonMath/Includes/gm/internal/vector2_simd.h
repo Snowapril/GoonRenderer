@@ -15,7 +15,7 @@
 #pragma once
 
 #include "gm/internal/vector2.h"
-#include "gm/util.h"
+#include "gm/platform.h"
 
 #ifdef GM_SIMD_SUPPORT
 #include "gm/simd/simd2f.h"

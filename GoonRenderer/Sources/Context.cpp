@@ -1,51 +1,44 @@
 #include "Context.h"
-#include "Object/VBO.h"
-#include "Buffer.h"
 
-#include <cassert>
+#include "Resource/Resource.h"
 
 namespace gr
 {
+    template <> gr::Context* Singleton<Context>::instance = nullptr;
+
+    Context::Context(int numResLimit)
+    {
+        //! set this instance ,which is about to be constructed, as singleton pointer.
+        instance = this; 
+        //! push the numbers which are ranged from 1 to numResLimit in the stack in a reverse order.
+        for (int i = numResLimit; i >= 0; --i) 
+            idStack.push(i);
+    }
+
     Context::~Context() noexcept
-    {
-        for (int i = 0; i < staticVBOs.size(); ++i)
-            if ( staticVBOs[i]) delete staticVBOs[i];
-        for (int i = 0; i < dynamicVBOs.size(); ++i)
-            if (dynamicVBOs[i]) delete dynamicVBOs[i];
-            
-        staticVBOs.clear();
-        dynamicVBOs.clear();
-    }
-    
-    GoonID Context::generateVBO(void *_data, std::vector< VertexStrideInfo >&& _vStrideInfos, GoonEnum _usage) noexcept
-    {
-        GoonID objectID = -1;
-        
-        switch(_usage)
+    {   
+        //! unload and deallocate all resource
+        for (std::pair<GoonID, Resource*> resPair : resources)
         {
-        case GOON_STATIC_DRAW :
-            staticVBOs.push_back(new VBO(_data, std::move(_vStrideInfos)));
-            objectID = static_cast<GoonID>(staticVBOs.size() - 1);
-            break;
-        case GOON_DYNAMIC_DRAW :
-            dynamicVBOs.push_back(new VBO(_data, std::move(_vStrideInfos)));
-            objectID = static_cast<GoonID>(dynamicVBOs.size() - 1);
-            break;
-        default:
-            assert(false);
-            break;
+            Resource* res = resPair.second;
+            res->unload();
+            delete res;
         }
-        return objectID;
+        resources.clear();
     }
-    
-    GoonID Context::generateBuffer(int _width, int _height, int _numChannels, unsigned char *_data)
+
+    void Context::destroyResource(Resource* res) noexcept
     {
-        buffers.push_back(new Buffer(_width, _height, _numChannels, _data));
-        return static_cast<GoonID>(buffers.size());
-    }
-    
-    Buffer* Context::getBufferByIndex(int _id) noexcept
-    {
-        return buffers[_id];
+        //! get the id from the given resource pointer and find iterator from the resource map with id.
+        GoonID id = res->getID();
+        auto iter = resources.find(id);
+        //! in the case the resource pointer exists in the resource map.
+        if (iter != resources.end())
+        {
+            res->unload();
+            delete res;
+            resources.erase(iter);
+            idStack.push(id);
+        }
     }
 };

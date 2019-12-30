@@ -13,8 +13,8 @@
 //! http://www.cs.uu.nl/docs/vakken/magr/2017-2018/files/SIMD%20Tutorial.pdf
 #pragma once
 
-#include "gm/util.h"
 #include "gm/internal/vector4.h"
+#include "gm/platform.h"
 
 #ifdef GM_SIMD_SUPPORT
 #include "gm/simd/simd4f.h"
