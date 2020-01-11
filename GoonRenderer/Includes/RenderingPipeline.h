@@ -22,22 +22,11 @@ namespace gr
     class RenderingPipeline
     {
     private:
-        std::shared_ptr< Context > context;
         std::unique_ptr< InputAssembler > assember;
         std::unique_ptr<   Rasterizer   > rasterizer;
-        std::vector< std::unique_ptr< VertexShader > > vertexShaders;
-        std::vector< std::unique_ptr<FragmentShader> > fragmentShaders;
+
     public:
-        //! Return current context which whole stages of rendering pipeline are utilizing.
-        std::shared_ptr< Context > getCurrentContext() noexcept;
-        //! Set the context of rendering pipeline with given parameter.
-        void setContextCurrent(std::shared_ptr< Context > _context) noexcept;
-    public:
-        /*
-        * Simulate the rendering pipeline with given FPS and Time.
-        * If _video_path is not equal to nullptr, 
-        * this method will generate the video which is simulating result of the rendering pipeline.
-        */
-        void simulate(float _time_limit, float _fps, char const* _video_path=nullptr) noexcept;
+        RenderingPipeline() = default;
+        ~RenderingPipeline();
     };
 };

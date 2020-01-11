@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Resource/Resource.h"
 #include "DataType.h"
 
 namespace gr
 {
-    class Buffer 
+    class Buffer : public Resource
     {
     protected:
         unsigned char* buffer = nullptr;
@@ -29,8 +30,5 @@ namespace gr
         unsigned char const* data() const noexcept;
         //! Return the information of the buffer which address width, height, number of channels.
         BufferInfo getBufferInfo() const noexcept;
-        
-        static unsigned char* allocBuffer(int _numAlloc) noexcept;
-        static void deallocBuffer(unsigned char *_data) noexcept;
     };
 };

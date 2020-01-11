@@ -9,6 +9,8 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/LineRenderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Context.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Renderer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/SwapChain.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/MeshRenderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureGeneration.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/Texture.cpp
@@ -16,6 +18,10 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureCompression.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Texture/TextureManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Resource/MemoryManager.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Pipeline/FragmentShader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Pipeline/VertexShader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Pipeline/InputAssembler.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Pipeline/Rasterizer.cpp
 )
 
 set(INCLUDES
@@ -28,6 +34,8 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/LineRenderer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Window.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Context.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Renderer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/SwapChain.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/MeshRenderer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Util.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/Texture.h
@@ -37,6 +45,10 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Texture/TextureManager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Resource/MemoryManager.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Resource/Resource.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Pipeline/FragmentShader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Pipeline/VertexShader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Pipeline/InputAssembler.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Pipeline/Rasterizer.h
 )
 
 add_executable(GoonRenderer ${SOURCES} ${INCLUDES})

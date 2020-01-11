@@ -11,4 +11,5 @@ namespace gr
     class Context;
     class Window;
     class Resource;
+    class Renderer;
 };

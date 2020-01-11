@@ -2,16 +2,16 @@
 
 namespace gr
 {
-    Buffer::Buffer(int _width, int _height, int _numChannels, unsigned char *_data) noexcept
-        : width(_width), height(_height), numChannels(_numChannels)
+    Buffer::Buffer(int width, int height, int numChannels, unsigned char *data) noexcept
+        : width(width), height(height), numChannels(numChannels)
     {
-        if (_data) this->buffer = _data;
-        else       this->buffer = allocBuffer(width * height * numChannels);
+        if (data) this->buffer = data;
+        else      this->buffer = new unsigned char[width * height * numChannels];
     }
     
     Buffer::~Buffer() noexcept
     {
-        deallocBuffer(this->buffer);   
+        if (this->data == nullptr) delete this->data;   
     }
     
     unsigned char* Buffer::data() noexcept
@@ -33,15 +33,5 @@ namespace gr
         info.bitCount    = 8;
         
         return info;
-    }
-    
-    unsigned char* Buffer::allocBuffer(int _numAlloc) noexcept
-    {
-        return new unsigned char[_numAlloc];
-    }
-    
-    void Buffer::deallocBuffer(unsigned char *_data) noexcept
-    {
-        if (_data == nullptr) delete _data;   
     }
 };

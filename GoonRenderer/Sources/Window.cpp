@@ -4,38 +4,31 @@
 #include "Buffer.h"
 
 namespace gr
-{
-    Window::Window(int _width, int _height, int _nunChannels, char const* _title) noexcept
-        : title(_title), width(_width), height(_height)
-    {
-        this->context = std::make_shared<Context>();
-        this->context->generateBuffer(this->width, this->height, _nunChannels, nullptr);
-    }
-    
-    Window::Window(char const* _path_to_image, char const* _title) noexcept
-        : title(_title)
-    {
-        this->context = std::make_shared<Context>();
-        int numChannels;
-        unsigned char* initialData = gbmp::gbmp_load_image(_path_to_image, &(this->width), &(this->height), &numChannels);
-        this->context->generateBuffer(this->width, this->height, numChannels, initialData);
-    }
-    
+{    
     Window::~Window()
     {
-        if (context) this->context.reset();
+        if (this->swapchain) delete this->swapchain;
     }
         
-    Buffer* Window::getDefaultBuffer() noexcept
+    void Window::attachSwapChain(SwapChain* swapchain) noexcept
     {
-        return this->context->getBufferByIndex(0);
+        this->swapchain = swapchain;
     }
-    std::shared_ptr< Context > Window::getCurrentContext() noexcept
+    void Window::setWindowSize(int width, int height) noexcept
     {
-        return this->context;    
+        this->width  = width;
+        this->height = height;
     }
-    void Window::setContextCurrent(std::shared_ptr< Context > _context) noexcept
+    void Window::setWindowTitle(char const* title) noexcept
     {
-        this->context = _context;
+        this->title = title;
+    }
+    std::pair<int, int> Window::getWindowSize() const noexcept
+    {
+        return std::make_pair(this->width, this->height);
+    }
+    std::string Window::getWindowTitle() const noexcept
+    {
+        return this->title;
     }
 };

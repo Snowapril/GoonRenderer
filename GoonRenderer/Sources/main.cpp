@@ -7,6 +7,8 @@
 #include "LineRenderer.h"
 #include "Buffer.h"
 #include "ObjReader.h"
+#include "SwapChain.h"
+#include "Context.h"
 
 #include <gm/vectorial.h>
 using namespace gr;
@@ -18,9 +20,15 @@ int main(void)
     ObjReader reader;
     if (!reader.readObjFile("../Data/Model/bunny.obj")) std::cerr << "Failed to read obj File" << std::endl;
     
-    Window window(1024, 1024, 3, "SW Rendering");
+    Context context;
+    Window window;
     
-    Buffer* defaultBuffer = window.getDefaultBuffer();
+    SwapChain* chain = new SwapChain;
+    chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
+    chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
+    chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
+
+    window.attachSwapChain(chain);
     
     std::vector<gm::vec3> const &pos_stack = reader.pos_stack;
     std::vector<gm::uvec3> const &pos_idx_stack = reader.pos_idx_stack;
