@@ -31,7 +31,7 @@ namespace gr
         void attachWindow(Window* window) noexcept;
         void destroyRenderer() noexcept;
 
-        void loadSceneObjects(Package* pack) noexcept;
+        void loadSceneObjects(SwapChain* chain, Scene* scene, View* view, Camera* cam) noexcept;
         void unloadSceneObjects() noexcept;
         //! Simulate the renderer for generating one frame.
         void simulate_image(char const* image_path="rendering.bmp") noexcept;

@@ -2,16 +2,14 @@
 
 namespace gr
 {
-    Buffer::Buffer(int width, int height, int numChannels, unsigned char *data) noexcept
+    Buffer::Buffer(int width, int height, int numChannels) noexcept
         : width(width), height(height), numChannels(numChannels)
     {
-        if (data) this->buffer = data;
-        else      this->buffer = new unsigned char[width * height * numChannels];
     }
     
     Buffer::~Buffer() noexcept
     {
-        if (this->buffer == nullptr) delete this->buffer;   
+        unload();
     }
     
     unsigned char* Buffer::data() noexcept
@@ -34,4 +32,15 @@ namespace gr
         
         return info;
     }
+
+    void Buffer::load() noexcept
+    {
+        if (this->buffer == nullptr)
+            this->buffer = new unsigned char[width * height * numChannels];
+    }
+    void Buffer::unload() noexcept
+    {
+        if(buffer) 
+            delete buffer;
+    } 
 };

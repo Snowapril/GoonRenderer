@@ -35,20 +35,19 @@ namespace gr
 
     void Renderer::loadSceneObjects(SwapChain* chain, Scene* scene, View* view, Camera* cam) noexcept
     {
-
+        
     }
-
     void Renderer::unloadSceneObjects() noexcept
     {
         
     }
 
-    void Renderer::simulate_image(char const* image_path="rendering.bmp") noexcept
+    void Renderer::simulate_image(char const* image_path) noexcept
     {
 
     }
     
-    void Renderer::simulate_video(float time_limit, float fps, char const* video_path="rendering.mp4") noexcept
+    void Renderer::simulate_video(float time_limit, float fps, char const* video_path) noexcept
     {
 
     }

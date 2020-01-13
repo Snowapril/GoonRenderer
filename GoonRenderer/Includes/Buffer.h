@@ -21,7 +21,7 @@ namespace gr
         * @param number of channels of the buffer
         * @param if _data is nullptr, alloc the buffer with uninitialized data.
         */
-        Buffer(int _width, int _height, int _numChannels, unsigned char *_data=nullptr) noexcept;
+        Buffer(int _width, int _height, int _numChannels) noexcept;
         ~Buffer() noexcept;
     public:
         //! Return the pointer of first element in the buffer.
@@ -30,5 +30,8 @@ namespace gr
         unsigned char const* data() const noexcept;
         //! Return the information of the buffer which address width, height, number of channels.
         BufferInfo getBufferInfo() const noexcept;
+
+        void load() noexcept override;
+        void unload() noexcept override;
     };
 };
