@@ -11,7 +11,7 @@ namespace gr
     
     Buffer::~Buffer() noexcept
     {
-        if (this->data == nullptr) delete this->data;   
+        if (this->buffer == nullptr) delete this->buffer;   
     }
     
     unsigned char* Buffer::data() noexcept
@@ -30,7 +30,7 @@ namespace gr
         info.width       = this->width;
         info.height      = this->height;
         info.numChannels = this->numChannels;
-        info.bitCount    = 8;
+        info.bitCount    = sizeof(unsigned char) * 8;
         
         return info;
     }

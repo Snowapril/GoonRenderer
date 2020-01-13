@@ -7,10 +7,8 @@
 * 근데 VR환경에서는 MSAA 가 괜찮음.
 */
 
-#include "HeaderPrerequistes.h"
-
-#include <vector>
-#include <memory>
+#include "Pipeline/InputAssembler.h"
+#include "Pipeline/Rasterizer.h"
 
 namespace gr
 {
@@ -22,11 +20,12 @@ namespace gr
     class RenderingPipeline
     {
     private:
-        std::unique_ptr< InputAssembler > assember;
-        std::unique_ptr<   Rasterizer   > rasterizer;
-
+        InputAssembler assember;
+        Rasterizer rasterizer;
     public:
         RenderingPipeline() = default;
         ~RenderingPipeline();
+
+        void setupPipeline() noexcept;
     };
 };

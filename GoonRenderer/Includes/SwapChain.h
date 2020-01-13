@@ -19,15 +19,24 @@ namespace gr
     class SwapChain
     {
     public:
-        using buffer_type  = Buffer*;
-        using storage_type = std::vector<buffer_type>;
+        using buffer_ptr = Buffer*;
+        using buffer_const_ptr = Buffer const*;
+        using storage_type = std::vector<buffer_ptr>;
 
         SwapChain() = default;
-        ~SwapChain();
+        ~SwapChain() noexcept;
 
+        //! add buffer to swap chain. 
+        //! the number of the buffer can be 1, 2 and 3. (single buffer, double-buffering, tri-buffering)
         void addBuffer(Buffer* buffer) noexcept;
+        //! front buffer in needed only for copying to video RAM
+        buffer_const_ptr getFrontBuffer() const noexcept; 
+        //! back buffer is used for drawing.
+        buffer_ptr getBackBuffer() noexcept;
+        //! update every render frame for swapping front and back buffers.
+        void swap() noexcept;
     private:
         storage_type buffers;
-        int cur_index = 0;
+        int front_index = 0, back_index = 0;
     };
 };

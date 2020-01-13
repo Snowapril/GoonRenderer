@@ -10,9 +10,9 @@
  */
 #pragma once
 
+#include "HeaderPrerequistes.h"
 #include "RenderingPipeline.h"
 #include "Context.h"
-#include "Window.h"
 
 namespace gr
 {
@@ -20,13 +20,19 @@ namespace gr
     {
     private:
         RenderingPipeline pipeline;
-        Context context;
-        Window window;
+        Context* context;
+        
+        Package* pack;
     public:
-        Renderer() = default;
         Renderer(char const* config_path=nullptr) noexcept;
         ~Renderer();
-    public:
+
+        void setupRenderer(char const* config_path = nullptr) noexcept;
+        void attachWindow(Window* window) noexcept;
+        void destroyRenderer() noexcept;
+
+        void loadSceneObjects(Package* pack) noexcept;
+        void unloadSceneObjects() noexcept;
         //! Simulate the renderer for generating one frame.
         void simulate_image(char const* image_path="rendering.bmp") noexcept;
         //! Simulate the renderer with given FPS and Time for generating video.

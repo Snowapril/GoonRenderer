@@ -1,33 +1,37 @@
-/*
- * @file SwapChain.h
- * @author snowapril (https://github.com/Snowapril)
- * @brief 
- * @date 2020-01-11
- * 
- * @copyright Copyright (c) 2019 snowapril
- * This code is licensed under MIT License (see LICENSE for details)
- * 
- */
-#pragma once
-
-#include "Buffer.h"
-
-#include <vector>
+#include "SwapChain.h"
+#include "Context.h"
 
 namespace gr
 {
-    class SwapChain
+    SwapChain::~SwapChain() noexcept
     {
-    public:
-        using buffer_type  = Buffer*;
-        using storage_type = std::vector<buffer_type>;
+        auto& context = Context::getMutableInstance();
 
-        SwapChain() = default;
-        ~SwapChain();
+        for (Buffer* buffer : this->buffers)
+            context.destroyResource(buffer);
+    }
 
-        void addBuffer(Buffer* buffer) noexcept;
-    private:
-        storage_type buffers;
-        int cur_index = 0;
-    };
+    void SwapChain::addBuffer(Buffer* buffer) noexcept
+    {
+        //! For compatibility with single-buffering.
+        if (back_index == 0) back_index = 1;
+
+        this->buffers.push_back(buffer);
+    }
+    
+    SwapChain::buffer_const_ptr SwapChain::getFrontBuffer() const noexcept
+    {
+        return buffers[front_index];
+    }
+    
+    SwapChain::buffer_ptr SwapChain::getBackBuffer() noexcept
+    {
+        return buffers[back_index];
+    }
+
+    void SwapChain::swap() noexcept
+    {
+        front_index = back_index;
+        back_index = back_index + 1 == buffers.size() ? 0 : back_index + 1;
+    }
 };

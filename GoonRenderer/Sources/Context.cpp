@@ -4,8 +4,13 @@
 
 namespace gr
 {
+    template < > gr::Context* Singleton<gr::Context>::instance = nullptr;
+
     Context::Context(int numResLimit)
     {
+        //! assign this instance to the singleton instance pointer.
+        instance = this; 
+        //! resize and shrink resource vector to given size.
         resources.resize(numResLimit, nullptr);
         resources.shrink_to_fit();
         //! push the numbers which are ranged from 1 to numResLimit in the stack in a reverse order.

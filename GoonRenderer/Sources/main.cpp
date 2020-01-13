@@ -2,39 +2,37 @@
 #include <algorithm>
 #include <gbmp/bmp_image.h>
 
-#include "Window.h"
 #include "MeshRenderer.h"
 #include "LineRenderer.h"
 #include "Buffer.h"
 #include "ObjReader.h"
 #include "SwapChain.h"
 #include "Context.h"
+#include "Renderer.h"
 
 #include <gm/vectorial.h>
 using namespace gr;
 
 int main(void)
 {
-    std::cout << "This is test for checking build-status" << std::endl;
+    Renderer renderer;
     
-    ObjReader reader;
-    if (!reader.readObjFile("../Data/Model/bunny.obj")) std::cerr << "Failed to read obj File" << std::endl;
-    
-    Context context;
-    Window window;
-    
+    auto& context = Context::getMutableInstance();
     SwapChain* chain = new SwapChain;
     chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
     chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
     chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
 
-    window.attachSwapChain(chain);
     
-    std::vector<gm::vec3> const &pos_stack = reader.pos_stack;
+    Buffer* backbuffer = chain->getBackBuffer();
+    ObjReader reader;
+    if (!reader.readObjFile("../Data/Model/bunny.obj")) std::cerr << "Failed to read obj File" << std::endl;
+    
+    std::vector<gm::vec3 > const &pos_stack = reader.pos_stack;
     std::vector<gm::uvec3> const &pos_idx_stack = reader.pos_idx_stack;
     
-    std::cout << "#Vertices : " << pos_stack.size() << std::endl;
-    std::cout << "#Indices : " << pos_idx_stack.size() << std::endl;
+    std::cout << "#Vertices : " << pos_stack.size()     << std::endl;
+    std::cout << "#Indices : "  << pos_idx_stack.size() << std::endl;
 
     for (auto const& indices : pos_idx_stack)
     {
@@ -53,16 +51,22 @@ int main(void)
             gm::vec3(randomValue1,randomValue2,randomValue3)
         };
         
-        triangle(vertices, defaultBuffer, colors);
+        triangle(vertices, backbuffer, colors);
         //drawLine(vertices[0], vertices[1], defaultBuffer, colors[0]);
         //drawLine(vertices[1], vertices[2], defaultBuffer, colors[1]);
         //drawLine(vertices[2], vertices[0], defaultBuffer, colors[2]);
     }
-    
-    unsigned char* data = defaultBuffer->data();
-    BufferInfo bufferInfo = defaultBuffer->getBufferInfo();
-    unsigned char* temp = gbmp::gbmp_bgr_to_rgb(data, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
-    gbmp::gbmp_write_image("image.bmp", temp, bufferInfo.width, bufferInfo.height, bufferInfo.numChannels);
+    chain->swap();
+    Buffer const* frontBuffer = chain->getFrontBuffer();
+    unsigned char const* data = frontBuffer->data();
+    BufferInfo bufferInfo = frontBuffer->getBufferInfo();
+
+    int width = bufferInfo.width;
+    int height = bufferInfo.height;
+    int numChannels = bufferInfo.numChannels;
+
+    unsigned char* temp = gbmp::gbmp_bgr_to_rgb(data, width, height, numChannels);
+    gbmp::gbmp_write_image("image.bmp", temp, width, height, numChannels);
     gbmp::gbmp_free_image(temp);
     
     return 0;

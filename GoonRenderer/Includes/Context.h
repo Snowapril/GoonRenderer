@@ -3,6 +3,7 @@
 #include <vector>
 #include <stack>
 
+#include "Singleton.h"
 #include "DataType.h"
 #include "HeaderPrerequistes.h"
 
@@ -11,7 +12,7 @@ namespace gr
     /*
     *   This class manages whole resources which are generated during on simulating rendering pipeline.
     */
-    class Context
+    class Context : public Singleton< Context >
     {
     private:
         std::vector<Resource*> resources;

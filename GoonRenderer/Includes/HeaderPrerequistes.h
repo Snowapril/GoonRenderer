@@ -11,5 +11,10 @@ namespace gr
     class Context;
     class Window;
     class Resource;
+    class SwapChain;
     class Renderer;
+    class Scene;
+    class View;
+    class Camera;
+    class Package;
 };

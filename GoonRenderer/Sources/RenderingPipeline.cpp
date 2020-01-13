@@ -9,4 +9,8 @@
 
 namespace gr
 {
+    void RenderingPipeline::setupPipeline() noexcept
+    {
+        
+    }
 };

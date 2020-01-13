@@ -6,8 +6,11 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Buffer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/RenderingPipeline.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/ObjReader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/View.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Scene.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Camera.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Package.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/LineRenderer.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Context.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Renderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/SwapChain.cpp
@@ -29,10 +32,13 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/DataType.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Singleton.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Buffer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/View.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Scene.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Camera.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Package.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/RenderingPipeline.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/ObjReader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/LineRenderer.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Window.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Context.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Renderer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/SwapChain.h

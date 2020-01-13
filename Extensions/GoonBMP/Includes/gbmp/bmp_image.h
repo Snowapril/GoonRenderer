@@ -118,7 +118,7 @@ namespace gbmp
         return data;
     }
     
-    inline bool gbmp_write_image(std::string const& _path, uint8_t* _data, int32_t _width, int32_t _height, int32_t _num_channels) noexcept
+    inline bool gbmp_write_image(std::string const& _path, uint8_t const* _data, int32_t _width, int32_t _height, int32_t _num_channels) noexcept
     {
         if (_width <= 0 || _height <= 0) return false;
         
@@ -189,12 +189,12 @@ namespace gbmp
     
     // Very inefficient code. for only testing.
     // TODO : Refactoring this code.
-    inline uint8_t* gbmp_bgr_to_rgb(uint8_t* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
+    inline uint8_t* gbmp_bgr_to_rgb(uint8_t const* _data, int32_t _width, int32_t _height, int32_t _numChannels) noexcept
     {
         std::size_t num_alloc = _width * _height * _numChannels;
         uint8_t *result = new uint8_t[num_alloc];
         
-        std::memcpy(static_cast<void*>(result), static_cast<void*>(_data), num_alloc);
+        std::memcpy(static_cast<void*>(result), static_cast<void const*>(_data), num_alloc);
         
         uint8_t *temp_ptr = result;
         int iterCount = _width * _height;
