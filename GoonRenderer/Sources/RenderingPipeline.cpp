@@ -9,6 +9,11 @@
 
 namespace gr
 {
+    RenderingPipeline::~RenderingPipeline() noexcept
+    {
+
+    }
+    
     void RenderingPipeline::setupPipeline() noexcept
     {
         

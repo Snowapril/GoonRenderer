@@ -1,5 +1,6 @@
 #include "SwapChain.h"
 #include "Context.h"
+#include <iostream>
 
 namespace gr
 {
@@ -8,7 +9,10 @@ namespace gr
         auto& context = Context::getMutableInstance();
 
         for (Buffer* buffer : this->buffers)
+        {
+            buffer->unload();
             context.destroyResource(buffer);
+        }
     }
 
     void SwapChain::addBuffer(Buffer* buffer) noexcept
@@ -27,6 +31,19 @@ namespace gr
     SwapChain::buffer_ptr SwapChain::getBackBuffer() noexcept
     {
         return buffers[back_index];
+    }
+
+    void SwapChain::initBuffers()
+    {
+        try
+        {
+            for (Buffer* buffer : this->buffers)
+                buffer->load();
+        }
+        catch( std::bad_alloc e )
+        {
+            std::cerr << e.what() << std::endl;
+        }
     }
 
     void SwapChain::swap() noexcept

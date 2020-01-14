@@ -15,14 +15,13 @@ using namespace gr;
 
 int main(void)
 {
-    Renderer renderer;
+    Renderer renderer("config.ini");
     
     auto& context = Context::getMutableInstance();
     SwapChain* chain = new SwapChain;
     chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
     chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
     chain->addBuffer( context.generateResource<Buffer>(1024, 1024, 3) );
-
     
     Buffer* backbuffer = chain->getBackBuffer();
     ObjReader reader;

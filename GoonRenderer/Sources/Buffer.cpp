@@ -1,4 +1,5 @@
 #include "Buffer.h"
+#include <iostream>
 
 namespace gr
 {
@@ -33,14 +34,17 @@ namespace gr
         return info;
     }
 
-    void Buffer::load() noexcept
+    void Buffer::load()
     {
         if (this->buffer == nullptr)
             this->buffer = new unsigned char[width * height * numChannels];
     }
-    void Buffer::unload() noexcept
+    void Buffer::unload()
     {
         if(buffer) 
+        {
             delete buffer;
+            buffer = nullptr;
+        }
     } 
 };

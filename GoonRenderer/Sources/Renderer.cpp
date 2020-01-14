@@ -1,5 +1,12 @@
 #include "Renderer.h"
 
+#include "SwapChain.h"
+#include "Scene.h"
+#include "View.h"
+#include "Camera.h"
+
+#include <utility>
+
 namespace gr
 {
     Renderer::Renderer(char const* config_path) noexcept
@@ -14,13 +21,13 @@ namespace gr
     
     void Renderer::setupRenderer(char const* config_path) noexcept
     {
+        context = new Context();
         if (config_path)
         {
 
         }
         else
         {
-            context = new Context();
             pipeline.setupPipeline();
         }
     }
@@ -33,13 +40,42 @@ namespace gr
         }
     }
 
-    void Renderer::loadSceneObjects(SwapChain* chain, Scene* scene, View* view, Camera* cam) noexcept
+    void Renderer::loadPackage(Renderer::Package package) noexcept
     {
-        
+        this->pack = package;
     }
-    void Renderer::unloadSceneObjects() noexcept
+
+    Renderer::Package Renderer::getPackage() noexcept
     {
-        
+        return this->pack;
+    }
+
+    void Renderer::replacePackage(Package newPackage) noexcept
+    {
+        using std::swap;
+        if (pack.swapchain != newPackage.swapchain)
+        {
+            delete pack.swapchain;
+            pack.swapchain = newPackage.swapchain;
+        }
+
+        if (pack.scene != newPackage.scene)
+        {
+            delete pack.scene;
+            pack.scene = newPackage.scene;
+        }
+
+        if (pack.view != newPackage.view)
+        {
+            delete pack.view;
+            pack.view = newPackage.view;
+        }
+
+        if (pack.cam != newPackage.cam)
+        {
+            delete pack.cam;
+            pack.cam = newPackage.cam;
+        }
     }
 
     void Renderer::simulate_image(char const* image_path) noexcept

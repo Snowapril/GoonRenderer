@@ -35,6 +35,8 @@ namespace gr
         buffer_ptr getBackBuffer() noexcept;
         //! update every render frame for swapping front and back buffers.
         void swap() noexcept;
+        //! allocate memory to buffers (load all buffers).
+        void initBuffers();
     private:
         storage_type buffers;
         int front_index = 0, back_index = 0;

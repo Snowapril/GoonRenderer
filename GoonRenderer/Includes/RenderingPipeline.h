@@ -24,7 +24,7 @@ namespace gr
         Rasterizer rasterizer;
     public:
         RenderingPipeline() = default;
-        ~RenderingPipeline();
+        ~RenderingPipeline() noexcept;
 
         void setupPipeline() noexcept;
     };

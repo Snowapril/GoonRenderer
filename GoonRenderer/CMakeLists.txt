@@ -9,7 +9,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/View.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Scene.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Camera.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Package.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/LineRenderer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Context.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Sources/Renderer.cpp
@@ -30,7 +29,6 @@ set(INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/View.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Scene.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Camera.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Includes/Package.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/RenderingPipeline.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/ObjReader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Includes/LineRenderer.h

@@ -11,10 +11,10 @@ namespace gr
     public:
         Resource() = default;
         Resource(GoonID id) : id(id) {};
-        virtual ~Resource() = 0;
+        virtual ~Resource() {};
     public:
-        virtual void load() noexcept = 0;
-        virtual void unload() noexcept = 0;
+        virtual void load() = 0;
+        virtual void unload() = 0;
 
         inline GoonID getID() noexcept
         {

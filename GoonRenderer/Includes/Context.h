@@ -5,7 +5,9 @@
 
 #include "Singleton.h"
 #include "DataType.h"
+#include "Resource/Resource.h"
 #include "HeaderPrerequistes.h"
+#include "Buffer.h"
 
 namespace gr
 {
@@ -43,4 +45,32 @@ namespace gr
          */
         void destroyResource(Resource* res) noexcept;
     };
+};
+
+//! Definitions of Context's template methods below.
+namespace gr
+{
+    template <typename Type>
+    Type* Context::getResource(GoonID id) noexcept
+    {
+        //! get resource pointer with id
+        Resource* res = resources[id];
+        //! it given pointer matched with id is nullptr, return nullptr
+        //! otherwise downcasting to required type
+        return res == nullptr ? nullptr : (Type*)(&res);
+    }
+
+    template <typename Type, typename... Args>
+    Type* Context::generateResource(Args&&... args) noexcept
+    {
+        //! pop id from the stack which will be used as identification of the resource.
+        GoonID id = idStack.top();
+        idStack.pop();
+        //! generate resource with given type which must be a class inherited by Resource class.
+        //! And load that resource with it's initialized member variables.
+        resources[id] = new Type(std::forward<Args>(args)...);
+        resources[id]->load();
+        
+        return (Type*)(&resources[id]);
+    }
 };
